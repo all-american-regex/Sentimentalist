@@ -1,0 +1,58 @@
+h1{
+	color: #2380E2;
+	font-family: sans-serif;
+}
+
+.btn {
+  background: #639FDE;
+  border-radius: 28px;
+  font-family: sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover{
+  background-color: #2380E2;
+}
+
+
+.jumbotron{
+	background-color: #dcdcdc;
+	text-align: center;
+	border-radius: 2px;
+}
+
+.slide.ng-leave {
+  position: relative;
+}
+
+.slide.ng-enter {
+  position: absolute;
+}
+
+.slide.ng-enter,
+.slide.ng-leave {
+  -webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.slide.ng-enter,
+.slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleX(0.0001);
+  -o-transform: scaleX(0.0001);
+  transform: scaleX(0.0001);
+  opacity: 0;
+}
+
+.slide,
+.slide.ng-enter.ng-enter-active {
+  -webkit-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+  opacity: 1;
+}
