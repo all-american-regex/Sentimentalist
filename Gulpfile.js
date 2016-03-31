@@ -13,7 +13,7 @@ var paths = {
   // all our client app js files, not including 3rd party js files
   scripts: ['client/app/*.js'],
   html: ['client/index.html'],
-  styles: ['client/styles/index.css'],
+  styles: ['client/styles/index.css']
 };
 
 // any changes made to your
@@ -36,7 +36,7 @@ gulp.task('karma', shell.task([
 
 // start our node server using nodemon
 gulp.task('serve', function() {
-  nodemon({script: 'server/index.js', ignore: 'node_modules/**/*.js'});
+  nodemon({script: 'server/express-server.js', ignore: 'node_modules/**/*.js'});
 });
 
 gulp.task('default', ['start']);
