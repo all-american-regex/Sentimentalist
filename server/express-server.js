@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var scraper = require('google-search-scraper');
+var scraper = require('./modules/searchscrape');
 var indico = require('indico.io');
+var Path = require('path');
 
 app.use('/', express.static('client'));
 app.use(bodyParser.json());
