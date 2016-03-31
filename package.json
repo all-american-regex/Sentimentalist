@@ -10,13 +10,11 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/nodemon server/index.js --ignore client/ --ignore node_modules/",
     "test": "./test/run.sh"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
-    "cheerio": "^0.20.0",
     "express": "^4.13.4",
     "indico.io": "^0.9.0",
     "jwt-simple": "^0.2.0",
@@ -34,6 +32,7 @@
   "devDependencies": {
     "browser-sync": "^1.5.7",
     "chai": "^3.4.0",
+    "cheerio": "^0.20.0",
     "clone-stats": "0.0.1",
     "expect.js": "^0.3.1",
     "gulp": "^3.8.5",
@@ -43,26 +42,9 @@
     "gulp-nodemon": "^1.0.4",
     "gulp-shell": "^0.2.7",
     "jshint-stylish": "^0.2.0",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-cli": "0.0.4",
-    "karma-jasmine": "^0.1.5",
-    "karma-mocha": "^0.1.4",
-    "karma-nested-reporter": "^0.1.1",
-    "karma-nyan-reporter": "0.0.43",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-unicorn-reporter": "^0.1.4",
     "mocha": "^2.3.3",
-    "nodemon": "^1.3.7",
     "supertest": "^1.1.0",
-    "supertest-as-promised": "^2.0.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^1.0.1",
-    "grunt-exec": "^0.4.6",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-test": "^0.11.0",
-    "grunt-notify": "^0.3.0"
+    "supertest-as-promised": "^2.0.2"
   },
   "author": "Dan <dan.corman@gmail.com>",
   "bugs": {
