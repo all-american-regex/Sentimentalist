@@ -67,10 +67,6 @@ exports.getStatistics = function(text) {
   return indico.analyzeText(final, {apis: ['sentiment', 'political', 'emotion', 'personality']});
 }
 
-
-
-
-
   // var informationArray = {};
   // indico.political(text)
   // .then(function(resp) {
