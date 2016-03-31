@@ -108,7 +108,6 @@ function search(options, callback) {
       }
     });
 
-    console.log(results);
     return results;
   }
 
