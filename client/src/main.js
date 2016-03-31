@@ -1,7 +1,12 @@
 'use strict';
 
-angular.module('sL')
+angular.module('sL.main', [])
   .controller('MainCtrl', ['$scope', function($scope) {
-  	$scope.welcome = 'Welcome to your App!';
-  	$scope.buttonText = 'This is your Button';
+    $scope.appName = 'SentimentaList';
+    $scope.buttonText = 'Go';
+  }])
+
+  .controller('SecondCtrl', ['$scope', function($scope) {
+  	$scope.results = 'glaggi';
+
   }]);
