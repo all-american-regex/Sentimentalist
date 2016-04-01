@@ -5,18 +5,30 @@ angular.module('sL.services', [])
 
     var getTopTen = function(query) {
       return $http({
-          method: 'GET',
-          url: '/api/top10scrape',
-          params: {
-            search: query
-          }
-        })
+        method: 'GET',
+        url: '/api/top10scrape',
+        params: {
+          search: query
+        }
+      })
     };
 
+    var updateScores = function(/*what goes here?*/){
+      return $http({
+        method: 'GET',
+        url: '/api/scrapearticle',
+        params:{
+          url:
+        }
+      })
+    }
+
     return {
-      getTopTen: getTopTen
+      getTopTen: getTopTen,
+      updateScores: updateScores
     };
   })
   .service('Data', function() {
     this.newsLinks = {};
   });
+
