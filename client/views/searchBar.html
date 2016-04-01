@@ -1,14 +1,43 @@
-<div class='jumbotron'>
-  <h1>{{appName}}</h1>
-</div>
-</hr>
-<form class="inputdata" role="search">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" ng-model="input">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" placeholder="Email" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Sign in</button>
+      </form>
+    </div>
   </div>
-  <a ui-sref=".results">
-    <button type="submit" class="btn btn-default" ng-click="getLinks()">{{buttonText}}</button>
-  </a>
-</form>
-<hr/>
-<div ui-view></div>
+</nav>
+<div class='jumbotron'>
+  <div class="container">
+    <h1>{{appName}}</h1>
+  </div>
+  </hr>
+  <div class="row one">
+    <div class="col-md-12">
+      <form class="inputdata" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="input">
+        </div>
+        <a ui-sref=".results">
+          <button type="submit" class="btn btn-default" ng-click="getLinks()">{{buttonText}}</button>
+        </a>
+      </form>
+    </div>
+  </div>
+  <hr/>
+  <div ui-view></div>
