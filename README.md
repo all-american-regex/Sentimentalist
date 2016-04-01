@@ -24,3 +24,14 @@ There is a basic test framework in your `test/` folder. To run the tests, simply
 
 ## Credits
 Inspired by the original Node-Catapult developed by mindeavor found at: https://github.com/Concatapult/node-catapult
+
+
+## PostGres notes:
+
+    In command line:
+
+    -brew install postgres
+    -brew info postgres
+
+    The second command will give you a command to bring up the PostGres log and initiate PostGres.
+    After that, you can use the command psql in a different tab to work with the data.
