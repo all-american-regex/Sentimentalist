@@ -3,7 +3,9 @@ var app = express();
 var API = require('./modules/apis')
 var bodyParser = require('body-parser');
 var Path = require('path');
+
 //var db = require('./modules/db/db.js');
+
 
 app.use('/', express.static('client'));
 app.use(bodyParser.json());
