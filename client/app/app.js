@@ -1,22 +1,30 @@
 'use strict';
 
 angular.module('sL', [
-    'ui.router',
-    'sL.main',
-    'ngAnimate'
+  'sL.searchBar',
+  'sL.services',
+  'sL.resultsController',
+  'ui.bootstrap',
+  'ui.router',
+  'ngAnimate'
 
 
-  ])
+])
 
-    .config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
-        });
+  $stateProvider
+    .state('searchBar', {
+      url: '/',
+      templateUrl: 'views/searchBar.html',
+      controller: 'SearchBar'
+    })
+    .state('searchBar.results', {
+      url: '/',
+      templateUrl: 'views/searchBar.results.html',
+      controller: 'ResultsController'
+    });
 
 });
