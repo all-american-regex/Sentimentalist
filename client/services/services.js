@@ -1,8 +1,7 @@
 angular.module('sL.services', [])
 
 .factory('News', function($http) {
-
-var News = {};
+  console.log('factory started!')
 
     var getTopTen = function(query) {
       return $http({
@@ -12,13 +11,10 @@ var News = {};
             search: query
           }
         })
-        .then(function(resp) {
-          return resp.data;
-        });
     };
 
     return {
-      getAll: getAll
+      getTopTen: getTopTen
     };
   })
   .service('Data', function() {
