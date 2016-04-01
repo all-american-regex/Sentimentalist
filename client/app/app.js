@@ -13,16 +13,16 @@ angular.module('sL', [
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/searchBar');
 
   $stateProvider
     .state('searchBar', {
-      url: '/',
+      url: '/searchBar',
       templateUrl: 'views/searchBar.html',
       controller: 'SearchBar'
     })
     .state('searchBar.results', {
-      url: '/',
+      url: '/results',
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController'
     });

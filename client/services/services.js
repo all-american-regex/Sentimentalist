@@ -18,9 +18,5 @@ angular.module('sL.services', [])
     };
   })
   .service('Data', function() {
-    var newsLinks = {};
-
-    return {
-      newsLinks: newsLinks
-    };
-  })
+    this.newsLinks = {};
+  });

@@ -6,12 +6,9 @@ angular.module('sL.searchBar', [])
     $scope.buttonText = 'Go';
     $scope.input = "";
 
-
     $scope.getLinks = function() {
       News.getTopTen($scope.input).then(function(result) {
-        console.log(result)
-        Data.newsLinks = result;
+        Data.newsLinks.data = result;
       })
     }
-
   });
