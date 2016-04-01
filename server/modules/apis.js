@@ -1,5 +1,6 @@
 var request = require('request');
 var scraper = require('./searchscrape');
+var imgscraper = require('./imgscrape');
 var indico = require('indico.io');
 
 exports.getArticleBody = function(url) {
@@ -67,24 +68,23 @@ exports.getStatistics = function(text) {
   return indico.analyzeText(final, {apis: ['sentiment', 'political', 'emotion', 'personality']});
 }
 
-  // var informationArray = {};
-  // indico.political(text)
-  // .then(function(resp) {
-  //   informationArray.political = resp;
-  //   return indico.sentiment_hq(text);
-  // })
-  // .then(function(sentimentscores) {
-  //   informationArray.sentimentscores = sentimentscores;
-  //   return indico.personality(text);
-  // })
-  // .then(function(pers) {
-  //   informationArray.personality = pers;
-  //   return indico.emotion(pers);
-  // })
-  // .then(function(last) {
-  //   informationArray.emotion = last;
-  //   res.send(informationArray);
-  // })
-  // .catch(function(err) {
-  //   return err;
-  // });
+exports.scrapeImages = function(query) {
+  return new Promise(function(resolve, reject) {
+    var resArray = [];
+    var error = undefined;
+    var count = 0;
+    var options = {
+      query: query,
+      host: 'https://www.bing.com/images/search?q='
+    };
+
+      imgscraper.search(options).then(function(datas) {
+        resolve(datas);
+      })
+      .catch(function(err) {
+        reject(err);
+      })
+
+    });
+  }
+
