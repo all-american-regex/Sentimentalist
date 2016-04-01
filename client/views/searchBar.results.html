@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -25,6 +26,21 @@
           </ul>
         </div>
       </div>
+=======
+<div class="results-list">
+  <div id="container">
+    <h3>{{heading}}</h3>
+    <div class="links" ng-repeat="item in data.data">
+      <ul>
+        <li>
+          <a href={{item.url}} target="_blank"><h6>{{item.url}}</h6></a>
+        </li>
+        <li>
+          {{item.summary}}{{item.score}}{{item.political}}
+        </li>
+        <hr/>
+      </ul>
+>>>>>>> can grab sentiment score and political leaning
     </div>
   </div>
 </div>
