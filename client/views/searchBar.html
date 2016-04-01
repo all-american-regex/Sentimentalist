@@ -1,9 +1,14 @@
-<div class='jumbotron' ui-sref="searchBar">
+<div class='jumbotron'>
   <h1>{{appName}}</h1>
-  <form class="form1" role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search" ng-model="input">
-    </div>
-    <button type="submit" class="btn btn-default" ng-click="getLinks()">{{buttonText}}</button>
-  </form>
 </div>
+</hr>
+<form class="inputdata" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" ng-model="input">
+  </div>
+  <a ui-sref=".results">
+    <button type="submit" class="btn btn-default" ng-click="getLinks()">{{buttonText}}</button>
+  </a>
+</form>
+<hr/>
+<div ui-view></div>

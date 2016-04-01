@@ -1,11 +1,7 @@
 'use strict';
 
 angular.module('sL.resultsController', [])
-  .controller('ResultsController', ['$scope', function($scope, Data) {
-    $scope.news = "glaggi";
-    $scope.data = {};
+  .controller('ResultsController', function($scope, Data) {
+    $scope.data = Data.newsLinks;
 
-    $scope.results = function() {
-      $scope.data = Data.newsLinks;
-    }
-  }]);
+  });
