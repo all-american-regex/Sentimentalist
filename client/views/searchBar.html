@@ -7,17 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Home</a>
+      <a class="navbar-brand" href="#">{{appName}}</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success">Sign in</button>
+        <a class="btn btn-success" href="/auth/github" target="_blank" role="button" button type="submit">Sign in with Github</a>
       </form>
     </div>
   </div>
@@ -26,12 +20,12 @@
   <div class="container">
     <h1>{{appName}}</h1>
   </div>
-  </hr>
+  <!-- search field and go button -->
   <div class="row one">
     <div class="col-md-12">
       <form class="inputdata" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" ng-model="input">
+          <input type="text" class="form-control form1" placeholder="Search for..." ng-model="input">
         </div>
         <a ui-sref=".results">
           <button type="submit" class="btn btn-default" ng-click="getLinks()">{{buttonText}}</button>
@@ -39,5 +33,7 @@
       </form>
     </div>
   </div>
-  <hr/>
-  <div ui-view></div>
+</div>
+<!-- /search field and go button -->
+<hr/>
+<div ui-view></div>
