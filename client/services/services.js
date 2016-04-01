@@ -2,17 +2,29 @@ angular.module('sL.services', [])
 
 .factory('News', function($http) {
 
-  var getAll = function() {
-    return $http({
-        method: 'GET',
-        url: '/api/????'
-      })
-      .then(function(resp) {
-        return resp.data;
-      });
-  };
+var News = {};
 
-  return {
-    getAll: getAll
-  };
-});
+    var getTopTen = function(query) {
+      return $http({
+          method: 'GET',
+          url: '/api/top10scrape',
+          params: {
+            search: query
+          }
+        })
+        .then(function(resp) {
+          return resp.data;
+        });
+    };
+
+    return {
+      getAll: getAll
+    };
+  })
+  .service('Data', function() {
+    var newsLinks = {};
+
+    return {
+      newsLinks: newsLinks
+    };
+  })
