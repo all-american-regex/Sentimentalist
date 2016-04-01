@@ -8,7 +8,14 @@ angular.module('sL.searchBar', [])
 
     $scope.getLinks = function() {
       News.getTopTen($scope.input).then(function(result) {
-        Data.newsLinks.data = result;
+        var resultArray = [];
+        for (var i = 0; i < result.data.length; i++) {
+          if (result.data[i].url && result.data[i].summary) {
+            resultArray.push(result.data[i])
+          }
+        }
+
+        Data.newsLinks.data = resultArray;
       })
     }
   });

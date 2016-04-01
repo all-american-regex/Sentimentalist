@@ -1,7 +1,8 @@
-h1{
-	color: #2380E2;
-	font-family: sans-serif;
+h1 {
+  color: #2380E2;
+  font-family: sans-serif;
 }
+
 
 /*.btn {
   background: #639FDE;
@@ -14,7 +15,7 @@ h1{
   text-align: center;
 }*/
 
-.btn:hover{
+.btn:hover {
   background-color: #2380E2;
 }
 
@@ -22,10 +23,10 @@ h1{
   font-size: 20px;
 }
 
-.jumbotron{
-	background-color: #dcdcdc;
-	text-align: center;
-	border-radius: 2px;
+.jumbotron {
+  background-color: #dcdcdc;
+  text-align: center;
+  border-radius: 2px;
 }
 
 .slide.ng-leave {
@@ -58,4 +59,8 @@ h1{
   -o-transform: scaleX(1);
   transform: scaleX(1);
   opacity: 1;
+}
+
+ul {
+  list-style-type: none;
 }

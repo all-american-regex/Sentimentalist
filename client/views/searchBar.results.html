@@ -1,7 +1,16 @@
 <div class="results-list">
-  <h3>ResultsColumn</h3>
-  <h4>{{news}}</h4>
-  <ul>
-    <li ng-repeat="item in data">{{item}}</li>
-  </ul>
+  <div id="container">
+    <h3>{{heading}}</h3>
+    <div class="links" ng-repeat="item in data.data">
+      <ul>
+        <li>
+          <a href={{item.url}} target="_blank"><h6>{{item.url}}</h6></a>
+        </li>
+        <li>
+          {{item.summary}}
+        </li>
+        <hr/>
+      </ul>
+    </div>
+  </div>
 </div>
