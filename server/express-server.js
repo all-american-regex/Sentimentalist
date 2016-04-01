@@ -52,6 +52,16 @@ open.get('/api/scrapearticle', function(req, res) {
   })
 })
 
+open.get('/api/imagesearch', function(req, res) {
+  API.scrapeImages(req.query.img).then(function(imgArray) {
+    res.send(imgArray);
+  })
+  .catch(function(err) {
+    res.send(err);
+  })
+})
+
+
 authRequired.get('/profile', function(req, res) {
   res.send(sessionid);
 })
