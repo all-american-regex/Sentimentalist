@@ -56,5 +56,13 @@ authRequired.get('/profile', function(req, res) {
   res.send(sessionid);
 })
 
+authRequired.post('/login', function(req, res) {
+  res.send(sessionid);
+})
+
+authRequired.post('/signup', function(req, res) {
+  res.send(sessionid);
+})
+
 app.use('/', open);
 
