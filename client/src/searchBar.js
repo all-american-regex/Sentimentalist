@@ -36,7 +36,8 @@ angular.module('sL.searchBar', [])
          News.updateScore(datum).then(function(scores){
            datum.score=News.averageScore(scores);
            datum.political=News.politicalSide(scores);
-
+           datum.emotion = News.emotionalScore(scores);
+           datum.personality = News.personalityScore(scores);
             console.log('PJ',scores,"AVERAGE SCORE:",datum.score);
 
           })

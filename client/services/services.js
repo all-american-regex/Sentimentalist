@@ -59,17 +59,78 @@ angular.module('sL.services', [])
           strongestPolitical.score = temp[key];
         }
       }
-      console.log("PJPJPJPJPJ",strongestPolitical.score)
+
       return strongestPolitical.view;
     }
 
+    var emotionalScore = function(emo){
+      var temp = {
+        anger: 0,
+        joy: 0,
+        fear:0,
+        sadness: 0,
+        surprise: 0
+      }
+      for (var i = 0 ; i < emo.data.emotion.length; i++){
+        temp.anger+= emo.data.emotion[i].anger;
+        temp.joy += emo.data.emotion[i].joy;
+        temp.fear += emo.data.emotion[i].fear;
+        temp.sadness += emo.data.emotion[i].sadness;
+        temp.surprise += emo.data.emotion[i].surprise;
+      }
 
+      var strongestEmo = {
+        emotion:"",
+        score: 0
+      }
+      for (var key in temp){
+        temp[key] = temp[key]/emo.data.emotion.length
+        if(temp[key] > strongestEmo.score){
+          strongestEmo.score = temp[key];
+          strongestEmo.emotion = key;
+        }
+      }
+
+      strongestEmo.score =Math.floor(strongestEmo.score*100)
+      return strongestEmo;
+    }
+
+    var personalityScore = function(personal) {
+      temp = {
+        extraversion: 0,
+        openness: 0,
+        'agreeableness':0,
+        conscientiousness:0
+      }
+      for (var i = 0 ; i < personal.data.personality.length; i++){
+        temp.extraversion += personal.data.personality[i].extraversion;
+        temp.openness += personal.data.personality[i].openness;
+        temp.agreeableness += personal.data.personality[i].agreeableness;
+        temp.conscientiousness += personal.data.personality[i].conscientiousness;
+      }
+
+      var strongestPersonal = {
+        personality:"",
+        score:0
+      }
+      for (var key in temp){
+        temp[key] = temp[key]/personal.data.personality.length
+        if(temp[key] > strongestPersonal.score){
+          strongestPersonal.score = temp[key];
+          strongestPersonal.personality = key;
+        }
+      }
+      strongestPersonal.score =Math.floor(strongestPersonal.score*100)
+      return strongestPersonal;
+    }
 
     return {
       getTopTen: getTopTen,
       updateScore: updateScore,
       averageScore: averageScore,
-      politicalSide: politicalSide
+      politicalSide: politicalSide,
+      emotionalScore: emotionalScore,
+      personalityScore: personalityScore
     };
   })
   .service('Data', function() {
