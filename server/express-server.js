@@ -22,7 +22,7 @@ app.listen(process.env.PORT || 3000, function() {
 
 passport.use(new GitHubStrategy({
     clientID: '3044aacfbf36638a3531',
-    clientSecret: 'd9fb6a8f54374e8ca90c92363888fa788662cd85',
+    clientSecret: 'put client secret here',
     callbackURL: 'http://localhost:3000/#/searchbar'
   },
   function(accessToken, refreshToken, profile, done) {
