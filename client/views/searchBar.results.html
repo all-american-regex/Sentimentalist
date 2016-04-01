@@ -1,16 +1,21 @@
 <div class="results-list">
   <div id="container">
-    <h3>{{heading}}</h3>
-    <div class="links" ng-repeat="item in data.data">
-      <ul>
-        <li>
-          <a href={{item.url}} target="_blank"><h6>{{item.url}}</h6></a>
-        </li>
-        <li>
-          {{item.summary}}
-        </li>
-        <hr/>
-      </ul>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading" <h3>{{heading}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="list-group" ng-repeat="item in data.data">
+              <ul>
+                <li class="list-group-item">
+                  <a href={{item.url}} target="_blank"><h5 class="list-group-item-heading">{{item.url}}</h5></a>
+                  <p class="list-group-item-text">{{item.summary}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
