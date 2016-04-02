@@ -4,10 +4,12 @@ var session = require('express-session')
 var API = require('./modules/apis')
 var bodyParser = require('body-parser');
 var Path = require('path');
+
 //var db = require('./modules/db/db.js');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github2').Strategy
 // var cookieParser
+
 
 app.use('/', express.static('client'));
 app.use(bodyParser.json());
@@ -89,6 +91,16 @@ open.get('/api/scrapearticle', function(req, res) {
     res.send(err);
   })
 })
+
+open.get('/api/imagesearch', function(req, res) {
+  API.scrapeImages(req.query.img).then(function(imgArray) {
+    res.send(imgArray);
+  })
+  .catch(function(err) {
+    res.send(err);
+  })
+})
+
 
 authRequired.get('/profile', function(req, res) {
   res.send(sessionid);

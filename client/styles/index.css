@@ -1,26 +1,19 @@
-h1 {
-  color: #2380E2;
-  font-family: sans-serif;
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 
-
-/*.btn {
-  background: #639FDE;
-  border-radius: 28px;
-  font-family: sans-serif;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  text-align: center;
-}*/
+.one {
+  margin-right: 27%;
+  margin-left: 27%;
+}
 
 .btn:hover {
   background-color: #2380E2;
 }
 
 .form1 {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .jumbotron {
