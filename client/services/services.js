@@ -30,7 +30,6 @@ angular.module('sL.services', [])
       }
       var result= temp/scoresObject.data.sentiment.length
       result = Math.floor(result*100)
-      return result;
     }
 
     var politicalSide = function(politicalScores){
@@ -55,12 +54,12 @@ angular.module('sL.services', [])
       for (var key in temp){
         temp[key]=temp[key]/politicalScores.data.political.length;
         if (temp[key] > strongestPolitical.score){
-          strongestPolitical.view=key;
+          strongestPolitical.party=key;
           strongestPolitical.score = temp[key];
         }
       }
-
-      return strongestPolitical.view;
+      strongestPolitical.score =Math.floor(strongestPolitical.score*100)
+      return strongestPolitical;
     }
 
     var emotionalScore = function(emo){
@@ -120,7 +119,7 @@ angular.module('sL.services', [])
           strongestPersonal.personality = key;
         }
       }
-      strongestPersonal.score =Math.floor(strongestPersonal.score*100)
+
       return strongestPersonal;
     }
 
