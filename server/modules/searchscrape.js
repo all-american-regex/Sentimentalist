@@ -10,24 +10,7 @@ function search(options, callback) {
   var params = options.params || {};
   var results = [];
 
-  params.hl = params.hl || options.lang || 'en';
-
-  if(options.age) params.tbs = 'qdr:' + options.age;
-  if(options.query) params.q = options.query;
-
-  params.start = 0;
-
   getPage(params, function onPage(err, body) {
-    if(err) {
-      if(err.code !== 'ECAPTCHA' || !solver) return callback(err);
-
-      solveCaptcha(err.location, function(err, page) {
-        if(err) return callback(err);
-        onPage(null, page);
-      });
-
-      return;
-    }
 
     var currentResults = extractResults(body);
 
@@ -94,6 +77,7 @@ function search(options, callback) {
 
     $('.g h3 a').each(function(i, elem) {
       var parsed = url.parse(elem.attribs.href, true);
+      console.log('PARSED === ', parsed)
       if (parsed.pathname === '/url') {
         results.push({url: parsed.query.q, summary: undefined});
       }
