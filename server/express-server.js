@@ -11,6 +11,7 @@ var GitHubStrategy = require('passport-github2').Strategy
 // var cookieParser
 
 
+
 app.use('/', express.static('client'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
