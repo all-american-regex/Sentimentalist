@@ -35,21 +35,13 @@ exports.scrapeTopTen = function(query) {
       params: {news: 'tbm=nws'}
     };
 
-    scraper.search(options, function(err, result) {
-      if(err) {
-        error = err;
-      } else {
-        resArray.push(result);
-        ++count;
-        if(count > 9) {
-          if(error !== undefined) {
-            reject(error);
-            return;
-          }
-          resolve(resArray)
-        } 
-      }      
-    });
+    scraper.search(options).then(function(res) {
+      console.log(res)
+      resolve(res);
+    })
+    .catch(function(err) {
+      reject(err);
+    })
 
   })
 }
