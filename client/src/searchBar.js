@@ -34,7 +34,7 @@ angular.module('sL.searchBar', [])
 =======
        Data.newsLinks.data.forEach(function(datum){
          News.updateScore(datum).then(function(scores){
-           datum.score=News.averageScore(scores);
+           datum.score = News.averageScore(scores);
            datum.political=News.politicalSide(scores);
            datum.emotion = News.emotionalScore(scores);
            datum.personality = News.personalityScore(scores);
