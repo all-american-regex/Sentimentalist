@@ -31,6 +31,7 @@ authRequired.use(function(req, res, next) {
 })
 
 open.get('/api/top10scrape', function(req, res) {
+  console.log(req.query.search)
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
     res.send(queryArray);
   })
