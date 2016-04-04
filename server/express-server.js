@@ -15,7 +15,7 @@ app.use(session({secret: 'Does this have to be set to something?'}))
 app.use(passport.initialize());
 app.use(passport.session());
 app.listen(process.env.PORT || 3000, function() {
-	console.log('Server Started!');
+	console.log('Server Started on :',process.env.PORT || 3000);//change made by pj so its easier to know what port
 });
 
 passport.use(new GitHubStrategy({
