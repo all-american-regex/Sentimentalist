@@ -3,7 +3,7 @@ angular.module('sL.services', [])
 .factory('News', function($http) {
   console.log('factory started!')
 
-    var getTopTen = function(query) {
+    var getTopTen = function(query) {//make call to back end to get 10 urls
       return $http({
         method: 'GET',
         url: '/api/top10scrape',
@@ -13,7 +13,7 @@ angular.module('sL.services', [])
       })
     };
 
-    var updateScore = function(datum){
+    var updateScore = function(datum){//make call to backend for each URL for sentiment Data
       return $http({
         method: 'GET',
         url: '/api/scrapearticle',
@@ -31,7 +31,7 @@ angular.module('sL.services', [])
       var result= temp/scoresObject.data.sentiment.length
       result = Math.floor(result*100)
     }
-
+    //next 3 functions are pretty wet and do same thing for each subject
     var politicalSide = function(politicalScores){
       var temp = {
         Conservative: 0,
@@ -98,7 +98,7 @@ angular.module('sL.services', [])
       temp = {
         extraversion: 0,
         openness: 0,
-        'agreeableness':0,
+        agreeableness:0,
         conscientiousness:0
       }
       for (var i = 0 ; i < personal.data.personality.length; i++){
