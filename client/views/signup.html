@@ -1,0 +1,22 @@
+<div id="signup">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 middle">
+        <h1>Sign Up</h1>
+        <form class="inputdata" name="signupForm" ng-submit="signup()">
+          <input type="text" placeholder="username" ng-model="user.username">
+          <input type="password" placeholder="password" ng-model="user.password">
+          <button>sign up</button>
+        </form>
+        <div class="col-md-10">
+          <a href="#/signin">Already have an account? <strong>Welcome back! </strong> ...</a>
+          <div class="alert alert-warning" role="alert" ng-if="message"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Oh snap! That didn't work...</strong>
+            <br>Change a few things up and try submitting again.
+            <br>Error message: {{message.status}}: {{message.data.error}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

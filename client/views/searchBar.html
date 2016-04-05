@@ -1,3 +1,4 @@
+<!-- navigation bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -10,15 +11,50 @@
       <a class="navbar-brand" href="#">{{appName}}</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right">
-        <a class="btn btn-success" href="/auth/github" target="_blank" role="button" button type="submit">Sign in with Github</a>
-      </form>
+      <ul class="nav navbar-nav">
+        <li><a href="/#/favorites">Favorites</a></li>
+        <li><a href="/#/about">About Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/#/signin"><span class="fa fa-fw fa-sign-in" aria-hidden="true"></span> Sign In</a></li>
+        <li><a href="/#/logout"><span class="fa fa-fw fa-sign-out" aria-hidden="true"></span> Logout</a></li>
+      </ul>
+      <!-- modal -->
+      <div class="container">
+        <div ng-controller="ModalController">
+          <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+              <h3 class="modal-title">Sign In</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <li ng-repeat="item in items">
+                  <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+              </ul>
+              Selected: <b>{{ selected.item }}</b>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="button" ng-click="ok()"><span class="fa fa-fw fa-sign-in"></span> Submit</button>
+              <!-- href="/auth/github" target="_blank" role="button" button type="submit" ng-click="open()"-->
+              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            </div>
+          </script>
+          <li class="active">
+            <form class="navbar-form navbar-right">
+              <a class="btn btn-block btn-social btn-github" role="button" button type="button" ng-click="open()"><span class="fa fa-github"></span>Sign in with Github</a>
+            </form>
+          </li>
+          <div ng-show="selected">{{ selected }}</div>
+        </div>
+      </div>
     </div>
-  </div>
 </nav>
-<div class='jumbotron'>
+<!-- /navigation bar -->
+<div class="jumbotron">
   <div class="container">
     <h1>{{appName}}</h1>
+    <p class="lead"></p>
   </div>
   <!-- search field and go button -->
   <div class="row one">

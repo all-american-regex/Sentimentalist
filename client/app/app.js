@@ -3,7 +3,9 @@
 angular.module('sL', [
   'sL.searchBar',
   'sL.services',
+  'sL.auth',
   'sL.resultsController',
+  'sL.modal',
   'ui.bootstrap',
   'ui.router',
   'ngAnimate'
@@ -25,6 +27,21 @@ angular.module('sL', [
       url: '/results',
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController'
+    })
+    .state('modal', {
+      url: '/modal',
+      templateUrl: 'views/modal.html',
+      controller: 'ModalController'
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: 'views/signin.html',
+      controller: 'AuthController'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'views/signup.html',
+      controller: 'AuthController'
     });
 
 });
