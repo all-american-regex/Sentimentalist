@@ -13,6 +13,16 @@ angular.module('sL.services', [])
       });
     };
 
+    var getImages = function(query) {
+      return $http({
+        method: 'GET',
+        url: '/api/imagesearch',
+        params: {
+          search: query
+        }
+      });
+    }
+
     var updateScore = function(datum){//make call to backend for each URL for sentiment Data
       return $http({
         method: 'GET',
@@ -133,7 +143,8 @@ angular.module('sL.services', [])
       averageScore: averageScore,
       politicalSide: politicalSide,
       emotionalScore: emotionalScore,
-      personalityScore: personalityScore
+      personalityScore: personalityScore,
+      getImages: getImages
     };
   })
   .service('Data', function() {
