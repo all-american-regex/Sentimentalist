@@ -49,10 +49,9 @@ body {
 
 
 .inputdata input {
-  width: 360px;
   display: block;
   font-size: 15px;
-  padding: 5px;
+  padding: 5px; 
   margin-bottom: 5px;
 }
 
