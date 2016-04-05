@@ -8,5 +8,5 @@ angular.module('sL.about', [])
 	  (positivity/negativity) of those articles, their political sentiment, \
 	  the predominant emotion expressed by the author and the personality type \
 	  of the author.For more information on indico and its sentiment scores, \
-	  visit https://indico.io/product.'
+	  visit https://indico.io/product.';
 })
