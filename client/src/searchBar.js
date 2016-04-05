@@ -48,15 +48,10 @@ angular.module('sL.searchBar', [])
               datum.political = News.politicalSide(scores); //{party:"string", score:number}
               datum.emotion = News.emotionalScore(scores); //{emotion:"string", score:number}
               datum.personality = News.personalityScore(scores); //{personality:"string", score:number}
-              console.log('PJ', scores, "data:", datum);
             })
           })
         })
-        //  .then(function(){
-        //    Data.newsLinks.data.forEach(function(datum){
-        //    console.log(datum);
-        //  })
-        // })
+
 
     }
   });

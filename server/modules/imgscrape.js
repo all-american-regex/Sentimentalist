@@ -40,6 +40,7 @@ exports.extractResults = function(page) {
     })
 
     for(var i = 5; i < 15; ++i) {
+      results[i.toString()].thumbnail = '';
       final.push(results[i.toString()]);
     }
     

@@ -10,7 +10,6 @@ var Path = require('path');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'keyboard cat' }));
