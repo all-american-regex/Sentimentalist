@@ -1,5 +1,5 @@
 {
-  "name": "MyApp",
+  "name": "sL",
   "version": "1.0.0",
   "main": "app.js",
   "repository": "",
@@ -34,9 +34,14 @@
     "request": "^2.69.0",
     "tough-cookie": "^2.2.2",
     "url": "^0.11.0"
+
   },
   "devDependencies": {
+    "angular": "^1.5.3",
+    "angular-animate": "^1.5.3",
+    "angular-ui-router": "^1.0.0-alpha.3",
     "browser-sync": "^2.11.2",
+    "browserify": "^13.0.0",
     "chai": "^3.4.0",
     "cheerio": "^0.20.0",
     "clone-stats": "0.0.1",
@@ -48,6 +53,7 @@
     "gulp-nodemon": "^1.0.4",
     "gulp-shell": "^0.2.7",
     "jshint-stylish": "^0.2.0",
+    "karma": "^0.13.22",
     "mocha": "^2.3.3",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"

@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-md-12">
+    <!-- Results Column -->
     <div class="panel panel-default">
-      <div class="panel-heading" <h3>{{heading}}</h3>
+      <div class="panel-heading">
+        <h4>{{heading}}</h4>
       </div>
       <div class="panel-body">
         <div class="list-group" ng-repeat="item in data.data">
@@ -10,15 +12,42 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object" src="{{item.img}}" alt="happy-face" width="72" height="72">
-                  </a>
+                    <img class="media-object" src="{{item.img}}" alt="happy-face" /></a>
+                  <!-- width="72" height="72" -->
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">{{item.headline}}</h4>
-                  <a href={{item.url}} target="_blank"><h5 class="list-group-item-heading">{{item.url}}</h5></a>
+                  <a href="{{item.url}}" target="_blank">
+                    <h5 class="list-group-item-heading">{{item.url}}</h5>
+                  </a>
                   <p class="text">{{item.summary}}</p>
-                  <p><a class="btn btn-default" href={{item.url}} target="_blank" role="button">View details &raquo;</a>
+                  <p>
+                    <a class="btn btn-default" href="{{item.url}}" target="_blank" role="button">View details &raquo;</a>
                   </p>
+                </div>
+                <!-- sentiment score visual -->
+                <div class="media-right">
+                  <span class="media-object">
+                    <h5 class="text-center">
+                       <hr/>
+                      {{item.score}}
+                      <hr/>
+                      <!-- {"emotion":"sadness","score":37} -->
+                      {{item.emotion.emotion}}
+                      {{item.emotion.score}}
+                      <hr/>
+                      <!-- {"party":"Conservative","score":35}  -->
+                      {{item.political.party}}
+                      {{item.political.score}}
+                      <hr/>
+                      <!-- {"personality":"openness","score":0.5518578986612521}  -->
+                      {{item.personality.personality}}
+                      {{item.personality.score}}
+                      <hr/>
+
+
+                    </h5>
+                  </span>
                 </div>
               </div>
             </li>
@@ -26,5 +55,6 @@
         </div>
       </div>
     </div>
+    <!-- /Results Column -->
   </div>
 </div>
