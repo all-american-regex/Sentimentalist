@@ -62,32 +62,51 @@ exports.extractResults = function(page) {
       return $(val).attr();
     })
 
+    console.log('scrape results === ', results)
+
     if(!Array.isArray(results)) {
       for(var i = 0; i < Object.keys(results).length; ++i) {
         if(results[i.toString()] !== undefined) {
-          if(results[i.toString()].src !== undefined) {
-
+          if(results[i.toString()].hasOwnProperty('src')) {
             var test = results[i.toString()].src.slice(0, 4);
-            if(test === 'http') { final.push(results[i.toString()].src); }  //making sure we dont have some strange relative links!!!
+            if(test === 'http') {
+              final.push(results[i.toString()].src); 
+            }
+          } 
+          else if(results[i.toString()].hasOwnProperty('srcset')) {
+            var test = results[i.toString()].srcset.split(',')[0].slice(0, 4);
+            console.log('test = ', results[i.toString()].srcset.split(','))
+            if(test === 'http') {
+              final.push(results[i.toString()].srcset.split(',')[0]); 
+            }
           }
         }
       }
-
+      console.log('final arry = ', final)
       resolve(final);
     }
     else {
-      for(var i = 0; i < 10; ++i) {  //results.length
+      for(var i = 0; i < results.length; ++i) {  //results.length
         if(results[i.toString()] !== undefined) {
-          if(results[i.toString().src] !== undefined) {
-
+          if(results[i.toString()].hasOwnProperty('src')) {
             var test = results[i.toString()].src.slice(0, 4);
-            if(test === 'http') { final.push(results[i.toString()].src); }
-          }  //making sure we dont have some strange relative links!!!
-        }
-      }
+              if(test === 'http') {
+                final.push(results[i.toString()].src); 
+              }
+            }
+            else if(results[i.toString()].hasOwnProperty('srcset')) {
+              var test = results[i.toString()].srcset.split(',')[0].slice(0, 4);
+              if(test === 'http') {
+                final.push(results[i.toString()].srcset.split(',')[0]);
+              }
+            }
 
+            }  
+          }  
+        }
+
+      console.log('final arry = ', final)
       resolve(final);
-    }
   })
 }
 
@@ -112,7 +131,6 @@ var getSize = function(link) {
 
       var options = url.parse(link);
       var ht = options.protocol === 'https:' ? https : http;
-      options = getPathFromUrl(options.href);
 
       ht.get(options, function (response) {
       var chunks = [];
@@ -131,7 +149,8 @@ var getSize = function(link) {
           console.log('Bsize = ', bufferSize)
           resolve(bufferSize);
         }
-        
+      }).on('error', function(err) {
+        console.log(err);
       });
 
     });
