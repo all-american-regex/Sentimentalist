@@ -44,6 +44,8 @@ body {
   padding: 5px;
   margin-bottom: 5px;
 }
+
+
 /*/end signin*/
 
 ul {
@@ -63,6 +65,10 @@ ul {
   color: blue;
 }
 
+.small-fnt {
+  font-size: 10px;
+}
+
 .bdg-score {
   font-weight: lighter;
 }
@@ -72,7 +78,7 @@ ul {
 }
 
 
-/*animate*/
+/*animation*/
 
 .slide.ng-leave {
   position: relative;
