@@ -2,6 +2,8 @@ var request = require('request');
 var scraper = require('./searchscrape');
 var imgscraper = require('./imgscrape');
 var indico = require('indico.io');
+var Moment = require('moment');
+var timeNow = Moment();
 
 exports.getArticleBody = function(url) {
   return new Promise(function(resolve, reject) {
@@ -34,10 +36,18 @@ exports.scrapeTopTen = function(query) {
       limit: 1,
       params: {news: 'tbm=nws'}
     };
-
+    
+    // ------- TIMESTAMP STUFF HERE -------
+    // db.checkifqueryexits().then(function(query, timestamp) { // Add our db logic here! & .then to scraper.
+    //   //  check db here with timestamp!
+         // (timeNow.diff(timestamp, 'days') > 3
+         //  We check here if the the timestamp from the previous insert is greater than 3 days old.
+         //  This is easy to modify to seconds/months/hours etc.
+    // })
     scraper.search(options).then(function(res) {
-      console.log(res)
-      resolve(res);
+      //res comes back as an array. Likely just want to res.push({timestamp: timeNow});
+      //now save this query into DB here. with the new timestamp.
+      resolve(res); //send back data to client express-server.js & on to client.
     })
     .catch(function(err) {
       reject(err);
