@@ -57,15 +57,7 @@ ul {
 }
 
 .media-photo {
-  width: 172px;
-}
-
-.score {
-  color: blue;
-}
-
-.small-fnt {
-  font-size: 10px;
+  width: 250px;
 }
 
 .bdg-score {
@@ -73,7 +65,11 @@ ul {
 }
 
 .list-scores {
-  width: 130px;
+  width: 400px;
+}
+
+.lgi {
+  height: 40px;
 }
 
 
