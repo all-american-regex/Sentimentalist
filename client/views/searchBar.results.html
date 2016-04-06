@@ -29,12 +29,51 @@
                 </div>
                 <!-- sentiment score visual -->
                 <div class="media-right">
+
                   <ul class="list-group list-scores">
                     <li class="list-group-item"><strong class="score">{{item.score}}</strong></li>
                     <li class="list-group-item">{{item.political.score}} <span class="small-fnt">{{item.political.party}}</span></li>
                     <li class="list-group-item">{{item.emotion.score}} <span class="small-fnt">{{item.emotion.emotion}}</span></li>
                     <li class="list-group-item">{{item.personality.score}} <span class="small-fnt">{{item.personality.personality}}</span></li>
                   </ul>
+
+                  <!-- <span class="media-object">
+                    <h5 class="text-center">
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                        aria-valuemin="0" aria-valuemax="100" style="width:{{item.score}}%">
+                        {{item.score}}%
+                      </div>
+                    </div>
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                        aria-valuemin="0" aria-valuemax="100" style="width:{{item.emotion.score}}%">
+                        {{item.emotion.emotion}}
+                        {{item.emotion.score}}%
+                      </div>
+                    </div>
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                        aria-valuemin="0" aria-valuemax="100" style="width:{{item.political.score}}%">
+                        {{item.political.party}}
+                        {{item.political.score}}%
+                      </div>
+                    </div>
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100" style="width:{{item.personality.score}}%">
+                        {{item.personality.personality}}
+                        {{item.personality.score}}%
+                      </div>
+                    </div>
+
+                    </h5>
+                  </span> -->
+
                 </div>
               </div>
             </li>
