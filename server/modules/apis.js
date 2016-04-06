@@ -78,24 +78,3 @@ exports.scrapeImages = function(host) {
 
     });
   }
-
-// exports.scrapeImages = function(query) {
-// return new Promise(function(resolve, reject) {
-//   var resArray = [];
-//   var error = undefined;
-//   var count = 0;
-//   var options = {
-//     query: query,
-//     host: 'https://www.bing.com/images/search?q='
-//   };
-
-//     imgscraper.search(options).then(function(datas) {
-//       resolve(datas);
-//     })
-//     .catch(function(err) {
-//       reject(err);
-//     })
-
-//   });
-// }
-

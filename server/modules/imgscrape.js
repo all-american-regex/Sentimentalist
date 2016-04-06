@@ -136,8 +136,6 @@ var getSize = function(link) {
   return new Promise(function(resolve, reject) {
 
       var options = url.parse(link);
-     
-      console.log('PROTOCOL  ==== ', options.protocol)
       var ht = options.protocol === 'https:' ? https : http;
 
       ht.get(options, function (response) {

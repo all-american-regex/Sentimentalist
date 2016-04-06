@@ -66,7 +66,6 @@ open.get('/api/scrapearticle', function(req, res) {
 });
 
 open.get('/api/imagesearch', function(req, res) {
-  console.log(req.query.host);
   API.scrapeImages(req.query.host).then(function(imgArray) {
       res.send(JSON.stringify(imgArray));
     })
