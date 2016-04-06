@@ -4,13 +4,12 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('users', function(table) {
             table.increments('uid').primary();
             table.string('username', 30).unique();
-            table.string('password', 30);
         }),
 
         knex.schema.createTable('searches', function(table){
             table.increments('id').primary();
             table.string('searchphrase');
-            table.dateTime('searchDate');
+            table.integer('searchdate');
             table.integer('user_id')
                  .references('uid')
                  .inTable('users');

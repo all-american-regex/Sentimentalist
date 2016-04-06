@@ -6,34 +6,34 @@ var session = require('express-session');
 var API = require('./modules/apis');
 var bodyParser = require('body-parser');
 var Path = require('path');
-//var db = require('./modules/db/db.js');
+var db = require('./modules/db/db.js');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'keyboard cat' }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.listen(process.env.PORT || 3000, function() {
 	console.log('Server Started on :',process.env.PORT || 3000);//change made by pj so its easier to know what port
 
 });
 
-passport.use(new GitHubStrategy({
-   clientID: '3044aacfbf36638a3531',
-    clientSecret: 'd9fb6a8f54374e8ca90c92363888fa788662cd8',
-    callbackURL: 'http://localhost:3000/#/searchbar'
-    // clientID: config.github.clientID,
-    // clientSecret: config.github.clientSecret,
-    // callbackURL: config.github.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    users.find({ githubId: profile.id }, function(err, user) {
-      return done(err, user);
-    });
-  }
-));
+// passport.use(new GitHubStrategy({
+//     clientID: '3044aacfbf36638a3531',
+//     clientSecret: 'd9fb6a8f54374e8ca90c92363888fa788662cd8',
+//     callbackURL: 'http://localhost:3000/#/searchbar'
+//     // clientID: config.github.clientID,
+//     // clientSecret: config.github.clientSecret,
+//     // callbackURL: config.github.callbackURL
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     users.find({ githubId: profile.id }, function(err, user) {
+//       return done(err, user);
+//     });
+//   }
+// ));
 
 var assetFolder = Path.resolve(__dirname, '../client/');
 app.use(express.static(assetFolder));
