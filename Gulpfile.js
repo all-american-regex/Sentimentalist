@@ -5,19 +5,31 @@ var nodemon   = require('gulp-nodemon');
 var bs        = require('browser-sync').create();
 var reload    = bs.reload;
 
-// start our node server using nodemon
-gulp.task('serve', function() {
-  // nodemon({script: 'server/express-server.js'
-  //   // ,ext: 'js html css', 
-  //   // ignore: 'node_modules/**/*.js'
-  // });
-  bs.watch('./client/*').on('change', bs.reload);
+gulp.task('serve', [], function() {
+  //bs.watch('./client/*').on('change', bs.reload);
 
-  bs.init({
-    proxy: 'localhost:3000'
+  bs.init(null, {
+    proxy: 'localhost:3000',
+    files: ['client/index.html'],
+    browser: 'google chrome',
+    port: 7000
   });
-
 });
 
-gulp.task('default', ['serve']);
+gulp.task('nodemon', ['serve'], function (cb) {
+
+  var started = false;
+
+  return nodemon({
+    script: 'server/express-server.js'
+
+  }).on('start', function () {
+    if (!started) {
+      cb();
+      started = true; 
+    }
+  });
+});
+
+gulp.task('default', ['nodemon', 'serve'], function(){});
 
