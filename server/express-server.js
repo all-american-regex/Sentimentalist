@@ -1,5 +1,5 @@
 'use strict';
-
+require('events').EventEmitter.prototype._maxListeners = 100;
 var express = require('express');
 var app = express();
 var session = require('express-session');
@@ -66,8 +66,8 @@ open.get('/api/scrapearticle', function(req, res) {
 });
 
 open.get('/api/imagesearch', function(req, res) {
-  API.scrapeImages(req.query.img).then(function(imgArray) {
-      res.send(imgArray);
+  API.scrapeImages(req.query.host).then(function(imgArray) {
+      res.send(JSON.stringify(imgArray));
     })
     .catch(function(err) {
       res.send(err);

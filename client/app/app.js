@@ -8,7 +8,9 @@ angular.module('sL', [
   'sL.modal',
   'ui.bootstrap',
   'ui.router',
-  'ngAnimate'
+  'ngAnimate',
+  'sL.statechange',
+  'ngResource'
 
 
 ])
@@ -26,7 +28,16 @@ angular.module('sL', [
     .state('searchBar.results', {
       url: '/results',
       templateUrl: 'views/searchBar.results.html',
-      controller: 'ResultsController'
+      controller: 'ResultsController',
+      resolve: {
+                  SearchSwap: 'SearchSwap',
+                  News: 'News',
+                  Data: 'Data',
+                  swap: function(SearchSwap, News, Data) {
+                    console.log('called resolve state')
+                    return News.getTopTen(Data.input);
+                  }
+               }
     })
     .state('modal', {
       url: '/modal',
