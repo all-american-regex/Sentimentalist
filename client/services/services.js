@@ -51,7 +51,13 @@ angular.module('sL.services', [])
         temp = temp + scoresObject.data.sentiment[i];
       }
       var result = temp / scoresObject.data.sentiment.length;
+      result=result*4/3
       result = Math.floor(result * 100);
+      result = Math.min(result,100)
+      result = {
+        title:'Sentiment',
+        score:result
+      }
       return result;
     };
 
@@ -83,24 +89,26 @@ angular.module('sL.services', [])
           strongestPolitical.score = temp[key];
         }
       }
+      strongestPolitical.score *= (4/3);
       strongestPolitical.score = Math.floor(strongestPolitical.score * 100);
+      strongestPolitical.score = Math.min(strongestPolitical.score, 100)
       return strongestPolitical;
     };
 
     var emotionalScore = function(emo) {
       var temp = {
-        anger: 0,
-        joy: 0,
-        fear: 0,
-        sadness: 0,
-        surprise: 0
+        Anger: 0,
+        Joy: 0,
+        Fear: 0,
+        Sadness: 0,
+        Surprise: 0
       };
       for (var i = 0; i < emo.data.emotion.length; i++) {
-        temp.anger += emo.data.emotion[i].anger;
-        temp.joy += emo.data.emotion[i].joy;
-        temp.fear += emo.data.emotion[i].fear;
-        temp.sadness += emo.data.emotion[i].sadness;
-        temp.surprise += emo.data.emotion[i].surprise;
+        temp.Anger += emo.data.emotion[i].anger;
+        temp.Joy += emo.data.emotion[i].joy;
+        temp.Fear += emo.data.emotion[i].fear;
+        temp.Sadness += emo.data.emotion[i].sadness;
+        temp.Surprise += emo.data.emotion[i].surprise;
       }
 
       var strongestEmo = {
@@ -114,24 +122,25 @@ angular.module('sL.services', [])
           strongestEmo.emotion = key;
         }
       }
-
+      strongestEmo.score *= (4/3)
       strongestEmo.score = Math.floor(strongestEmo.score * 100);
+      strongestEmo.score = Math.min(strongestEmo.score,100)
       return strongestEmo;
     };
 
     var personalityScore = function(personal) {
       var temp = {
-        extraversion: 0,
-        openness: 0,
-        agreeableness: 0,
-        conscientiousness: 0
+        Extraversion: 0,
+        Openness: 0,
+        Agreeableness: 0,
+        Conscientiousness: 0
       };
       for (var i = 0; i < personal.data.personality.length; i++) {
 
-        temp.extraversion += personal.data.personality[i].extraversion;
-        temp.openness += personal.data.personality[i].openness;
-        temp.agreeableness += personal.data.personality[i].agreeableness;
-        temp.conscientiousness += personal.data.personality[i].conscientiousness;
+        temp.Extraversion += personal.data.personality[i].extraversion;
+        temp.Openness += personal.data.personality[i].openness;
+        temp.Agreeableness += personal.data.personality[i].agreeableness;
+        temp.Conscientiousness += personal.data.personality[i].conscientiousness;
       }
 
       var strongestPersonal = {
@@ -145,7 +154,9 @@ angular.module('sL.services', [])
           strongestPersonal.personality = key;
         }
       }
+      strongestPersonal.score *= (4/3)
       strongestPersonal.score = Math.floor(strongestPersonal.score * 100);
+      strongestPersonal.score = Math.min(strongestPersonal.score,100)
       return strongestPersonal;
     };
 

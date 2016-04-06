@@ -32,8 +32,9 @@
                   <ul class="list-group list-scores">
                     <li class="list-group-item lgi">
                       <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score}}%">
-                          {{item.score}}%
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%">
+                        {{item.score.title}}
+                        {{item.score.score}}%            
                         </div>
                       </div>
                     </li>
