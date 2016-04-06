@@ -55,14 +55,17 @@ angular.module('sL.services', [])
       result = Math.floor(result * 100);
       result = Math.min(result,100)
       result = {
-        title:'Sentiment',
-        score:result
+        title: 'Sentiment',
+        score: result,
+        tt: 'Total Sentiment Score: ' + result
       }
       return result;
     };
 
     //next 3 functions are pretty wet and do same thing for each subject
     var politicalSide = function(politicalScores) {
+
+      var obj = {};
 
       var temp = {
         Conservative: 0,
@@ -78,6 +81,8 @@ angular.module('sL.services', [])
         temp.Libertarian += politicalScores.data.political[i].Libertarian;
       }
 
+      obj.tt = 'Conservative: ' + temp.Conservative.toFixed(2) + ' Green: ' + temp.Green.toFixed(2) + ' Liberal: ' + temp.Liberal.toFixed(2) + ' Libertarian: ' + temp.Libertarian.toFixed(2);
+
       var strongestPolitical = {
         party: '',
         score: 0
@@ -92,10 +97,14 @@ angular.module('sL.services', [])
       strongestPolitical.score *= (4/3);
       strongestPolitical.score = Math.floor(strongestPolitical.score * 100);
       strongestPolitical.score = Math.min(strongestPolitical.score, 100)
-      return strongestPolitical;
+      obj.scores = strongestPolitical;
+
+      return obj;
     };
 
     var emotionalScore = function(emo) {
+      var obj = {};
+
       var temp = {
         Anger: 0,
         Joy: 0,
@@ -103,6 +112,7 @@ angular.module('sL.services', [])
         Sadness: 0,
         Surprise: 0
       };
+
       for (var i = 0; i < emo.data.emotion.length; i++) {
         temp.Anger += emo.data.emotion[i].anger;
         temp.Joy += emo.data.emotion[i].joy;
@@ -110,6 +120,8 @@ angular.module('sL.services', [])
         temp.Sadness += emo.data.emotion[i].sadness;
         temp.Surprise += emo.data.emotion[i].surprise;
       }
+
+      obj.tt = 'Anger: ' + temp.Anger.toFixed(2) + ' Joy: ' + temp.Joy.toFixed(2) + ' Fear: ' + temp.Fear.toFixed(2) + ' Sadness: ' + temp.Sadness.toFixed(2) + ' Suprise ' + temp.Surprise.toFixed(2);
 
       var strongestEmo = {
         emotion: '',
@@ -125,16 +137,22 @@ angular.module('sL.services', [])
       strongestEmo.score *= (4/3)
       strongestEmo.score = Math.floor(strongestEmo.score * 100);
       strongestEmo.score = Math.min(strongestEmo.score,100)
-      return strongestEmo;
+
+      obj.scores = strongestEmo;
+
+      return obj;
     };
 
     var personalityScore = function(personal) {
+      var obj = {};
+
       var temp = {
         Extraversion: 0,
         Openness: 0,
         Agreeableness: 0,
         Conscientiousness: 0
       };
+
       for (var i = 0; i < personal.data.personality.length; i++) {
 
         temp.Extraversion += personal.data.personality[i].extraversion;
@@ -142,6 +160,8 @@ angular.module('sL.services', [])
         temp.Agreeableness += personal.data.personality[i].agreeableness;
         temp.Conscientiousness += personal.data.personality[i].conscientiousness;
       }
+
+      obj.tt = 'Extraversion: ' + temp.Extraversion.toFixed(2) + ' Openness: ' + temp.Openness.toFixed(2) + ' Agreeableness: ' + temp.Agreeableness.toFixed(2) + ' Conscientiousness: ' + temp.Conscientiousness.toFixed(2);
 
       var strongestPersonal = {
         personality: '',
@@ -157,7 +177,10 @@ angular.module('sL.services', [])
       strongestPersonal.score *= (4/3)
       strongestPersonal.score = Math.floor(strongestPersonal.score * 100);
       strongestPersonal.score = Math.min(strongestPersonal.score,100)
-      return strongestPersonal;
+
+      obj.scores = strongestPersonal;
+
+      return obj;
     };
 
     return {
