@@ -1,5 +1,4 @@
 body {
-  padding-top: 80px;
   padding-bottom: 20px;
   background-color: #f5f8fa;
 }
@@ -13,33 +12,22 @@ body {
   background-color: #2380E2;
 }
 
-.form1 {
-  font-size: 14px;
-}
-
-
-/*.jumbotron {
-  background-color: #dcdcdc;
+.form-search {
+  font-size: 18px;
+  color: blue;
   text-align: center;
-  border-radius: 2px;
-}*/
+}
 
 .jumbotron {
-  height: 300px;
-  padding: 40px 15px;
+  background-color: #dcdcdc;
   text-align: center;
+  /*border-radius: 2px;*/
+  /*padding: 40px 15px;*/
 }
 
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
-
-[class*="col-"] {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+.panel-heading {
+  text-align: left;
+  padding-left: 3%;
 }
 
 .panel {
@@ -48,19 +36,39 @@ body {
 }
 
 
+/*signin & signup pages*/
+
 .inputdata input {
   display: block;
   font-size: 15px;
-  padding: 5px; 
+  padding: 5px;
   margin-bottom: 5px;
 }
+/*/end signin*/
 
-input[type=url] {
-  display: inline
+ul {
+  list-style-type: none;
 }
 
-input[type=url]:focus {
-  outline: none;
+.btn-go {
+  border-radius: 90px;
+}
+
+.media-photo {
+  width: 172px;
+  height: 172px;
+}
+
+.score {
+  color: blue;
+}
+
+.bdg-score {
+  font-weight: lighter;
+}
+
+.list-scores {
+  width: 120px;
 }
 
 
@@ -96,12 +104,4 @@ input[type=url]:focus {
   -o-transform: scaleX(1);
   transform: scaleX(1);
   opacity: 1;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.media-object {
-  width: 250px;
 }

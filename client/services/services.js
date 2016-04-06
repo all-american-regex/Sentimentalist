@@ -1,9 +1,10 @@
+/*jshint multistr: true */
 angular.module('sL.services', [])
 
 .factory('News', function($http, Data) {
-    console.log('factory started!');
 
-    var getTopTen = function(query) {//make call to back end to get 10 urls
+    //make call to back end to get 10 urls
+    var getTopTen = function(query) {
       return $http({
         method: 'GET',
         url: '/api/top10scrape',
@@ -23,18 +24,18 @@ angular.module('sL.services', [])
         }
       }).then(function(res) {
         console.log('IMAGE URL RESULT === ', res);
-        if(res.data.hasOwnProperty('url')) {
+        if (res.data.hasOwnProperty('url')) {
           Data.newsLinks.data[ind].thumbnail = res.data;
         } else {
           Data.newsLinks.data[ind].thumbnail = {};
           Data.newsLinks.data[ind].thumbnail.url = superUrl.split('/')[0] + '//' + superUrl.split('/')[2] + '/favicon.ico';
-          console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url)
+          console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url);
         }
-        
-      })
-    }
+      });
+    };
 
-    var updateScore = function(datum) {  //make call to backend for each URL for sentiment Data
+    //make call to backend for each URL for sentiment Data
+    var updateScore = function(datum) {
       return $http({
         method: 'GET',
         url: '/api/scrapearticle',
@@ -74,7 +75,7 @@ angular.module('sL.services', [])
       var strongestPolitical = {
         party: '',
         score: 0
-      }
+      };
       for (var key in temp) {
         temp[key] = temp[key] / politicalScores.data.political.length;
         if (temp[key] > strongestPolitical.score) {
@@ -119,13 +120,13 @@ angular.module('sL.services', [])
     };
 
     var personalityScore = function(personal) {
-      temp = {
+      var temp = {
         extraversion: 0,
         openness: 0,
-        agreeableness:0,
-        conscientiousness:0
-      }
-      for (var i = 0 ; i < personal.data.personality.length; i++){
+        agreeableness: 0,
+        conscientiousness: 0
+      };
+      for (var i = 0; i < personal.data.personality.length; i++) {
 
         temp.extraversion += personal.data.personality[i].extraversion;
         temp.openness += personal.data.personality[i].openness;
@@ -162,52 +163,15 @@ angular.module('sL.services', [])
     this.newsLinks = {};
     this.input = '';
     this.thumbnails = [];
+
+  })
+  .service('About', function() {
+    this.text = 'SentimentaList gathers the top results for a given topic\
+    from Google News and passes the text of those articles to indico’s \
+    Sentiment Analysis API. Along with the articles, Sentimentalist \
+    provides the user with scores that reflect the general sentiment \
+    (positivity/negativity) of those articles, their political sentiment, \
+    the predominant emotion expressed by the author and the personality type \
+    of the author.For more information on indico and its sentiment scores, \
+    visit https://indico.io/product.';
   });
-
-// .factory('Auth', function($http, $location, $window) {
-      // Don't touch this Auth service!!!
-      // it is responsible for authenticating our user
-      // by exchanging the user's username and password
-      // for a JWT from the server
-      // that JWT is then stored in localStorage as 'com.shortly'
-      // after you signin/signup open devtools, click resources,
-      // then localStorage and you'll see your token from the server
-      //   var signin = function(user) {
-      //     return $http({
-      //         method: 'POST',
-      //         url: '/api/users/signin',
-      //         data: user
-      //       })
-      //       .then(function(resp) {
-      //         return resp.data.token;
-      //       });
-      //   };
-
-      //   var signup = function(user) {
-      //     return $http({
-      //         method: 'POST',
-      //         url: '/api/users/signup',
-      //         data: user
-      //       })
-      //       .then(function(resp) {
-      //         return resp.data.token;
-      //       });
-      //   };
-
-      //   var isAuth = function() {
-      //     return !!$window.localStorage.getItem('com.sL');
-      //   };
-
-      //   var signout = function() {
-      //     $window.localStorage.removeItem('com.sL');
-      //     $location.path('/signin');
-      //   };
-
-
-      //   return {
-      //     signin: signin,
-      //     signup: signup,
-      //     isAuth: isAuth,
-      //     signout: signout
-      //   };
-      // });

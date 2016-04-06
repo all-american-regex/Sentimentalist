@@ -1,5 +1,14 @@
 <div id="about">
   <div class="container">
-	{{aboutText}};
+    <div class="row">
+      <div class="col-md-6">
+        <div class="jumbotron">
+          <h2 class="text-center">{{title}}</h2>
+          <hr/>
+          <p class="lead text-justify">{{paragraph}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<div ui-view></div>

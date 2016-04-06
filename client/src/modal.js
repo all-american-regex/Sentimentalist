@@ -1,9 +1,11 @@
 // angular.module('sL', ['ngAnimate', 'ui.bootstrap']);
+'use strict';
 
 angular.module('sL.modal', [])
 .controller('ModalController', function ($scope, $uibModal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
+  // $scope.items = ['item1', 'item2', 'item3'];
+  $scope.items = [];
 
   $scope.animationsEnabled = true;
 

@@ -6,13 +6,11 @@
         <form class="inputdata" name="signinForm" ng-submit="signin()">
           <input type="text" placeholder="username" ng-model="user.username">
           <input type="password" placeholder="password" ng-model="user.password">
-
-
-     <a href="/auth/github" class="btn btn-lrg btn-social btn-github" role="button" button type="button">
-          <span class="fa fa-github"></span>Sign in with Github</a>
-
+          <a href="/auth/github" class="btn btn-lrg btn-social btn-github" role="button" button type="button">
+            <span class="fa fa-github"></span>Sign in with Github</a>
         </form>
         <div class="col-md-10">
+          <br>
           <a href="#/signup">Don't have an account?<br><strong>Create one!</strong> ...</a>
           <div class="alert alert-danger" role="alert" ng-if="message"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <strong>Oh snap! You got an error!</strong>
@@ -23,4 +21,3 @@
     </div>
   </div>
 </div>
-

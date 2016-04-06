@@ -2,6 +2,7 @@
 
 angular.module('sL', [
   'sL.searchBar',
+  'sL.aboutController',
   'sL.services',
   'sL.auth',
   'sL.resultsController',
@@ -12,8 +13,25 @@ angular.module('sL', [
   'sL.statechange',
   'ngResource'
 
-
 ])
+
+// spinner for page loading status
+.run(function($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+
+  $rootScope.stateIsLoading = false;
+  $rootScope.$on('$routeChangeStart', function() {
+    $rootScope.stateIsLoading = true;
+  });
+  $rootScope.$on('$routeChangeSuccess', function() {
+    $rootScope.stateIsLoading = false;
+  });
+  $rootScope.$on('$routeChangeError', function() {
+    //catch error
+  });
+})
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -30,14 +48,14 @@ angular.module('sL', [
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController',
       resolve: {
-                  SearchSwap: 'SearchSwap',
-                  News: 'News',
-                  Data: 'Data',
-                  swap: function(SearchSwap, News, Data) {
-                    console.log('called resolve state')
-                    return News.getTopTen(Data.input);
-                  }
-               }
+        SearchSwap: 'SearchSwap',
+        News: 'News',
+        Data: 'Data',
+        swap: function(SearchSwap, News, Data) {
+          console.log('called resolve state');
+          return News.getTopTen(Data.input);
+        }
+      }
     })
     .state('modal', {
       url: '/modal',
@@ -53,6 +71,11 @@ angular.module('sL', [
       url: '/signup',
       templateUrl: 'views/signup.html',
       controller: 'AuthController'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'views/about.html',
+      controller: 'AboutController'
     });
 
 });

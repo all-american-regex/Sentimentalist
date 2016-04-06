@@ -9,45 +9,31 @@
         <div class="list-group" ng-repeat="item in data.data">
           <ul class="list-group">
             <li class="list-group-item">
-              <div class="media">
+              <div class="media media-news">
+                <!-- overall score -->
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object" src="{{item.thumbnail.url}}" alt="happy-face" /></a>
-                  <!-- width="72" height="72" -->
+                    <img class="media-object media-photo" src="{{item.thumbnail.url}}" alt="happy-face"></a>
                 </div>
-                <div class="media-body">
-                  <h4 class="media-heading">{{item.headline}}</h4>
-                  <a href="{{item.url}}" target="_blank">
-                    <h5 class="list-group-item-heading">{{item.url}}</h5>
-                  </a>
-                  <p class="text">{{item.summary}}</p>
-                  <p>
-                    <a class="btn btn-default" href="{{item.url}}" target="_blank" role="button">View details &raquo;</a>
-                  </p>
+                <div class="well">
+                  <div class="media-body">
+                    <!-- headline -->
+                    <h4 class="media-heading">{{item.headline}}</h4>
+                    <!-- story -->
+                    <p class="text">{{item.summary}}</p>
+                    <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
+                      <img src="{{item.img}}" alt="X" width="24" height="24" /> View source &raquo;
+                    </a>
+                  </div>
                 </div>
                 <!-- sentiment score visual -->
                 <div class="media-right">
-                  <span class="media-object">
-                    <h5 class="text-center">
-                       <hr/>
-                      {{item.score}}
-                      <hr/>
-                      <!-- {"emotion":"sadness","score":37} -->
-                      {{item.emotion.emotion}}
-                      {{item.emotion.score}}
-                      <hr/>
-                      <!-- {"party":"Conservative","score":35}  -->
-                      {{item.political.party}}
-                      {{item.political.score}}
-                      <hr/>
-                      <!-- {"personality":"openness","score":0.5518578986612521}  -->
-                      {{item.personality.personality}}
-                      {{item.personality.score}}
-                      <hr/>
-
-
-                    </h5>
-                  </span>
+                  <ul class="list-group list-scores">
+                    <li class="list-group-item"><strong class="score">{{item.score}}</strong></li>
+                    <li class="list-group-item">{{item.political.score}}<span class "score-fnt">{{item.political.party}}</span></li>
+                    <li class="list-group-item">{{item.emotion.score}}<span class "score-fnt">{{item.emotion.emotion}}</span></li>
+                    <li class="list-group-item">{{item.personality.score}}<span class "score-fnt">{{item.personality.personality}}</span></li>
+                  </ul>
                 </div>
               </div>
             </li>
@@ -58,3 +44,4 @@
     <!-- /Results Column -->
   </div>
 </div>
+<!-- <i class="fa fa-spinner fa-pulse"></i>< -->
