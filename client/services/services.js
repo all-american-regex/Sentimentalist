@@ -1,6 +1,6 @@
 angular.module('sL.services', [])
 
-.factory('News', function($http) {
+.factory('News', function($http, Data) {
     console.log('factory started!');
 
     var getTopTen = function(query) {//make call to back end to get 10 urls
@@ -13,17 +13,19 @@ angular.module('sL.services', [])
       });
     };
 
-    var getImages = function(query) {
+    var getImages = function(host, ind) {
       return $http({
         method: 'GET',
         url: '/api/imagesearch',
         params: {
-          search: query
+          host: host
         }
-      });
+      }).then(function(res) {
+        Data.newsLinks.data[ind].thumbnail = res.data;
+      })
     }
 
-    var updateScore = function(datum){//make call to backend for each URL for sentiment Data
+    var updateScore = function(datum){  //make call to backend for each URL for sentiment Data
       return $http({
         method: 'GET',
         url: '/api/scrapearticle',
@@ -34,6 +36,7 @@ angular.module('sL.services', [])
     };
 
     var averageScore = function(scoresObject) {
+      console.log('scores obj === ', scoresObject)
       var temp = 0;
       for (var i = 0; i < scoresObject.data.sentiment.length; i++) {
         temp = temp + scoresObject.data.sentiment[i];
@@ -149,6 +152,8 @@ angular.module('sL.services', [])
   })
   .service('Data', function() {
     this.newsLinks = {};
+    this.input = '';
+    this.thumbnails = [];
   });
 
 // .factory('Auth', function($http, $location, $window) {

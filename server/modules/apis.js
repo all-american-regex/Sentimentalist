@@ -60,14 +60,13 @@ exports.getStatistics = function(text) {
   return indico.analyzeText(final, {apis: ['sentiment', 'political', 'emotion', 'personality']});
 }
 
-exports.scrapeImages = function(query) {
+exports.scrapeImages = function(host) {
   return new Promise(function(resolve, reject) {
     var resArray = [];
     var error = undefined;
     var count = 0;
     var options = {
-      query: query,
-      host: 'https://www.bing.com/images/search?q='
+      host: host
     };
 
       imgscraper.search(options).then(function(datas) {
@@ -79,4 +78,24 @@ exports.scrapeImages = function(query) {
 
     });
   }
+
+// exports.scrapeImages = function(query) {
+// return new Promise(function(resolve, reject) {
+//   var resArray = [];
+//   var error = undefined;
+//   var count = 0;
+//   var options = {
+//     query: query,
+//     host: 'https://www.bing.com/images/search?q='
+//   };
+
+//     imgscraper.search(options).then(function(datas) {
+//       resolve(datas);
+//     })
+//     .catch(function(err) {
+//       reject(err);
+//     })
+
+//   });
+// }
 

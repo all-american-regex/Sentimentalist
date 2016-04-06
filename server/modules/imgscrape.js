@@ -5,18 +5,20 @@ var url     = require('url');
 exports.search = function(options) {
   return new Promise(function(resolve, reject) {
     var host = options.host;
-    var srch = options.query;
-    var imgSearch = host + srch;
+
     var results = [];
 
-    exports.getPage(imgSearch).then(function(result) {
+    exports.getPage(host).then(function(result) {
       return result;
     })
     .then(function(result) {
       return exports.extractResults(result);
     })
+    .then(function(res) {
+      return exports.getSizes(res);
+    })
     .then(function(result) {
-      resolve(result);
+      resolve(result.url);
     })
     .catch(function(err) {
       reject(err);
@@ -35,13 +37,13 @@ exports.extractResults = function(page) {
     var final = [];
     var $ = cheerio.load(page.body);
 
-    var results = $('img').map(function(index, val) {
+    var results = $('.main img').map(function(index, val) {
       return $(val).attr();
     })
 
-    for(var i = 5; i < 15; ++i) {
+    for(var i = 0; i < 5; ++i) {  //results.length
       results[i.toString()].thumbnail = '';
-      final.push(results[i.toString()]);
+      final.push(results[i.toString()].src);
     }
     
     resolve(final);
@@ -59,3 +61,41 @@ exports.getPage = function(params) {
     })
   })
 }
+
+exports.getSizes = function(linkArray) {
+  return new Promise(function(resolve, reject) {
+    var largest = { url: null, size: null };
+
+    linkArray.forEach(function(val, ind) {
+      http.get(linkArray[ind], function (response) {
+      var chunks = [];
+
+      response.on('data', function (chunk) {
+        chunks.push(chunk);
+      })
+      .on('end', function() {
+        if(!buffer) {
+          reject(buffer);
+          return;
+        }
+
+        var buffer = Buffer.concat(chunks);
+        var bufferSize = sizeOf(buffer);
+
+        if(largest.size === null || bufferSize > largest.size) {
+          largest.url = linkArray[ind];
+          largest.size = bufferSize;
+          console.log('largest.size === ', largest.size);
+        }
+      });
+
+    });
+    })
+
+  resolve(largest);
+  })
+}
+
+
+
+
