@@ -101,3 +101,7 @@ input[type=url]:focus {
 ul {
   list-style-type: none;
 }
+
+.media-object {
+  width: 250px;
+}

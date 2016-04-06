@@ -47,6 +47,7 @@ angular.module('sL.statechange', [])
 						datum.emotion = News.emotionalScore(scores); //{emotion:"string", score:number}
 						datum.personality = News.personalityScore(scores); //{personality:"string", score:number}
 					})
+					console.log(console.log('all data === ', Data));
 				})
 			//the 10 links will show up on screen now
 			//NoW that we have all the articles, we can send the API calls for each article

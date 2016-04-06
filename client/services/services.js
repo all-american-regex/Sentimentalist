@@ -14,6 +14,7 @@ angular.module('sL.services', [])
     };
 
     var getImages = function(host, ind) {
+      var superUrl = host;
       return $http({
         method: 'GET',
         url: '/api/imagesearch',
@@ -21,11 +22,19 @@ angular.module('sL.services', [])
           host: host
         }
       }).then(function(res) {
-        Data.newsLinks.data[ind].thumbnail = res.data;
+        console.log('IMAGE URL RESULT === ', res);
+        if(res.data.hasOwnProperty('url')) {
+          Data.newsLinks.data[ind].thumbnail = res.data;
+        } else {
+          Data.newsLinks.data[ind].thumbnail = {};
+          Data.newsLinks.data[ind].thumbnail.url = superUrl.split('/')[0] + '//' + superUrl.split('/')[2] + '/favicon.ico';
+          console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url)
+        }
+        
       })
     }
 
-    var updateScore = function(datum){  //make call to backend for each URL for sentiment Data
+    var updateScore = function(datum) {  //make call to backend for each URL for sentiment Data
       return $http({
         method: 'GET',
         url: '/api/scrapearticle',
@@ -36,7 +45,6 @@ angular.module('sL.services', [])
     };
 
     var averageScore = function(scoresObject) {
-      console.log('scores obj === ', scoresObject)
       var temp = 0;
       for (var i = 0; i < scoresObject.data.sentiment.length; i++) {
         temp = temp + scoresObject.data.sentiment[i];

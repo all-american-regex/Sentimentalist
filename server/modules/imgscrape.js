@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var url     = require('url');
-var sizeOf = require('image-size');
+var sizeOf = require('./image-size');
 var session = request.defaults({ jar : true });
 var http = require('http');
 var https = require('https');
@@ -24,7 +24,7 @@ exports.search = function(options) {
       console.log('extrat res erro = ', err);
     })
     .then(function(res) {
-      console.log('finding size!');
+      //console.log('finding size! === ', res);
       return processSizeArray(res);
     })
     .catch(function(err) {
@@ -34,8 +34,11 @@ exports.search = function(options) {
       console.log('Size Array Complete!')
       return findLargest(data);
     })
+    .catch(function(err) {
+      console.log('find largest err = ', err);
+    })
     .then(function(result) {
-      console.log('got largest image! === ', result);
+      //console.log('got largest image! === ', result);
       resolve(result);
     })
     .catch(function(err) {
@@ -62,7 +65,11 @@ exports.extractResults = function(page) {
     if(!Array.isArray(results)) {
       for(var i = 0; i < Object.keys(results).length; ++i) {
         if(results[i.toString()] !== undefined) {
-          final.push(results[i.toString()].src);
+          if(results[i.toString()].src !== undefined) {
+
+            var test = results[i.toString()].src.slice(0, 4);
+            if(test === 'http') { final.push(results[i.toString()].src); }  //making sure we dont have some strange relative links!!!
+          }
         }
       }
 
@@ -70,8 +77,15 @@ exports.extractResults = function(page) {
     }
     else {
       for(var i = 0; i < 10; ++i) {  //results.length
-        final.push(results[i.toString()].src);
+        if(results[i.toString()] !== undefined) {
+          if(results[i.toString().src] !== undefined) {
+
+            var test = results[i.toString()].src.slice(0, 4);
+            if(test === 'http') { final.push(results[i.toString()].src); }
+          }  //making sure we dont have some strange relative links!!!
+        }
       }
+
       resolve(final);
     }
   })
@@ -89,11 +103,16 @@ exports.getPage = function(params) {
   })
 }
 
+var getPathFromUrl = function(url) {
+  return url.split("?")[0];
+}
+
 var getSize = function(link) {
   return new Promise(function(resolve, reject) {
 
       var options = url.parse(link);
       var ht = options.protocol === 'https:' ? https : http;
+      options = getPathFromUrl(options.href);
 
       ht.get(options, function (response) {
       var chunks = [];
@@ -104,9 +123,15 @@ var getSize = function(link) {
       .on('end', function() {
         var buffer = Buffer.concat(chunks);
         var bufferSize = sizeOf(buffer);
-        bufferSize.url = link;
-        console.log('Bsize = ', bufferSize)
-        resolve(bufferSize);
+        if(bufferSize === false) {
+          resolve({width: 0, height: 0});
+        }
+        else {
+          bufferSize.url = link;
+          console.log('Bsize = ', bufferSize)
+          resolve(bufferSize);
+        }
+        
       });
 
     });
@@ -115,21 +140,23 @@ var getSize = function(link) {
 
 var processSizeArray = function(array) {
   return Promise.all(array.map(function(val) {
-    return getSize(val);
+    if(val) { return getSize(val); }
   }));
 }
 
 var findLargest = function(array) {
   var final = array.reduce(function(acc, iter) {
-    console.log('reduce', acc, iter)
-    var acctot = acc.width + acc.height;
-    var itertot = iter.width + iter.height;
+    if(iter.hasOwnProperty('width')) {
+      var acctot = acc.width + acc.height;
+      var itertot = iter.width + iter.height;
 
-    if(itertot > acctot) {
-      return iter;
-    } else {
-      return acc;
+      if(itertot > acctot) {
+        return iter;
+      } else {
+        return acc;
+      }
     }
+    //maybe need an else here.
   })
 
   return Promise.resolve(final);
