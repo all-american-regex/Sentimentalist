@@ -54,14 +54,19 @@ function asyncFileToBuffer (filepath, callback) {
 }
 
 function syncFileToBuffer (filepath) {
-  // read from the file, synchronously
-  var descriptor = fs.openSync(filepath, 'r');
-  var size = fs.fstatSync(descriptor).size;
-  var bufferSize = Math.min(size, MaxBufferSize);
-  var buffer = new Buffer(bufferSize);
-  fs.readSync(descriptor, buffer, 0, bufferSize, 0);
-  fs.closeSync(descriptor);
-  return buffer;
+  try {
+    fs.accessSync(filepath, fs.F_OK);
+    var fpath = filepath.replace(/\\/g, '');
+    var descriptor = fs.openSync(fpath, 'r');
+    var size = fs.fstatSync(descriptor).size;
+    var bufferSize = Math.min(size, MaxBufferSize);
+    var buffer = new Buffer(bufferSize);
+    fs.readSync(descriptor, buffer, 0, bufferSize, 0);
+    fs.closeSync(descriptor);
+    return buffer;
+  } catch (e) {
+      return false;
+  }
 }
 
 /**
@@ -77,7 +82,7 @@ module.exports = function (input, callback) {
 
   // input should be a string at this point
   if (typeof input !== 'string') {
-    throw new TypeError('invalid invocation');
+    return false;
   }
 
   // resolve the file path

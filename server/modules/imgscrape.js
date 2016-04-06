@@ -9,7 +9,7 @@ var https = require('https');
 exports.search = function(options) {
   return new Promise(function(resolve, reject) {
     var host = options.host;
-    console.log('starting scrape! = ', host)
+    //console.log('starting scrape! = ', host)
 
     exports.getPage(host).then(function(result) {
       return result;
@@ -62,7 +62,7 @@ exports.extractResults = function(page) {
       return $(val).attr();
     })
 
-    console.log('scrape results === ', results)
+    //console.log('scrape results === ', results)
 
     if(!Array.isArray(results)) {
       for(var i = 0; i < Object.keys(results).length; ++i) {
@@ -70,19 +70,22 @@ exports.extractResults = function(page) {
           if(results[i.toString()].hasOwnProperty('src')) {
             var test = results[i.toString()].src.slice(0, 4);
             if(test === 'http') {
+              var nobs = results[i.toString()].src;
+              nobs = nobs.replace(/\\/g, '');
               final.push(results[i.toString()].src); 
             }
           } 
           else if(results[i.toString()].hasOwnProperty('srcset')) {
             var test = results[i.toString()].srcset.split(',')[0].slice(0, 4);
-            console.log('test = ', results[i.toString()].srcset.split(','))
             if(test === 'http') {
-              final.push(results[i.toString()].srcset.split(',')[0]); 
+              var nobs = results[i.toString()].srcset.split(',')[0];
+              nobs = nobs.replace(/\\/g, '');
+              final.push(nobs); 
             }
           }
         }
       }
-      console.log('final arry = ', final)
+      //console.log('final arry = ', final)
       resolve(final);
     }
     else {
@@ -91,13 +94,17 @@ exports.extractResults = function(page) {
           if(results[i.toString()].hasOwnProperty('src')) {
             var test = results[i.toString()].src.slice(0, 4);
               if(test === 'http') {
-                final.push(results[i.toString()].src); 
+                var nobs = results[i.toString()].src;
+                nobs = nobs.replace(/\\/g, ''); 
+                final.push(nobs); 
               }
             }
             else if(results[i.toString()].hasOwnProperty('srcset')) {
               var test = results[i.toString()].srcset.split(',')[0].slice(0, 4);
               if(test === 'http') {
-                final.push(results[i.toString()].srcset.split(',')[0]);
+                var nobs = results[i.toString()].srcset.split(',')[0];
+                nobs = nobs.replace(/\\/g, '');
+                final.push(nobs);
               }
             }
 
@@ -105,7 +112,6 @@ exports.extractResults = function(page) {
           }  
         }
 
-      console.log('final arry = ', final)
       resolve(final);
   })
 }
@@ -130,6 +136,8 @@ var getSize = function(link) {
   return new Promise(function(resolve, reject) {
 
       var options = url.parse(link);
+     
+      console.log('PROTOCOL  ==== ', options.protocol)
       var ht = options.protocol === 'https:' ? https : http;
 
       ht.get(options, function (response) {
@@ -146,7 +154,6 @@ var getSize = function(link) {
         }
         else {
           bufferSize.url = link;
-          console.log('Bsize = ', bufferSize)
           resolve(bufferSize);
         }
       }).on('error', function(err) {
@@ -159,7 +166,9 @@ var getSize = function(link) {
 
 var processSizeArray = function(array) {
   return Promise.all(array.map(function(val) {
-    if(val) { return getSize(val); }
+    if(val) {
+      return getSize(val); 
+    }
   }));
 }
 
