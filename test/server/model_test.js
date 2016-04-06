@@ -11,14 +11,14 @@ describe('The models', function() {
 			.then(function() {
 			return db('users').del()
 				.then(function() {
-					return db('searches').insert({searchphrase: 'kasich', searchdate: 1234})
+					return db('searches').insert({searchphrase: 'kasich', searchdate: '1234'})
 				})
 			})
 		})
 	})
 
 	it('should insert a search', function() {
-		return Search.insert({searchphrase: 'kasich', searchdate: 1234})
+		return Search.insert({searchphrase: 'kasich', searchdate: '1234'})
 		.then(function(id) {
 			expect(Array.isArray(id)).to.equal(true)
 		})

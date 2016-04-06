@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('searches', function(table){
             table.increments('id').primary();
             table.string('searchphrase');
-            table.integer('searchdate');
+            table.string('searchdate');
             table.integer('user_id')
                  .references('uid')
                  .inTable('users');
