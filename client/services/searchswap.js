@@ -64,14 +64,13 @@ angular.module('sL.statechange', [])
 
         });
       });
-      //the 10 links will show up on screen now
-      //NoW that we have all the articles, we can send the API calls for each article
-      //one at a time(they will come back in the order they finish)
     };
 
     var getImages = function(articles) {
-      for (var ind = 0; ind < 10; ++ind) {
-        News.getImages(articles[ind].url, ind);
+      for (var ind = 0; ind < 3; ++ind) {
+        if(articles[ind]) {
+          News.getImages(articles[ind].url, ind);
+        }
       }
 
       return;

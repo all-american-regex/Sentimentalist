@@ -54,7 +54,7 @@ exports.scrapeTopTen = function(query) {
 }
 
 exports.getStatistics = function(text) {
-  indico.apiKey =  'b9e9ccab87575fd3963bfb0150da6fe4';
+  indico.apiKey =  '6f045e0b8171918e68e2596f375ac4ba';
   text = text.substring(0, 100);   //WAS ON 1500 PREVIOUSLY!!  0, 1500
   var tArray = text.split('.');
   var final = [];

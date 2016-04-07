@@ -31,7 +31,7 @@ exports.search = function(options) {
       console.log('get sizes err = ', err);
     })
     .then(function(data) {
-      console.log('Size Array Complete!')
+      //console.log('Size Array Complete!')
       return findLargest(data);
     })
     .catch(function(err) {
@@ -50,7 +50,7 @@ exports.search = function(options) {
 
 exports.extractResults = function(page) {
   return new Promise(function(resolve, reject) {
-    console.log('extracting!')
+    // console.log('extracting!')
     if(!page) {
       reject(page);
     }
@@ -62,7 +62,6 @@ exports.extractResults = function(page) {
       return $(val).attr();
     })
 
-    //console.log('scrape results === ', results)
 
     if(!Array.isArray(results)) {
       for(var i = 0; i < Object.keys(results).length; ++i) {
@@ -85,7 +84,6 @@ exports.extractResults = function(page) {
           }
         }
       }
-      //console.log('final arry = ', final)
       resolve(final);
     }
     else {
@@ -171,19 +169,22 @@ var processSizeArray = function(array) {
 }
 
 var findLargest = function(array) {
-  var final = array.reduce(function(acc, iter) {
-    if(iter.hasOwnProperty('width')) {
-      var acctot = acc.width + acc.height;
-      var itertot = iter.width + iter.height;
+  if(array.length > 0) {
+    var final = array.reduce(function(acc, iter) {
+      if(iter.hasOwnProperty('width')) {
+        var acctot = acc.width + acc.height;
+        var itertot = iter.width + iter.height;
 
-      if(itertot > acctot) {
-        return iter;
-      } else {
-        return acc;
+        if(itertot > acctot) {
+          return iter;
+        } else {
+          return acc;
+        }
       }
-    }
-    //maybe need an else here.
-  })
+      //maybe need an else here.
+    })
+  }
+
 
   return Promise.resolve(final);
 }

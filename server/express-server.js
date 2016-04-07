@@ -55,9 +55,14 @@ open.get('/api/scrapearticle', function(req, res) {
       return resp.text;
     })
     .then(function(text) {
+      console.log('getting indico stats!', text);
       return API.getStatistics(text);
     })
+    .catch(function(err) {
+      console.log('indico error!!! ', err)
+    })
     .then(function(resp) {
+      console.log('indico resp!! = ', resp)
       res.send(resp);
     })
     .catch(function(err) {
