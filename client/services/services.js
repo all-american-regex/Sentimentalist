@@ -204,7 +204,7 @@ angular.module('sL.services', [])
       // strongestPersonal.score = Math.min(strongestPersonal.score,100)
 
       obj.scores = strongestPersonal;
-      obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%...  ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';
+      obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%... ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';
       return obj;
     };
 
