@@ -10,7 +10,7 @@
         <div class="form-group">
           <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input">
         </div>
-        <a ui-sref=".results">
+        <a ui-sref=".results" ui-sref-opts="{reload: true}">
           <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()">
             {{buttonText}}
           </button>

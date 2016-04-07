@@ -1,6 +1,6 @@
 angular.module('sL.resultsController', [])
 
-.controller('ResultsController', function($scope, Data, News, SearchSwap, swap) {
+.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap) {
 
   $scope.heading = 'Sentiment Score';
 
@@ -16,6 +16,11 @@ angular.module('sL.resultsController', [])
         console.log('getImages err === ', err);
       });
   };
+
+
+  $scope.getLinks = function() {
+    console.log('called from results state')
+  }
 
   getImages();
 });
