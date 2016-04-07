@@ -74,12 +74,19 @@ angular.module('sL.services', [])
         Libertarian: 0
       };
 
-      for (var i = 0; i < politicalScores.data.political.length; i++) {
-        temp.Conservative += politicalScores.data.political[i].Conservative;
-        temp.Green += politicalScores.data.political[i].Green;
-        temp.Liberal += politicalScores.data.political[i].Liberal;
-        temp.Libertarian += politicalScores.data.political[i].Libertarian;
-      }
+      //refactor of commented for-loop below.
+      politicalScores.data.political.forEach(function(spectrum){
+        for(var key in temp){
+          temp[key] += spectrum[key];
+        }
+      });
+
+      // for (var i = 0; i < politicalScores.data.political.length; i++) {
+      //   temp.Conservative += politicalScores.data.political[i].Conservative;
+      //   temp.Green += politicalScores.data.political[i].Green;
+      //   temp.Liberal += politicalScores.data.political[i].Liberal;
+      //   temp.Libertarian += politicalScores.data.political[i].Libertarian;
+      // }
 
       obj.tt = 'Conservative: ' + temp.Conservative.toFixed(2) + ' Green: ' + temp.Green.toFixed(2) + ' Liberal: ' + temp.Liberal.toFixed(2) + ' Libertarian: ' + temp.Libertarian.toFixed(2);
 
@@ -88,7 +95,7 @@ angular.module('sL.services', [])
         score: 0
       };
       for (var key in temp) {
-        temp[key] = temp[key] / politicalScores.data.political.length;
+        temp[key] /= politicalScores.data.political.length;
         if (temp[key] > strongestPolitical.score) {
           strongestPolitical.party = key;
           strongestPolitical.score = temp[key];
@@ -106,22 +113,29 @@ angular.module('sL.services', [])
       var obj = {};
 
       var temp = {
-        Anger: 0,
-        Joy: 0,
-        Fear: 0,
-        Sadness: 0,
-        Surprise: 0
+        anger: 0,
+        joy: 0,
+        fear: 0,
+        sadness: 0,
+        surprise: 0
       };
 
-      for (var i = 0; i < emo.data.emotion.length; i++) {
-        temp.Anger += emo.data.emotion[i].anger;
-        temp.Joy += emo.data.emotion[i].joy;
-        temp.Fear += emo.data.emotion[i].fear;
-        temp.Sadness += emo.data.emotion[i].sadness;
-        temp.Surprise += emo.data.emotion[i].surprise;
-      }
+      //refactor of commented for-loop below
+      emo.data.emotion.forEach(function(spectrum){
+        for(var key in temp){
+          temp[key] += spectrum[key];
+        }
+      })
 
-      obj.tt = 'Anger: ' + temp.Anger.toFixed(2) + ' Joy: ' + temp.Joy.toFixed(2) + ' Fear: ' + temp.Fear.toFixed(2) + ' Sadness: ' + temp.Sadness.toFixed(2) + ' Suprise ' + temp.Surprise.toFixed(2);
+      // for (var i = 0; i < emo.data.emotion.length; i++) {
+      //   temp.Anger += emo.data.emotion[i].anger;
+      //   temp.Joy += emo.data.emotion[i].joy;
+      //   temp.Fear += emo.data.emotion[i].fear;
+      //   temp.Sadness += emo.data.emotion[i].sadness;
+      //   temp.Surprise += emo.data.emotion[i].surprise;
+      // }
+
+      obj.tt = 'Anger: ' + temp.anger.toFixed(2) + ' Joy: ' + temp.joy.toFixed(2) + ' Fear: ' + temp.fear.toFixed(2) + ' Sadness: ' + temp.sadness.toFixed(2) + ' Suprise ' + temp.surprise.toFixed(2);
 
       var strongestEmo = {
         emotion: '',
@@ -147,21 +161,28 @@ angular.module('sL.services', [])
       var obj = {};
 
       var temp = {
-        Extraversion: 0,
-        Openness: 0,
-        Agreeableness: 0,
-        Conscientiousness: 0
+        extraversion: 0,
+        openness: 0,
+        agreeableness: 0,
+        conscientiousness: 0
       };
 
-      for (var i = 0; i < personal.data.personality.length; i++) {
+      //refactor of commented for-loop below
+      personal.data.personality.forEach(function(spectrum){
+        for(var key in temp){
+          temp[key] += spectrum[key];
+        }
+      });
 
-        temp.Extraversion += personal.data.personality[i].extraversion;
-        temp.Openness += personal.data.personality[i].openness;
-        temp.Agreeableness += personal.data.personality[i].agreeableness;
-        temp.Conscientiousness += personal.data.personality[i].conscientiousness;
-      }
+      // for (var i = 0; i < personal.data.personality.length; i++) {
 
-      obj.tt = 'Extraversion: ' + temp.Extraversion.toFixed(2) + ' Openness: ' + temp.Openness.toFixed(2) + ' Agreeableness: ' + temp.Agreeableness.toFixed(2) + ' Conscientiousness: ' + temp.Conscientiousness.toFixed(2);
+      //   temp.Extraversion += personal.data.personality[i].extraversion;
+      //   temp.Openness += personal.data.personality[i].openness;
+      //   temp.Agreeableness += personal.data.personality[i].agreeableness;
+      //   temp.Conscientiousness += personal.data.personality[i].conscientiousness;
+      // }
+
+      obj.tt = 'Extraversion: ' + temp.extraversion.toFixed(2) + ' Openness: ' + temp.openness.toFixed(2) + ' Agreeableness: ' + temp.agreeableness.toFixed(2) + ' Conscientiousness: ' + temp.conscientiousness.toFixed(2);
 
       var strongestPersonal = {
         personality: '',
