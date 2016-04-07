@@ -39,15 +39,12 @@ exports.scrapeTopTen = function(query) {
     
     // ------- TIMESTAMP STUFF HERE -------
     // db.checkifqueryexits().then(function(query, timestamp) { // Add our db logic here! & .then to scraper.
-    //   //  check db here with timestamp!
-         // (timeNow.diff(timestamp, 'days') > 3
-         //  We check here if the the timestamp from the previous insert is greater than 3 days old.
-         //  This is easy to modify to seconds/months/hours etc.
-    // })
+    // (timeNow.diff(timestamp, 'days') > 3
+        
     scraper.search(options).then(function(res) {
-      //res comes back as an array. Likely just want to res.push({timestamp: timeNow});
-      //now save this query into DB here. with the new timestamp.
-      resolve(res); //send back data to client express-server.js & on to client.
+      var LIMITER = res.slice(0, 2);  //Gives back 10! Limiting it to 2 until slow & tell.
+
+      resolve(LIMITER);
     })
     .catch(function(err) {
       reject(err);
@@ -58,7 +55,7 @@ exports.scrapeTopTen = function(query) {
 
 exports.getStatistics = function(text) {
   indico.apiKey =  'b9e9ccab87575fd3963bfb0150da6fe4';
-  text = text.substring(0, 1500);
+  text = text.substring(0, 100);   //WAS ON 1500 PREVIOUSLY!!  0, 1500
   var tArray = text.split('.');
   var final = [];
   tArray.forEach(function(val, index) {
@@ -67,7 +64,7 @@ exports.getStatistics = function(text) {
     }
   })
 
-  return indico.analyzeText(final, {apis: ['sentiment', 'political', 'emotion', 'personality']});
+  return indico.analyzeText(final, { apis: ['sentiment', 'political', 'emotion', 'personality'] });
 }
 
 exports.scrapeImages = function(host) {

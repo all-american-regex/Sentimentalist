@@ -6,7 +6,7 @@ var session = require('express-session');
 var API = require('./modules/apis');
 var bodyParser = require('body-parser');
 var Path = require('path');
-var db = require('./modules/db/db.js');
+// var db = require('./modules/db/db.js');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
