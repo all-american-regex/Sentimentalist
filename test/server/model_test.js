@@ -34,7 +34,7 @@ describe('The models', function() {
 	it('should return the most searched topic for a given date', function() {
 		return Search.trending(Moment().format('LL'))
 		.then(function(search){
-			expect(search).to.equal('kasich')
+			expect(search.searchphrase).to.equal('kasich')
 		})
 	})
 

@@ -9,6 +9,7 @@ var Path = require('path');
 // var db = require('./modules/db/db.js');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
+var Search = require('./models/search.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,6 +43,12 @@ var open = express.Router();
 var authRequired = express.Router();
 
 open.get('/api/top10scrape', function(req, res) {
+
+  Search.insert(req.query.search)
+  .then(function() {
+    console.log('Search successfully inserted!')
+  });
+
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
       res.send(queryArray);
     })

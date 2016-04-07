@@ -1,12 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var db = require('../modules/db/db.js');
 
+//Is this going to be redundant with some passport thing?
 
-// create User Schema
-var User = new Schema({
-  name: String,
-  someID: String
-});
+var Users = {
+	
+	insertUser: function(name) {
 
+		return db('users')
+			.returning('id')
+			.insert({username: name})
+	}
+}
 
-module.exports = mongoose.model('users', User);
+module.exports = Users

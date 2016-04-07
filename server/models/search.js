@@ -18,7 +18,9 @@ var Search = {
 
 		return db('searches').select('searchphrase').where('searchdate', today).count('searchphrase').groupBy('searchphrase').orderBy('count', 'desc')
 		.then(function (record) {
-      return record[0].searchphrase
+			console.log('record[0]: ', record[0])
+      return record[0]
+      //record[0] is an object with properties searchphrase and count. this is the most searched topic.
     })
 	}
 }
