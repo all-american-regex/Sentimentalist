@@ -9,40 +9,52 @@ body {
 }
 
 .btn:hover {
-  background-color: #2380E2;
+  background-color: #2380e2;
 }
 
 .form-search {
   font-size: 18px;
-  color: blue;
   text-align: center;
+  color: blue;
 }
 
 .jumbotron {
-  background-color: #dcdcdc;
   text-align: center;
-  /*border-radius: 2px;*/
-  /*padding: 40px 15px;*/
+  background-color: #dcdcdc;
 }
 
 .panel-heading {
-  text-align: left;
   padding-left: 3%;
+  text-align: left;
 }
 
 .panel {
-  background-color: #ebebeb;
   border-color: #e1e8ed;
+  background-color: #ebebeb;
 }
 
 
 /*signin & signup pages*/
 
 .inputdata input {
-  display: block;
   font-size: 15px;
-  padding: 5px;
+  display: block;
+  width: 445px;
   margin-bottom: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.middle {
+  margin-left: 27%;
+  margin-right: 30%;
+  text-align: center;
+}
+
+.middle-about {
+  margin-left: 15%;
+  margin-right: 18%;
+  text-align: center;
 }
 
 
@@ -83,24 +95,21 @@ ul {
   position: absolute;
 }
 
-.slide.ng-enter,
-.slide.ng-leave {
-  -webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in;
-  -moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in;
-  -o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in;
-  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: -webkit-transform .3s ease-in, opacity .3s ease-in;
+  -moz-transition: -moz-transform .3s ease-in, opacity .3s ease-in;
+  -o-transition: -o-transform .3s ease-in, opacity .3s ease-in;
+  transition: transform .3s ease-in, opacity .3s ease-in;
 }
 
-.slide.ng-enter,
-.slide.ng-leave.ng-leave-active {
-  -webkit-transform: scaleX(0.0001);
-  -o-transform: scaleX(0.0001);
-  transform: scaleX(0.0001);
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleX(.0001);
+  -o-transform: scaleX(.0001);
+  transform: scaleX(.0001);
   opacity: 0;
 }
 
-.slide,
-.slide.ng-enter.ng-enter-active {
+.slide, .slide.ng-enter.ng-enter-active {
   -webkit-transform: scaleX(1);
   -o-transform: scaleX(1);
   transform: scaleX(1);

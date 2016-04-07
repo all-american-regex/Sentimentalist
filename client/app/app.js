@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('sL', [
-  'sL.searchBar',
+  'sL.resultsController',
   'sL.aboutController',
+  'sL.searchBar',
   'sL.services',
   'sL.auth',
-  'sL.resultsController',
   'sL.modal',
   'ui.bootstrap',
   'ui.router',

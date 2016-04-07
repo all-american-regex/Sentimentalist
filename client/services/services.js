@@ -51,14 +51,14 @@ angular.module('sL.services', [])
         temp = temp + scoresObject.data.sentiment[i];
       }
       var result = temp / scoresObject.data.sentiment.length;
-      result=result*4/3
+      result = result * 4 / 3
       result = Math.floor(result * 100);
-      result = Math.min(result,100)
+      result = Math.min(result, 100)
       result = {
         title: 'Sentiment',
         score: result,
         tt: 'Total Sentiment Score: ' + result
-      }
+      };
       return result;
     };
 
@@ -75,39 +75,29 @@ angular.module('sL.services', [])
       };
 
       //refactor of commented for-loop below.
-      politicalScores.data.political.forEach(function(spectrum){
-        for(var key in temp){
+      politicalScores.data.political.forEach(function(spectrum) {
+        for (var key in temp) {
           temp[key] += spectrum[key];
         }
       });
-
-      // for (var i = 0; i < politicalScores.data.political.length; i++) {
-      //   temp.Conservative += politicalScores.data.political[i].Conservative;
-      //   temp.Green += politicalScores.data.political[i].Green;
-      //   temp.Liberal += politicalScores.data.political[i].Liberal;
-      //   temp.Libertarian += politicalScores.data.political[i].Libertarian;
-      // }
-
 
       var strongestPolitical = {
         party: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] = Math.floor(temp[key] / politicalScores.data.political.length*400/3);
-        temp[key] = Math.min(temp[key],100)
+        temp[key] = Math.floor(temp[key] / politicalScores.data.political.length * 400 / 3);
+        temp[key] = Math.min(temp[key], 100)
         if (temp[key] > strongestPolitical.score) {
 
           strongestPolitical.party = key;
           strongestPolitical.score = temp[key];
         }
       }
-      // strongestPolitical.score *= (4/3);
-      // strongestPolitical.score = Math.floor(strongestPolitical.score * 100);
-      // strongestPolitical.score = Math.min(strongestPolitical.score, 100)
+
       obj.scores = strongestPolitical;
 
-      obj.tt = 'Conservative: ' + temp.Conservative + '%  Green: ' + temp.Green + '%  Liberal: ' + temp.Liberal + '%  Libertarian: ' + temp.Libertarian +'%';
+      obj.tt = 'Conservative: ' + temp.Conservative + '%  Green: ' + temp.Green + '%  Liberal: ' + temp.Liberal + '%  Libertarian: ' + temp.Libertarian + '%';
       return obj;
     };
 
@@ -123,40 +113,28 @@ angular.module('sL.services', [])
       };
 
       //refactor of commented for-loop below
-      emo.data.emotion.forEach(function(spectrum){
-        for(var key in temp){
+      emo.data.emotion.forEach(function(spectrum) {
+        for (var key in temp) {
           temp[key] += spectrum[key];
         }
-      })
+      });
 
-      // for (var i = 0; i < emo.data.emotion.length; i++) {
-      //   temp.Anger += emo.data.emotion[i].anger;
-      //   temp.Joy += emo.data.emotion[i].joy;
-      //   temp.Fear += emo.data.emotion[i].fear;
-      //   temp.Sadness += emo.data.emotion[i].sadness;
-      //   temp.Surprise += emo.data.emotion[i].surprise;
-      // }
-
-      
 
       var strongestEmo = {
         emotion: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] =  Math.floor(temp[key] / emo.data.emotion.length * 400/3);
-        temp[key] = Math.min(temp[key], 100)
+        temp[key] = Math.floor(temp[key] / emo.data.emotion.length * 400 / 3);
+        temp[key] = Math.min(temp[key], 100);
         if (temp[key] > strongestEmo.score) {
           strongestEmo.score = temp[key];
-          strongestEmo.emotion = key.substring(0,1).toUpperCase()+key.substring(1);
+          strongestEmo.emotion = key.substring(0, 1).toUpperCase() + key.substring(1);
         }
       }
-      // strongestEmo.score *= (4/3)
-      // strongestEmo.score = Math.floor(strongestEmo.score * 100);
-      // strongestEmo.score = Math.min(strongestEmo.score,100)
 
       obj.scores = strongestEmo;
-      obj.tt = 'Anger: ' + temp.anger + '%  Joy: ' + temp.joy + '%  Fear: ' + temp.fear + '%  Sadness: ' + temp.sadness + '%  Suprise ' + temp.surprise+'%';
+      obj.tt = 'Anger: ' + temp.anger + '%  Joy: ' + temp.joy + '%  Fear: ' + temp.fear + '%  Sadness: ' + temp.sadness + '%  Suprise ' + temp.surprise + '%';
       return obj;
     };
 
@@ -171,37 +149,25 @@ angular.module('sL.services', [])
       };
 
       //refactor of commented for-loop below
-      personal.data.personality.forEach(function(spectrum){
-        for(var key in temp){
+      personal.data.personality.forEach(function(spectrum) {
+        for (var key in temp) {
           temp[key] += spectrum[key];
         }
       });
-
-      // for (var i = 0; i < personal.data.personality.length; i++) {
-
-      //   temp.Extraversion += personal.data.personality[i].extraversion;
-      //   temp.Openness += personal.data.personality[i].openness;
-      //   temp.Agreeableness += personal.data.personality[i].agreeableness;
-      //   temp.Conscientiousness += personal.data.personality[i].conscientiousness;
-      // }
-
-      
 
       var strongestPersonal = {
         personality: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] = Math.floor(temp[key] / personal.data.personality.length*400/3);
-        temp[key] = Math.min(temp[key],100)
+        temp[key] = Math.floor(temp[key] / personal.data.personality.length * 400 / 3);
+        temp[key] = Math.min(temp[key], 100)
         if (temp[key] > strongestPersonal.score) {
           strongestPersonal.score = temp[key];
-          strongestPersonal.personality = key.substring(0,1).toUpperCase()+key.substring(1);
+          strongestPersonal.personality = key.substring(0, 1).toUpperCase() + key.substring(1);
         }
       }
-      // strongestPersonal.score *= (4/3)
-      // strongestPersonal.score = Math.floor(strongestPersonal.score * 100);
-      // strongestPersonal.score = Math.min(strongestPersonal.score,100)
+
 
       obj.scores = strongestPersonal;
       obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%... ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';

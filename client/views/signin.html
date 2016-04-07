@@ -1,21 +1,28 @@
 <div id="signin">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 middle">
-        <h1>Sign In</h1>
-        <form class="inputdata" name="signinForm" ng-submit="signin()">
-          <input type="text" placeholder="username" ng-model="user.username">
-          <input type="password" placeholder="password" ng-model="user.password">
-          <a href="/auth/github" class="btn btn-lrg btn-social btn-github" role="button" button type="button">
-            <span class="fa fa-github"></span>Sign in with Github</a>
-        </form>
-        <div class="col-md-10">
-          <br>
-          <a href="#/signup">Don't have an account?<br><strong>Create one!</strong> ...</a>
-          <div class="alert alert-danger" role="alert" ng-if="message"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <div class="col-md-12">
+        <div class="well middle">
+          <h1>Sign In</h1>
+          <form class="inputdata" name="signinForm" ng-submit="signin()">
+            <input type="text" placeholder="username" ng-model="user.username">
+            <input type="password" placeholder="password" ng-model="user.password">
+            <a href="/auth/github" class="btn btn-lrg btn-social btn-github" role="button" button type="button">
+              <span class="fa fa-github"></span>Sign in with Github</a>
+          </form>
+          <h6>
+            <a href="#/signup">Don't have an account?<br>
+              <strong>Create one!</strong>
+              ...</a>
+          </h6>
+          <!-- <div class="alert alert-danger" role="alert" ng-if="message">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <strong>Oh snap! You got an error!</strong>
             <br>Change a few things up and try submitting again...
-            <br> Error message: {{message.status}}: {{message.data.error}}</div>
+            <br>
+            Error message:
+            {{message.status}}:
+            {{message.data.error}}</div> -->
         </div>
       </div>
     </div>
