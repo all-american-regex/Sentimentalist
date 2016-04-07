@@ -88,24 +88,26 @@ angular.module('sL.services', [])
       //   temp.Libertarian += politicalScores.data.political[i].Libertarian;
       // }
 
-      obj.tt = 'Conservative: ' + temp.Conservative.toFixed(2) + ' Green: ' + temp.Green.toFixed(2) + ' Liberal: ' + temp.Liberal.toFixed(2) + ' Libertarian: ' + temp.Libertarian.toFixed(2);
 
       var strongestPolitical = {
         party: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] /= politicalScores.data.political.length;
+        temp[key] = Math.floor(temp[key] / politicalScores.data.political.length*400/3);
+        temp[key] = Math.min(temp[key],100)
         if (temp[key] > strongestPolitical.score) {
+
           strongestPolitical.party = key;
           strongestPolitical.score = temp[key];
         }
       }
-      strongestPolitical.score *= (4/3);
-      strongestPolitical.score = Math.floor(strongestPolitical.score * 100);
-      strongestPolitical.score = Math.min(strongestPolitical.score, 100)
+      // strongestPolitical.score *= (4/3);
+      // strongestPolitical.score = Math.floor(strongestPolitical.score * 100);
+      // strongestPolitical.score = Math.min(strongestPolitical.score, 100)
       obj.scores = strongestPolitical;
 
+      obj.tt = 'Conservative: ' + temp.Conservative + '%  Green: ' + temp.Green + '%  Liberal: ' + temp.Liberal + '%  Libertarian: ' + temp.Libertarian +'%';
       return obj;
     };
 
@@ -135,25 +137,26 @@ angular.module('sL.services', [])
       //   temp.Surprise += emo.data.emotion[i].surprise;
       // }
 
-      obj.tt = 'Anger: ' + temp.anger.toFixed(2) + ' Joy: ' + temp.joy.toFixed(2) + ' Fear: ' + temp.fear.toFixed(2) + ' Sadness: ' + temp.sadness.toFixed(2) + ' Suprise ' + temp.surprise.toFixed(2);
+      
 
       var strongestEmo = {
         emotion: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] = temp[key] / emo.data.emotion.length;
+        temp[key] =  Math.floor(temp[key] / emo.data.emotion.length * 400/3);
+        temp[key] = Math.min(temp[key], 100)
         if (temp[key] > strongestEmo.score) {
           strongestEmo.score = temp[key];
-          strongestEmo.emotion = key;
+          strongestEmo.emotion = key.substring(0,1).toUpperCase()+key.substring(1);
         }
       }
-      strongestEmo.score *= (4/3)
-      strongestEmo.score = Math.floor(strongestEmo.score * 100);
-      strongestEmo.score = Math.min(strongestEmo.score,100)
+      // strongestEmo.score *= (4/3)
+      // strongestEmo.score = Math.floor(strongestEmo.score * 100);
+      // strongestEmo.score = Math.min(strongestEmo.score,100)
 
       obj.scores = strongestEmo;
-
+      obj.tt = 'Anger: ' + temp.anger + '%  Joy: ' + temp.joy + '%  Fear: ' + temp.fear + '%  Sadness: ' + temp.sadness + '%  Suprise ' + temp.surprise+'%';
       return obj;
     };
 
@@ -182,25 +185,26 @@ angular.module('sL.services', [])
       //   temp.Conscientiousness += personal.data.personality[i].conscientiousness;
       // }
 
-      obj.tt = 'Extraversion: ' + temp.extraversion.toFixed(2) + ' Openness: ' + temp.openness.toFixed(2) + ' Agreeableness: ' + temp.agreeableness.toFixed(2) + ' Conscientiousness: ' + temp.conscientiousness.toFixed(2);
+      
 
       var strongestPersonal = {
         personality: '',
         score: 0
       };
       for (var key in temp) {
-        temp[key] = temp[key] / personal.data.personality.length;
+        temp[key] = Math.floor(temp[key] / personal.data.personality.length*400/3);
+        temp[key] = Math.min(temp[key],100)
         if (temp[key] > strongestPersonal.score) {
           strongestPersonal.score = temp[key];
-          strongestPersonal.personality = key;
+          strongestPersonal.personality = key.substring(0,1).toUpperCase()+key.substring(1);
         }
       }
-      strongestPersonal.score *= (4/3)
-      strongestPersonal.score = Math.floor(strongestPersonal.score * 100);
-      strongestPersonal.score = Math.min(strongestPersonal.score,100)
+      // strongestPersonal.score *= (4/3)
+      // strongestPersonal.score = Math.floor(strongestPersonal.score * 100);
+      // strongestPersonal.score = Math.min(strongestPersonal.score,100)
 
       obj.scores = strongestPersonal;
-
+      obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%...  ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';
       return obj;
     };
 
