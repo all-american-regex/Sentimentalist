@@ -6,7 +6,7 @@ var session = require('express-session');
 var API = require('./modules/apis');
 var bodyParser = require('body-parser');
 var Path = require('path');
-// var db = require('./modules/db/db.js');
+var db = require('./modules/db/db.js');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var Search = require('./models/search.js')
@@ -43,14 +43,12 @@ var open = express.Router();
 var authRequired = express.Router();
 
 open.get('/api/top10scrape', function(req, res) {
-
-  Search.insert(req.query.search)
-  .then(function() {
-    console.log('Search successfully inserted!')
-  });
-
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
       res.send(queryArray);
+      return Search.insert(req.query.search);
+    })
+    .then(function(res) {
+      console.log('Search Inserted ', res);
     })
     .catch(function(err) {
       res.send(err);
