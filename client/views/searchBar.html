@@ -6,12 +6,13 @@
   </div>
   <div class="row one">
     <div class="col-md-12">
-      <form class="searchdata" role="search">
+      <form name="searchBar" class="searchdata" role="search" novalidate>
         <div class="form-group">
-          <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input">
+          <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input" required>
         </div>
         <a ui-sref=".results" ui-sref-opts="{reload: true}">
-          <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()">
+          <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()"
+          ng-disabled="searchBar.$invalid">
             {{buttonText}}
           </button>
         </a>
