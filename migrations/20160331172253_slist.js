@@ -4,6 +4,12 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('users', function(table) {
             table.increments('uid').primary();
             table.string('username', 30).unique();
+            table.string('hashed_password');
+        }),
+
+        knex.schema.createTable('sessions', function(table) {
+            table.string('id').primary();
+            table.integer('user_id');
         }),
 
         knex.schema.createTable('searches', function(table){

@@ -192,6 +192,37 @@ angular.module('sL.services', [])
       getImages: getImages
     };
   })
+
+.factory('Auth', function($http, Data) {
+
+  var signup = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data.token;
+    });
+  };
+
+  var signin = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signin',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data.token;
+    });
+  };
+
+    return {
+      signup: signup,
+      signin: signin
+    };
+})
+
   .service('Data', function() {
     this.newsLinks = {};
     this.input = '';
@@ -205,6 +236,6 @@ angular.module('sL.services', [])
     provides the user with scores that reflect the general sentiment \
     (positivity/negativity) of those articles, their political sentiment, \
     the predominant emotion expressed by the author and the personality type \
-    of the author.For more information on indico and its sentiment scores, \
+    of the author. For more information on indico and its sentiment scores, \
     visit https://indico.io/product.';
   });

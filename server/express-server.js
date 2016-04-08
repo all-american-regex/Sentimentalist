@@ -3,17 +3,21 @@ require('events').EventEmitter.prototype._maxListeners = 100;
 var express = require('express');
 var app = express();
 var session = require('express-session');
+var db = require('./modules/db/db.js');
 var API = require('./modules/apis');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var Path = require('path');
-var db = require('./modules/db/db.js');
-var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
-var Search = require('./models/search.js')
+// var passport = require('passport');
+// var GitHubStrategy = require('passport-github2').Strategy;
+var Search = require('./models/search.js');
+var User = require('./models/user.js');
+var Session = require('./models/session.js')
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'keyboard cat' }));
+app.use(cookieParser());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(session({ secret: 'keyboard cat' }));
 // app.use(passport.initialize());
 // app.use(passport.session());
 app.listen(process.env.PORT || 3000, function() {
@@ -21,6 +25,76 @@ app.listen(process.env.PORT || 3000, function() {
 
 });
 
+app.post('/api/users/signup', function(req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  User.findByUsername( username )
+    .then(function(user) {
+      if ( user ) {
+        console.log('Account already exists');
+        res.redirect('/signup');
+      }
+      else {
+        User.create({
+          username: username,
+          password: password
+        })
+          .then(function(newUser) {
+            return Session.create(newUser.id);
+          })
+          .then(function (newSession) {
+            res.cookie('sessionId', newSession.id);
+            return res.redirect('/');
+          })
+      }
+    })
+});
+
+app.post('/api/users/signin', function(req, res) {
+  console.log('in app.post api/users/signin')
+  var username = req.body.username;
+  var password = req.body.password;
+
+  var user = null
+
+  User.findByUsername( username )
+    .then(function(userObj) {
+   console.log('in app.post api/users/signin 2')
+      user = userObj
+
+      if ( ! user ) {
+        res.redirect('/#/signin');
+      }
+      else {
+        console.log('in app.post api/users/signin 3', user.hashed_password, password)
+        return User.comparePassword(user.hashed_password, password)
+          .then(function (isMatch) {
+            if ( ! isMatch ) {
+              res.redirect('/#/signin');
+
+            } else {
+              Session.create( user.uid )
+                .then(function (newSession) {
+                  // http://expressjs.com/en/api.html#res.cookie
+                  res.cookie('sessionId', newSession.id);
+                  return res.redirect('/');
+                })
+            }
+          });
+      }
+    });
+});
+
+app.get("/logout", function(req, res) {
+  console.log('in logout1')
+  Session.destroy(req.cookies.sessionId)
+    .then(function () {
+      res.clearCookie('sessionId');
+      console.log('in logout2')
+      res.redirect('/#/signin');
+    })
+});
 // passport.use(new GitHubStrategy({
 //     clientID: '3044aacfbf36638a3531',
 //     clientSecret: 'd9fb6a8f54374e8ca90c92363888fa788662cd8',
@@ -88,7 +162,7 @@ open.get('/api/searchtrends', function(req, res) {
     return Search.trending()
     .then(function(trendsArray) {
       res.send(JSON.stringify(trendsArray));
-      console.log('Trending: ', res);
+      console.log('Trending data received');
     })
     .catch(function(err) {
       res.send(err);
@@ -104,15 +178,15 @@ authRequired.use(function(req, res, next) {
   }
 });
 
-authRequired.get('/auth/github',
-  passport.authenticate('github', { scope: ['user:name'] }));
+// authRequired.get('/auth/github',
+//   passport.authenticate('github', { scope: ['user:name'] }));
 
-authRequired.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/#/searchbar');
-  });
+// authRequired.get('/auth/github/callback',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/#/searchbar');
+//   });
 
 authRequired.get('/profile', function(req, res) {
   res.send(sessionid);

@@ -51,7 +51,8 @@ angular.module('sL', [
         SearchSwap: 'SearchSwap',
         News: 'News',
         Data: 'Data',
-        swap: function(SearchSwap, News, Data) {
+        Auth: 'Auth',
+        swap: function(SearchSwap, News, Data, Auth) {
           console.log('called resolve state');
           return News.getTopTen(Data.input);
         }
