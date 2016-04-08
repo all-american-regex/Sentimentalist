@@ -3,6 +3,10 @@ body {
   background-color: #f5f8fa;
 }
 
+.jumbotron {
+  text-align: center;
+  background-color: #dcdcdc;
+}
 .one {
   margin-right: 27%;
   margin-left: 27%;
@@ -15,12 +19,15 @@ body {
 .form-search {
   font-size: 18px;
   text-align: center;
+  font-style: oblique;
   color: blue;
+  width: 445px;
+  margin-left: 90px;
 }
 
-.jumbotron {
-  text-align: center;
-  background-color: #dcdcdc;
+.trends {
+  border-color: #e1e8ed;
+  background-color: #ebebeb;
 }
 
 .panel-heading {
@@ -51,14 +58,14 @@ body {
   text-align: center;
 }
 
+
+/*/end signin*/
+
 .middle-about {
   margin-left: 15%;
   margin-right: 18%;
   text-align: center;
 }
-
-
-/*/end signin*/
 
 ul {
   list-style-type: none;
@@ -81,7 +88,14 @@ ul {
 }
 
 .lgi {
-  height: 40px;
+  /*height: 40px;*/
+  height: 60px;
+}
+
+.sentiment {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
 }
 
 
@@ -95,21 +109,24 @@ ul {
   position: absolute;
 }
 
-.slide.ng-enter, .slide.ng-leave {
+.slide.ng-enter,
+.slide.ng-leave {
   -webkit-transition: -webkit-transform .3s ease-in, opacity .3s ease-in;
   -moz-transition: -moz-transform .3s ease-in, opacity .3s ease-in;
   -o-transition: -o-transform .3s ease-in, opacity .3s ease-in;
   transition: transform .3s ease-in, opacity .3s ease-in;
 }
 
-.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+.slide.ng-enter,
+.slide.ng-leave.ng-leave-active {
   -webkit-transform: scaleX(.0001);
   -o-transform: scaleX(.0001);
   transform: scaleX(.0001);
   opacity: 0;
 }
 
-.slide, .slide.ng-enter.ng-enter-active {
+.slide,
+.slide.ng-enter.ng-enter-active {
   -webkit-transform: scaleX(1);
   -o-transform: scaleX(1);
   transform: scaleX(1);

@@ -1,23 +1,46 @@
 <!-- search field and go button -->
 <div class="jumbotron">
   <div class="container-fluid">
-    <h1>{{appName}}</h1>
-    <p class="lead"></p>
-  </div>
-  <div class="row one">
-    <div class="col-md-12">
-      <form name="searchBar" class="searchdata" role="search" novalidate>
-        <div class="form-group">
-          <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input" required>
+    <div class="row">
+      <div class="col-md-8">
+        <h1>{{appName}}</h1>
+        <p class="lead"></p>
+        <!-- <div class="row one"> -->
+        <div class="col-md-12">
+          <form class="searchdata" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input">
+            </div>
+            <a ui-sref=".results" ui-sref-opts="{reload: true}">
+              <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()">
+                {{buttonText}}
+              </button>
+            </a>
+          </form>
         </div>
-        <a ui-sref=".results" ui-sref-opts="{reload: true}">
-          <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()"
-          ng-disabled="searchBar.$invalid">
-            {{buttonText}}
-          </button>
-        </a>
-        <div>{{trending}}</div>
-      </form>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-sm trends">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="active">Rank</th>
+                  <th class="active">Top Searches</th>
+                  <th class="active">#</th>
+                </tr>
+              </thead>
+              <tbody class="trending" ng-repeat="item in trending">
+                <tr>
+                  <td class="active">{{item.rank}}</td>
+                  <td class="active">{{item.searchphrase}}</td>
+                  <td class="active">{{item.count}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
