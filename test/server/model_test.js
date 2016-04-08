@@ -34,9 +34,18 @@ describe('The models', function() {
 	it('should return the most searched topic for a given date', function() {
 		return Search.trending(Moment().format('LL'))
 		.then(function(search){
-			expect(search.searchphrase).to.equal('kasich')
+			expect(search.to.equal([ { searchphrase: 'kasich', count: '2' },
+  { searchphrase: 'clinton', count: '1' } ])
 		})
 	})
 
+	afterEach(function() {
+		return db('results').del()
+		.then(function() {
+		return db('searches').del()
+			.then(function() {
+			return db('users').del()
+		  })
+		})
+	})
 });
-

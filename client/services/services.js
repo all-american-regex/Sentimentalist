@@ -14,6 +14,13 @@ angular.module('sL.services', [])
       });
     };
 
+    var getTrending = function() {
+      return $http({
+        method: 'GET',
+        url: '/api/searchtrends'
+      });
+    };
+
     var getImages = function(host, ind) {
       var superUrl = host;
       return $http({
@@ -175,6 +182,7 @@ angular.module('sL.services', [])
     };
 
     return {
+      getTrending: getTrending,
       getTopTen: getTopTen,
       updateScore: updateScore,
       averageScore: averageScore,

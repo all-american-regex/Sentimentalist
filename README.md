@@ -5,21 +5,28 @@ There is a basic test framework in your `test/` folder. To run the tests, simply
 
 ## PostGres notes:
 
-    In the command line:
+    In the terminal:
 
-    -brew install postgres
-    -postgres -D /usr/local/var/postgres
-    -createdb sList_dev
-    -knex migrate:latest --env development
+    1. brew install postgres
+    2. postgres -D /usr/local/var/postgres
+    
+
+    In a new terminal tab:
+
+    3. createdb sList_dev
+    4. Make sure that knex is installed globally so you can use it from the command line.
+    5. knex migrate:latest --env development
 
     In express-server.js:
-    -Comment back in the db require statement
+    
+    6. Comment back in the db require statement
 
     After that, you can use the command psql in a different tab to work directly with the data.
 
     In a separate tab in the terminal:
 
-    -psql
-    -\connect sList_dev
-    -\dt                (this will show the tables)
-    -Otherwise, just use normal SQL syntax
+    7. psql
+    8. \connect sList_dev
+    9. If that fails because you don't have a db called your username, do createdb with your username and try again
+    10. \dt                (this will show the tables)
+    11. Otherwise, just use normal SQL syntax

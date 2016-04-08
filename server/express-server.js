@@ -84,6 +84,17 @@ open.get('/api/imagesearch', function(req, res) {
     });
 });
 
+open.get('/api/searchtrends', function(req, res) {
+    return Search.trending()
+    .then(function(trendsArray) {
+      res.send(JSON.stringify(trendsArray));
+      console.log('Trending: ', res);
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+})
+
 authRequired.use(function(req, res, next) {
   if (authorized) {
     next();
