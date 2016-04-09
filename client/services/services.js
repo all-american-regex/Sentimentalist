@@ -103,6 +103,9 @@ angular.module('sL.services', [])
       }
 
       obj.scores = strongestPolitical;
+      obj.sortBy = {};
+      obj.sortBy.con = temp.Conservative;
+      obj.sortBy.lib = temp.Liberal;
 
       obj.tt = 'Conservative: ' + temp.Conservative + '%  Green: ' + temp.Green + '%  Liberal: ' + temp.Liberal + '%  Libertarian: ' + temp.Libertarian + '%';
       return obj;
@@ -141,6 +144,9 @@ angular.module('sL.services', [])
       }
 
       obj.scores = strongestEmo;
+      obj.sortBy = {};
+      obj.sortBy.fear = temp.fear;
+      obj.sortBy.joy = temp.joy;
       obj.tt = 'Anger: ' + temp.anger + '%  Joy: ' + temp.joy + '%  Fear: ' + temp.fear + '%  Sadness: ' + temp.sadness + '%  Suprise ' + temp.surprise + '%';
       return obj;
     };
@@ -177,6 +183,9 @@ angular.module('sL.services', [])
 
 
       obj.scores = strongestPersonal;
+      obj.sortBy = {};
+      obj.sortBy.ext = temp.extraversion;
+      obj.sortBy.conscient = temp.conscientiousness;
       obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%... ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';
       return obj;
     };

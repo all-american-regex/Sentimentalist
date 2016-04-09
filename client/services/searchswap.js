@@ -30,6 +30,7 @@ angular.module('sL.statechange', [])
             result.data[i].political = null;
             result.data[i].emotion = null;
             result.data[i].personality = null;
+            result.data[i].sortBy = {};
 
             resultArray.push(result.data[i]);
           }
@@ -50,6 +51,8 @@ angular.module('sL.statechange', [])
           var e = News.emotionalScore(scores);
           var per = News.personalityScore(scores);
 
+          debugger
+
           datum.score = s; //comes back as an integer
           //the next 3 only return the average score of the strongest aspect in each catagory
           datum.political = pol.scores; //{party:"string", score:number}
@@ -60,6 +63,13 @@ angular.module('sL.statechange', [])
           datum.tt.personality = per.tt;
           datum.tt.political = pol.tt;
 
+          datum.sortBy.con = pol.sortBy.con;
+          datum.sortBy.lib = pol.sortBy.lib;
+          datum.sortBy.fear = e.sortBy.fear;
+          datum.sortBy.joy = e.sortBy.joy;
+          datum.sortBy.conscient = per.sortBy.conscient;
+          datum.sortBy.ext = per.sortBy.ext;
+
           // console.log('DATUM = ', datum);
 
         });
@@ -67,7 +77,8 @@ angular.module('sL.statechange', [])
     };
 
     var getImages = function(articles) {
-      for (var ind = 0; ind < 3; ++ind) {
+      console.log('articles ', articles)
+      for (var ind = 0; ind < articles.length; ++ind) {
         if(articles[ind]) {
           News.getImages(articles[ind].url, ind);
         }

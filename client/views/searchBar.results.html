@@ -1,12 +1,46 @@
 <div class="row">
   <div class="col-md-12">
+<!--   <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre> -->
+    <table class="item">
+    <tr>
+     <th>
+         <button ng-click="order('score.score')">Sentiment</button>
+         <span class="sortorder" ng-show="predicate === 'score.score'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.lib')">Liberal</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.lib'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.con')">Conservative</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.con'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.joy')">Joy</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.joy'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.fear')">Fear</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.fear'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.ext')">Extraversion</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.ext'" ng-class="{reverse:reverse}"></span>
+     </th>
+     <th>
+         <button ng-click="order('sortBy.conscient')">Conscientiousness</button>
+         <span class="sortorder" ng-show="predicate === 'sortBy.conscient'" ng-class="{reverse:reverse}"></span>
+     </th>
+    </tr>
+    </table>
+  <hr/>
     <!-- Sentiment Scores Panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
         <h5 class="panel-hdg">{{heading}}</h5>
       </div>
       <div class="panel-body">
-        <div class="list-group" ng-repeat="item in data.data">
+        <div class="list-group" ng-repeat="item in data.data | orderBy:predicate:reverse">
           <ul class="list-group">
             <li class="list-group-item">
               <div class="media media-news">
