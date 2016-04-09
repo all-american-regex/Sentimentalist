@@ -9,39 +9,59 @@ body {
 }
 
 .one {
-  margin-right: 27%;
-  margin-left: 27%;
-}
-
-.btn:hover {
-  background-color: #2380e2;
+  margin: auto, 27%;
 }
 
 .form-search {
   font-size: 18px;
   text-align: center;
   color: blue;
-  width: 445px;
-  margin-left: 90px;
+}
+
+.btn-go {
+  border-radius: 90px;
+}
+
+.btn:hover {
+  background-color: #2380e2;
+}
+
+
+/* begin: trending table */
+
+table {
+  border: none;
 }
 
 .trends {
-  border-color: #e1e8ed;
-  background-color: #ebebeb;
+  border-radius: 7px;
+  border: 3px solid #cccccc;
 }
 
-.panel-heading {
-  padding-left: 3%;
-  text-align: left;
+.trend-tbl {
+  margin: 2px;
 }
 
-.panel {
-  border-color: #e1e8ed;
-  background-color: #ebebeb;
+.table-header {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.trend-rows {
+  font-size: 13px;
+  height: 2px;
+  letter-spacing: .1em;
+}
+
+.searched {
+  text-align: center;
 }
 
 
-/*signin & signup pages*/
+/* end: trends table */
+
+
+/* begin: signin & signup pages*/
 
 .inputdata input {
   font-size: 15px;
@@ -53,26 +73,36 @@ body {
 }
 
 .middle {
-  margin-left: 27%;
   margin-right: 30%;
+  margin-left: 27%;
   text-align: center;
 }
 
 
-/*/end signin*/
+/*end: signin & signup pages*/
 
 .middle-about {
-  margin-left: 15%;
   margin-right: 18%;
+  margin-left: 15%;
   text-align: center;
+}
+
+.panel-heading {
+  text-align: right;
+  padding-right: 15%;
+}
+
+.panel {
+  border-color: #e1e8ed;
+  background-color: #ebebeb;
+}
+
+.lead {
+  font-size: 18px;
 }
 
 ul {
   list-style-type: none;
-}
-
-.btn-go {
-  border-radius: 90px;
 }
 
 .media-photo {
@@ -88,14 +118,13 @@ ul {
 }
 
 .lgi {
-  /*height: 40px;*/
   height: 60px;
 }
 
 .sentiment {
   font-size: 10px;
   font-weight: bold;
-  letter-spacing: 0.1em;
+  letter-spacing: .1em;
 }
 
 

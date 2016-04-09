@@ -3,7 +3,7 @@
     <!-- Sentiment Scores Panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4>{{heading}}</h4>
+        <h5 class="panel-hdg">{{heading}}</h5>
       </div>
       <div class="panel-body">
         <div class="list-group" ng-repeat="item in data.data">
@@ -34,28 +34,28 @@
                       <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%">
                           <!-- <span uib-tooltip="{{item.score.tt}}" tooltip-class="addclasshere"></span> -->
-                          {{item.score.title}} {{item.score.score}}%
+                          {{item.score.score}}% {{item.score.title}}
                         </div>
                       </div>
                     </li>
                     <li class="list-group-item lgi"><span class="sentiment">EMOTION EXPRESSED</span>
                       <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{item.emotion.score}}%">
-                          <span uib-tooltip="{{item.tt.emotion}}" tooltip-class="addclasshere">{{item.emotion.emotion}} {{item.emotion.score}}%</span>
+                          <span uib-tooltip="{{item.tt.emotion}}" tooltip-class="addclasshere">{{item.emotion.score}}% {{item.emotion.emotion}}</span>
                         </div>
                       </div>
                     </li>
                     <li class="list-group-item lgi"><span class="sentiment">POLITICAL LEANING</span>
                       <div class="progress">
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{item.political.score}}%">
-                          <span uib-tooltip="{{item.tt.political}}" tooltip-class="addclasshere">{{item.political.party}} {{item.political.score}}%</span>
+                          <span uib-tooltip="{{item.tt.political}}" tooltip-class="addclasshere">{{item.political.score}}% {{item.political.party}}</span>
                         </div>
                       </div>
                     </li>
                     <li class="list-group-item lgi"><span class="sentiment">AUTHOR'S PERSONALITY</span>
                       <div class="progress">
                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{item.personality.score}}%">
-                          <span uib-tooltip="{{item.tt.personality}}" tooltip-class="addclasshere">{{item.personality.personality}} {{item.personality.score}}%</span>
+                          <span uib-tooltip="{{item.tt.personality}}" tooltip-class="addclasshere">{{item.personality.score}}% {{item.personality.personality}}</span>
                         </div>
                       </div>
                     </li>

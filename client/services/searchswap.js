@@ -60,7 +60,7 @@ angular.module('sL.statechange', [])
           datum.tt.personality = per.tt;
           datum.tt.political = pol.tt;
 
-          console.log('DATUM = ', datum);
+          // console.log('DATUM = ', datum);
 
         });
       });

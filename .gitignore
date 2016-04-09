@@ -31,5 +31,4 @@ notes/
 client/lib/
 server/.DS_Store
 server/modules/.DS_Store
-server/_config.js
 *.DS_Store

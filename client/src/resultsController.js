@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('sL.resultsController', [])
 
 .controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap) {
@@ -17,10 +19,7 @@ angular.module('sL.resultsController', [])
       });
   };
 
-
-  $scope.getLinks = function() {
-    console.log('called from results state')
-  }
+  $scope.getLinks = function() {};
 
   getImages();
 });

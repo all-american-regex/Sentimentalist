@@ -30,13 +30,13 @@ angular.module('sL.services', [])
           host: host
         }
       }).then(function(res) {
-        console.log('IMAGE URL RESULT === ', res);
+        // console.log('IMAGE URL RESULT === ', res);
         if (res.data.hasOwnProperty('url')) {
           Data.newsLinks.data[ind].thumbnail = res.data;
         } else {
           Data.newsLinks.data[ind].thumbnail = {};
           Data.newsLinks.data[ind].thumbnail.url = superUrl.split('/')[0] + '//' + superUrl.split('/')[2] + '/favicon.ico';
-          console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url);
+          // console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url);
         }
       });
     };
@@ -58,9 +58,9 @@ angular.module('sL.services', [])
         temp = temp + scoresObject.data.sentiment[i];
       }
       var result = temp / scoresObject.data.sentiment.length;
-      result = result * 4 / 3
+      result = result * 4 / 3;
       result = Math.floor(result * 100);
-      result = Math.min(result, 100)
+      result = Math.min(result, 100);
       result = {
         title: 'Sentiment',
         score: result,
@@ -94,7 +94,7 @@ angular.module('sL.services', [])
       };
       for (var key in temp) {
         temp[key] = Math.floor(temp[key] / politicalScores.data.political.length * 400 / 3);
-        temp[key] = Math.min(temp[key], 100)
+        temp[key] = Math.min(temp[key], 100);
         if (temp[key] > strongestPolitical.score) {
 
           strongestPolitical.party = key;
@@ -168,7 +168,7 @@ angular.module('sL.services', [])
       };
       for (var key in temp) {
         temp[key] = Math.floor(temp[key] / personal.data.personality.length * 400 / 3);
-        temp[key] = Math.min(temp[key], 100)
+        temp[key] = Math.min(temp[key], 100);
         if (temp[key] > strongestPersonal.score) {
           strongestPersonal.score = temp[key];
           strongestPersonal.personality = key.substring(0, 1).toUpperCase() + key.substring(1);

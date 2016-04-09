@@ -12,36 +12,38 @@
               <input type="text" class="form-control form-search" placeholder="Enter a political news topic..." ng-model="input" required>
             </div>
             <a ui-sref=".results" ui-sref-opts="{reload: true}">
-              <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()"
-              ng-disabled="searchBar.$invalid">
+              <button type="submit" class="btn btn-sm btn-info btn-go" ng-click="getLinks()" ng-disabled="searchBar.$invalid">
                 {{buttonText}}
+                <i class="fa fa-play"></i>
               </button>
             </a>
           </form>
         </div>
       </div>
+      <!-- trending table -->
       <div class="col-md-4">
         <div class="well well-sm trends">
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table trend-tbl">
               <thead>
-                <tr>
-                  <th class="active">Rank</th>
-                  <th class="active">Top Searches</th>
-                  <th class="active">#</th>
+                <tr class="table-header">
+                  <!-- <th class="active">RANKING</th> -->
+                  <th class="searched">TRENDING</th>
+                  <th class="searched">SEARCHED</th>
                 </tr>
               </thead>
               <tbody class="trending" ng-repeat="item in trending">
-                <tr>
-                  <td class="active">{{item.rank}}</td>
-                  <td class="active">{{item.searchphrase}}</td>
-                  <td class="active">{{item.count}}</td>
+                <tr class="trend-rows">
+                  <!-- <td class="active">{{item.rank}}</td> -->
+                  <td class="searched">{{item.searchphrase | uppercase}}</td>
+                  <td class="searched">{{item.count}} times</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      <!-- /trending table -->
     </div>
   </div>
 </div>
