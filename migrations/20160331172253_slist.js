@@ -30,10 +30,20 @@ exports.up = function(knex, Promise) {
             table.string('political_score');
             table.string('emotional_score');
             table.string('personality_score');
+            // table.integer('search_id')
+            //      .references('id')
+            //      .inTable('searches');
+        })
+
+        knex.schema.createTable('search_results_join', function(table){
+            table.integer('results_id')
+                 .references('id')
+                 .inTable('results');
             table.integer('search_id')
                  .references('id')
                  .inTable('searches');
-        })
+            
+        }),
     ])
 };
 

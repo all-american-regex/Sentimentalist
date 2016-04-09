@@ -39,13 +39,13 @@ describe('The models', function() {
 		})
 	})
 
-	afterEach(function() {
-		return db('results').del()
-		.then(function() {
-		return db('searches').del()
-			.then(function() {
-			return db('users').del()
-		  })
-		})
-	})
+	// afterEach(function() {
+	// 	return db('results').del()
+	// 	.then(function() {
+	// 	return db('searches').del()
+	// 		.then(function() {
+	// 		return db('users').del()
+	// 	  })
+	// 	})
+	// })
 });
