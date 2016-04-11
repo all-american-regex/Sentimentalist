@@ -87,10 +87,17 @@ angular.module('sL.statechange', [])
 
           datum.sortBy.con = pol.sortBy.con;
           datum.sortBy.lib = pol.sortBy.lib;
+          datum.sortBy.green = pol.sortBy.green;
+          datum.sortBy.libertarian = pol.sortBy.libertarian;
           datum.sortBy.fear = e.sortBy.fear;
           datum.sortBy.joy = e.sortBy.joy;
+          datum.sortBy.anger = e.sortBy.anger;
+          datum.sortBy.sadness = e.sortBy.sadness;
+          datum.sortBy.surprise = e.sortBy.surprise;
           datum.sortBy.conscient = per.sortBy.conscient;
           datum.sortBy.ext = per.sortBy.ext;
+          datum.sortBy.openness = per.sortBy.openness;
+          datum.sortBy.agreeableness = per.sortBy.agreeableness;
         }
         //the reason we need the net four functions is because to get more accurate data we send a batch of sentences
         //so we get back an array of unknown length that we have to average
