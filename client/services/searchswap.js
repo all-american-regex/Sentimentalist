@@ -71,8 +71,8 @@ angular.module('sL.statechange', [])
         else {
           var s = News.averageScore(scores);
           var pol = News.parseScore(scores.data.political);
-          var e = News.parseScore(scores.data.political);
-          var per = News.parseScore(scores.data.political);
+          var e = News.parseScore(scores.data.emotion);
+          var per = News.parseScore(scores.data.personality);
 
           datum.score = s; //comes back as an integer
           setColor(datum);

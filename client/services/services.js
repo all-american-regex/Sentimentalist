@@ -86,11 +86,12 @@ angular.module('sL.services', [])
 
   //next 3 functions are pretty wet and do same thing for each subject
   var parseScore = function(scores){
+    console.log("scores in parseScore:", scores);
     var obj = {};
 
     var temp = scores.reduce(function(newObj, spectrum){
       for (var key in spectrum){
-        temp[key] += spectrum[key]; 
+        newObj[key] += spectrum[key]; 
       }
       return newObj;
     });
@@ -116,7 +117,7 @@ angular.module('sL.services', [])
     obj.sortBy.lib = temp.Liberal;
 
     obj.tt = Object.keys(temp).map(function(category){
-      return category + ': ' + temp[category] + '%'
+      return category + ': ' + temp[category] + '% \n'
     }).join('');
 
     return obj;
