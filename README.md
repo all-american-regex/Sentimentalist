@@ -9,7 +9,7 @@ Sentimentalist provides a rapid sentiment assessment of search results so users 
 #####This app is cool, yo. Yeah, yeah, yeah.
 *-Harry Hough*
 
-#####Yo bro, this app is dope. Do people say 'dope' now? Bawss? Bawss would be with an 'A-W-S-S'.>
+#####Yo bro, this app is dope. Do people say 'dope' now? Bawss? Bawss would be with an 'A-W-S-S'.
 *-P.J. Matteucci*
 
 ###Getting Started
