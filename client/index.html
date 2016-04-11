@@ -1,99 +1,72 @@
 <!doctype html>
 <html ng-app="sL">
-  <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>SentimentaList</title>
-  </head>
-  <body class="container">
-    <!-- navigation bar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img alt="Brand" src="S.svg.ico"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="/#/about">About Us</a>
-            </li>
-            <li>
-              <a href="/#/history">Search History</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="/#/signin">
-                <span class="fa fa-fw fa-sign-in" aria-hidden="true"></span>
-                Sign In</a>
-            </li>
-            <li>
-              <a href="/logout">
-                <span class="fa fa-fw fa-sign-out" aria-hidden="true"></span>
-                Logout</a>
-            </li>
-          </ul>
-          <!-- Sign In modal -->
-          <div class="container">
-            <div ng-controller="ModalController">
-              <script type="text/ng-template" id="myModalContent.html">
-                <div class="modal-header">
-                  <h3 class="modal-title">Sign In</h3>
-                </div>
-                <div class="modal-body">
-                  <ul>
-                    <li ng-repeat="item in items">
-                      <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{item}}</a>
-                    </li>
-                  </ul>
-                  <!-- Selected:  -->
-                  <b>{{selected.item}}</b>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" type="button" ng-click="ok()">
-                    <span class="fa fa-fw fa-sign-in"></span>
-                    Submit</button>
-                   <!-- href="/auth/github" target="_blank" role="button" button type="submit" ng-click="open()" -->
-                  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                </div>
-              </script>
-              <div ng-show="selected">{{selected}}</div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!-- /navigation bar -->
-      <div ui-view class="container slide" style="padding-top: 90px;"></div>
-      <footer>
-        <link rel="stylesheet" type="text/css" href="/styles/bootstrap.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="/styles/index.css">
-        <link rel="stylesheet" type="text/css" href="/styles/bootstrap-social.css">
-        <link rel="icon" type="image/png" href="/styles/g3490.png"/>
-        <link rel="icon" type="image/icon" href="S.svg.ico"/>
-        <script src="/lib/angular/angular.js"></script>
-        <script src="/lib/angular-animate/angular-animate.js"></script>
-        <script src="/lib/angular-cookies/angular-cookies.js"></script>
-        <script src="/lib/angular-resource/angular-resource.js"></script>
-        <script src="/lib/angular-touch/angular-touch.js"></script>
-        <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
-        <script src="/styles/ui-bootstrap-tpls-1.2.5.js"></script>
-        <script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="/app/app.js"></script>
-        <script src="/src/resultsController.js"></script>
-        <script src="/src/aboutController.js"></script>
-        <script src="/src/searchHistory.js"></script>
-        <script src="/src/dropDownController.js"></script>
-        <script src="/src/searchBar.js"></script>
-        <script src="/src/modal.js"></script>
-        <script src="/src/auth.js"></script>
-        <script src="/services/services.js"></script>
-        <script src="/services/searchswap.js"></script>
-      </footer>
-    </body>
-  </html>
+
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>SentimentaList</title>
+</head>
+
+<body class="container">
+  <!-- navigation bar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img alt="Brand" src="S.svg.ico"></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/#/about">About Us</a>
+          </li>
+          <li>
+            <a href="/#/history">Search History</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/#/signin">
+              <span class="fa fa-fw fa-sign-in" aria-hidden="true"></span> Sign In</a>
+          </li>
+          <li>
+            <a href="/logout">
+              <span class="fa fa-fw fa-sign-out" aria-hidden="true"></span> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+  <!-- /navigation bar -->
+  <div ui-view class="container slide" style="padding-top: 75px;"></div>
+  <footer>
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap-social.css">
+    <link rel="icon" type="image/png" href="/styles/g3490.png" />
+    <link rel="icon" type="image/icon" href="S.svg.ico" />
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular-animate/angular-animate.js"></script>
+    <script src="/lib/angular-cookies/angular-cookies.js"></script>
+    <script src="/lib/angular-resource/angular-resource.js"></script>
+    <script src="/lib/angular-touch/angular-touch.js"></script>
+    <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/styles/ui-bootstrap-tpls-1.2.5.js"></script>
+    <script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/src/resultsController.js"></script>
+    <script src="/src/aboutController.js"></script>
+    <script src="/src/searchHistory.js"></script>
+    <script src="/src/searchBar.js"></script>
+    <script src="/src/auth.js"></script>
+    <script src="/services/services.js"></script>
+    <script src="/services/searchswap.js"></script>
+  </footer>
+</body>
+
+</html>

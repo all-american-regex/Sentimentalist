@@ -7,9 +7,7 @@
           <form class="inputdata" name="signinForm" ng-submit="signin()">
             <input type="text" placeholder="username" ng-model="user.username" ng-minlength="6" required>
             <input type="password" placeholder="password" ng-model="user.password" ng-minlength="6" required>
-            <button class="btn btn-submit" ng-disabled="signinForm.$invalid">submit</button>
-            <a href="/auth/github" class="btn btn-lrg btn-social btn-github" role="button" button type="button">
-              <span class="fa fa-github"></span>Sign in with Github</a>
+            <button class="btn btn-submit" ng-disabled="signinForm.$invalid">sign in</button>
           </form>
           <h6>
             <a href="#/signup">Don't have an account?<br>

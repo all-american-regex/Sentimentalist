@@ -4,11 +4,9 @@ angular.module('sL', [
   'sL.resultsController',
   'sL.aboutController',
   'sL.historyController',
-  'sL.dropDownController',
   'sL.searchBar',
   'sL.services',
   'sL.auth',
-  'sL.modal',
   'ui.bootstrap',
   'ui.router',
   'ngAnimate',
@@ -60,11 +58,6 @@ angular.module('sL', [
           return News.getTopTen(Data.input);
         }
       }
-    })
-    .state('modal', {
-      url: '/modal',
-      templateUrl: 'views/modal.html',
-      controller: 'ModalController'
     })
     .state('signin', {
       url: '/signin',

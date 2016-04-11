@@ -1,11 +1,8 @@
 <div class="row">
   <div class="col-md-12">
-    <hr>
     <!-- Sentiment Scores Panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <!--   <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre> -->
-        <!-- <div ng-controller="DropdownCtrl"> -->
         <div class="item">
           <!-- General Sentiment Button -->
           <button id="gen-sentiment" type="button" class="btn btn-sm btn-info" ng-click="order('score.score')">GENERAL SENTIMENT
@@ -17,23 +14,23 @@
             </button>
             <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
               <li role="menuitem" ng-click="order('sortBy.joy')">
-                <a href="#">Joy</a>
+                <a href="">Joy</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.joy'" ng-class="{reverse:reverse}">Joy</span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.fear')">
-                <a href="#">Fear</a>
+                <a href="">Fear</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.fear'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.anger')">
-                <a href="#">Anger</a>
+                <a href="">Anger</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.anger'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.sadness')">
-                <a href="#">Sadness</a>
+                <a href="">Sadness</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.sadness'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.surprise')">
-                <a href="#">Surprise</a>
+                <a href="">Surprise</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.surprise'" ng-class="{reverse:reverse}"></span>
               </li>
             </ul>
@@ -45,19 +42,19 @@
             </button>
             <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
               <li role="menuitem" ng-click="order('sortBy.con')">
-                <a href="#">Conservative</a>
+                <a href="">Conservative</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.con'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.lib')">
-                <a href="#">Liberal</a>
+                <a href="">Liberal</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.lib'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.green')">
-                <a href="#">Green</a>
+                <a href="">Green</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.green'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.liberatarian')">
-                <a href="#">Liberatarian</a>
+                <a href="">Liberatarian</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.liberatarian'" ng-class="{reverse:reverse}"></span>
               </li>
             </ul>
@@ -69,19 +66,19 @@
             </button>
             <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
               <li role="menuitem" ng-click="order('sortBy.ext')">
-                <a href="#">Extraversion</a>
+                <a href="">Extraversion</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.ext'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.openness')">
-                <a href="#">Openness</a>
+                <a href="">Openness</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.openness'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.agreeableness')">
-                <a href="#">Agreeableness</a>
+                <a href="">Agreeableness</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.agreeableness'" ng-class="{reverse:reverse}"></span>
               </li>
               <li role="menuitem" ng-click="order('sortBy.conscient')">
-                <a href="#">Conscientiousness</a>
+                <a href="">Conscientiousness</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.conscient'" ng-class="{reverse:reverse}"></span>
               </li>
             </ul>
@@ -90,106 +87,77 @@
         </div>
         <!-- /panel-heading -->
       </div>
-      <!--  <table class="item">
-    <tr>
-     <th>
-         <button ng-click="order('score.score')">Sentiment</button>
-         <span class="sortorder" ng-show="predicate === 'score.score'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.lib')">Liberal</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.lib'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.con')">Conservative</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.con'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.joy')">Joy</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.joy'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.fear')">Fear</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.fear'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.ext')">Extraversion</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.ext'" ng-class="{reverse:reverse}"></span>
-     </th>
-     <th>
-         <button ng-click="order('sortBy.conscient')">Conscientiousness</button>
-         <span class="sortorder" ng-show="predicate === 'sortBy.conscient'" ng-class="{reverse:reverse}"></span>
-     </th>
-    </tr>
-    </table> -->
       <div class="panel-body">
-        <ul class="list-group" ng-repeat="item in data.data | orderBy:predicate:reverse">
-          <li class="list-group-item">
-            <div class="media media-news">
-              <!-- news image -->
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object media-photo" src="{{item.thumbnail.url}}" alt="S"/>
-                </a>
-              </div>
-            </div>
-            <div class="media-body">
-              <div class="well">
-                <!-- headline -->
-                <h4 class="media-heading">{{item.headline}}</h4>
-                <!-- story -->
-                <p class="text">{{item.summary}}</p>
-                <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
-                  <img src="{{item.img}}" alt="X" width="16" height="16"/>
-                  View source &raquo;
-                </a>
-              </div>
-            </div>
-            <!-- sentiment score visual -->
-            <div class="media-right">
-              <ul class="list-group list-scores">
-                <li class="list-group-item lgi">
-                  <span class="sentiment">GENERAL SENTIMENT</span>
-                  <div class="progress">
-                    <div class="progress-bar-dynamic" animate="true" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%; background-color: {{item.color}}">
-                      {{item.score.score}}%
-                      {{item.score.title}}
-                    </div>
+        <div class="list-group" ng-repeat="item in data.data | orderBy:predicate:reverse">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="media media-news">
+                <!-- news image -->
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object media-photo" src="{{item.thumbnail.url}}" alt="S" />
+                  </a>
+                </div>
+                <div class="media-body">
+                  <div class="well">
+                    <!-- headline -->
+                    <h4 class="media-heading">{{item.headline}}</h4>
+                    <!-- story -->
+                    <p class="text">{{item.summary}}</p>
+                    <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
+                      <img src="{{item.img}}" alt="X" width="16" height="16" /> View source &raquo;
+                    </a>
                   </div>
-                </li>
-                <li class="list-group-item lgi">
-                  <span class="sentiment">EMOTION EXPRESSED</span>
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{item.emotion.score}}%">
-                      <span uib-tooltip="{{item.tt.emotion}}" tooltip-class="addclasshere">{{item.emotion.score}}%
+                </div>
+                <!-- sentiment score visual -->
+                <div class="media-right">
+                  <ul class="list-group list-scores">
+                    <li class="list-group-item lgi">
+                      <span class="sentiment">GENERAL SENTIMENT</span>
+                      <div class="progress">
+                        <div class="progress-bar-dynamic" animate="true" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%; background-color: {{item.color}}">
+                          {{item.score.score}}% {{item.score.title}}
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item lgi">
+                      <span class="sentiment">EMOTION EXPRESSED</span>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{item.emotion.score}}%">
+                          <span uib-tooltip="{{item.tt.emotion}}" tooltip-class="addclasshere">{{item.emotion.score}}%
                         {{item.emotion.emotion}}</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item lgi">
-                  <span class="sentiment">POLITICAL LEANING</span>
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{item.political.score}}%">
-                      <span uib-tooltip="{{item.tt.political}}" tooltip-class="addclasshere">{{item.political.score}}%
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item lgi">
+                      <span class="sentiment">POLITICAL LEANING</span>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{item.political.score}}%">
+                          <span uib-tooltip="{{item.tt.political}}" tooltip-class="addclasshere">{{item.political.score}}%
                         {{item.political.party}}</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item lgi">
-                  <span class="sentiment">AUTHOR'S PERSONALITY</span>
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{item.personality.score}}%">
-                      <span uib-tooltip="{{item.tt.personality}}" tooltip-class="addclasshere">{{item.personality.score}}%
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item lgi">
+                      <span class="sentiment">AUTHOR'S PERSONALITY</span>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{item.personality.score}}%">
+                          <span uib-tooltip="{{item.tt.personality}}" tooltip-class="addclasshere">{{item.personality.score}}%
                         {{item.personality.personality}}</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- /list-group-item -->
-          </li>
-          <!-- /list-group -->
-        </ul>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- /media-right -->
+                </div>
+                <!-- /media-news -->
+              </div>
+              <!-- /list-group-item -->
+            </li>
+            <!-- /list-group -->
+          </ul>
+          <!-- /list-group - div -->
+        </div>
         <!-- /panel-body -->
       </div>
       <!-- /panel panel-default -->
