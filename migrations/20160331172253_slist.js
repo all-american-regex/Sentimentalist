@@ -19,7 +19,7 @@ exports.up = function(knex, Promise) {
             table.integer('user_id')
                  .references('uid')
                  .inTable('users');
-            
+
         }),
 
         knex.schema.createTable('results', function(table){
