@@ -53,6 +53,13 @@ angular.module('sL.services', [])
       });
     };
 
+    var sentimentTotals = function() {
+      return $http({
+        method: 'GET',
+        url: '/api/topicsentiment'
+      });
+    };
+
     var averageScore = function(scoresObject) {
       if(!scoresObject.data.sentiment) {
         console.log('no data!')
@@ -92,7 +99,9 @@ angular.module('sL.services', [])
       //refactor of commented for-loop below.
       politicalScores.data.political.forEach(function(spectrum) {
         for (var key in temp) {
-          temp[key] += spectrum[key];
+          if(key) {
+            temp[key] += spectrum[key];
+          }
         }
       });
 
@@ -206,7 +215,8 @@ angular.module('sL.services', [])
       politicalSide: politicalSide,
       emotionalScore: emotionalScore,
       personalityScore: personalityScore,
-      getImages: getImages
+      getImages: getImages,
+      sentimentTotals: sentimentTotals
     };
   })
 
@@ -244,6 +254,7 @@ angular.module('sL.services', [])
     this.newsLinks = {};
     this.input = '';
     this.thumbnails = [];
+    this.totals = [];
 
   })
   .service('About', function() {

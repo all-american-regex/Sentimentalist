@@ -11,6 +11,7 @@ var Path = require('path');
 var Search = require('./models/search.js');
 var User = require('./models/user.js');
 var Session = require('./models/session.js');
+var Result = require('./models/result.js');
 
 
 
@@ -123,15 +124,28 @@ open.get('/api/scrapearticle', function(req, res) {
       return resp.text;
     })
     .then(function(text) {
-      // console.log('getting indico stats!', text);
       return API.getStatistics(text);
     })
     .catch(function(err) {
       console.log('indico error!!! ', err);
     })
     .then(function(resp) {
-      console.log('query = ', query)
-      console.log('indico data = ', resp)
+      var avg = resp.sentiment.length;
+
+      var sScore = resp.sentiment.reduce(function(a, b) {
+        return a + b;
+      })
+
+      sScore = sScore / avg;
+      console.log('sscore = ', sScore);
+
+      Result.insert(sScore.toFixed(2), query).then(function(data) {
+        console.log('res data = ', data);
+      })
+      .catch(function(err) {
+        console.log('res err = ', err);
+      })
+
       res.send(resp);
     })
     .catch(function(err) {
@@ -158,6 +172,17 @@ open.get('/api/searchtrends', function(req, res) {
     .catch(function(err) {
       res.send(err);
     });
+});
+
+open.get('/api/topicsentiment', function(req, res) {
+  return Result.findAll().then(function(data) {
+    console.log('typeof result finall = ', typeof data);
+    data = JSON.stringify(data);
+    res.send(data);
+  })
+  .catch(function(err) {
+    res.send(err);
+  })
 });
 
 
