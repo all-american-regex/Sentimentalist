@@ -20,7 +20,7 @@ angular.module('sL.resultsController', [])
     SearchSwap.getItems(swap).then(function(resp) {
         Data.newsLinks.data = resp;
         SearchSwap.getImages(Data.newsLinks.data);
-        SearchSwap.getScores();
+        SearchSwap.getScores(Data.input);
       })
       .catch(function(err) {
         console.log('getImages err === ', err);

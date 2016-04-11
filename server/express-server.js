@@ -118,6 +118,7 @@ open.get('/api/top10scrape', function(req, res) {
 
 
 open.get('/api/scrapearticle', function(req, res) {
+  var query = req.query.query;
   API.getArticleBody(req.query.url).then(function(resp) {
       return resp.text;
     })
@@ -129,7 +130,8 @@ open.get('/api/scrapearticle', function(req, res) {
       console.log('indico error!!! ', err);
     })
     .then(function(resp) {
-      // console.log('indico resp!! = ', resp);
+      console.log('query = ', query)
+      console.log('indico data = ', resp)
       res.send(resp);
     })
     .catch(function(err) {

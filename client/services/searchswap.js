@@ -62,9 +62,9 @@ angular.module('sL.statechange', [])
     }
   }
 
-  var getScores = function() {
+  var getScores = function(query) {
     Data.newsLinks.data.forEach(function(datum) {
-      News.updateScore(datum).then(function(scores) {
+      News.updateScore(datum, query).then(function(scores) {
         if(!scores) {
           console.log('no scores data!');
         }

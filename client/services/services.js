@@ -42,12 +42,13 @@ angular.module('sL.services', [])
     };
 
     //make call to backend for each URL for sentiment Data
-    var updateScore = function(datum) {
+    var updateScore = function(datum, query) {
       return $http({
         method: 'GET',
         url: '/api/scrapearticle',
         params: {
-          url: datum.url
+          url: datum.url,
+          query: query
         }
       });
     };
