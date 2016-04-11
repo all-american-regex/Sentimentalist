@@ -3,6 +3,7 @@
 angular.module('sL', [
   'sL.resultsController',
   'sL.aboutController',
+  'sL.historyController',
   'sL.searchBar',
   'sL.services',
   'sL.auth',
@@ -78,6 +79,11 @@ angular.module('sL', [
       url: '/about',
       templateUrl: 'views/about.html',
       controller: 'AboutController'
+    })
+    .state('history', {
+      url: '/history',
+      templateUrl: 'views/searchHistory.html',
+      controller: 'HistoryController'
     });
 
 });
