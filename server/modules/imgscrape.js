@@ -9,7 +9,6 @@ var https = require('https');
 exports.search = function(options) {
   return new Promise(function(resolve, reject) {
     var host = options.host;
-    //console.log('starting scrape! = ', host)
 
     exports.getPage(host).then(function(result) {
       return result;
@@ -24,21 +23,18 @@ exports.search = function(options) {
       console.log('extrat res erro = ', err);
     })
     .then(function(res) {
-      //console.log('finding size! === ', res);
       return processSizeArray(res);
     })
     .catch(function(err) {
       console.log('get sizes err = ', err);
     })
     .then(function(data) {
-      //console.log('Size Array Complete!')
       return findLargest(data);
     })
     .catch(function(err) {
       console.log('find largest err = ', err);
     })
     .then(function(result) {
-      //console.log('got largest image! === ', result);
       resolve(result);
     })
     .catch(function(err) {
@@ -50,7 +46,6 @@ exports.search = function(options) {
 
 exports.extractResults = function(page) {
   return new Promise(function(resolve, reject) {
-    // console.log('extracting!')
     if(!page) {
       reject(page);
     }
@@ -181,7 +176,6 @@ var findLargest = function(array) {
           return acc;
         }
       }
-      //maybe need an else here.
     })
   }
 

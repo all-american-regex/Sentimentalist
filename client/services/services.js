@@ -30,18 +30,15 @@ angular.module('sL.services', [])
           host: host
         }
       }).then(function(res) {
-        // console.log('IMAGE URL RESULT === ', res);
         if (res.data.hasOwnProperty('url')) {
           Data.newsLinks.data[ind].thumbnail = res.data;
         } else {
           Data.newsLinks.data[ind].thumbnail = {};
           Data.newsLinks.data[ind].thumbnail.url = superUrl.split('/')[0] + '//' + superUrl.split('/')[2] + '/favicon.ico';
-          // console.log('bad result setting backup favicon!', Data.newsLinks.data[ind].thumbnail.url);
         }
       });
     };
 
-    //make call to backend for each URL for sentiment Data
     var updateScore = function(datum, query) {
       return $http({
         method: 'GET',
