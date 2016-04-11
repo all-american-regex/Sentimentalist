@@ -49,16 +49,16 @@ angular.module('sL.statechange', [])
       datum.color = '#ff9933';
     }
     else if (datum.score.score < 60) {
-      datum.color = '#ffff00';
+      datum.color = '#f7d305';
     }
     else if (datum.score.score < 80) {
-      datum.color = '#009933';   
+      datum.color = '#00cc00';   
     }
     else if (datum.score.score < 90) {
       datum.color = '#00b300'; 
     }
     else {
-      datum.color = '#00cc00';
+      datum.color = '#009933';
     }
   }
 
