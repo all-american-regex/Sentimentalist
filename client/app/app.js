@@ -11,7 +11,8 @@ angular.module('sL', [
   'ui.router',
   'ngAnimate',
   'sL.statechange',
-  'ngResource'
+  'ngResource',
+  'sL.apiFactory'
 
 ])
 
@@ -53,9 +54,9 @@ angular.module('sL', [
         Data: 'Data',
 
         Auth: 'Auth',
-        swap: function(SearchSwap, News, Data, Auth) {
+        swap: function(SearchSwap, News, Data, Auth, API) {
           console.log('called resolve state');
-          return News.getTopTen(Data.input);
+          return API.getTopTen(Data.input);
         }
       }
     })

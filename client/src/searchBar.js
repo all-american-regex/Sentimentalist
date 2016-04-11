@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sL.searchBar', [])
-  .controller('SearchBar', function($scope, $state, News, Data) {
+  .controller('SearchBar', function($scope, $state, News, Data, API) {
     $scope.appName = 'SentimentaList';
     $scope.buttonText = 'Go';
     $scope.input = '';
@@ -10,8 +10,9 @@ angular.module('sL.searchBar', [])
     $scope.getLinks = function() {
       Data.input = $scope.input;
     };
+    
     $scope.getTrends = function() {
-      return News.getTrending()
+      return API.getTrending()
         .then(function(res) {
           var temp = res.data;
           for (var i = 0; i < res.data.length; i++) {
