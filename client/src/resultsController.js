@@ -2,7 +2,7 @@
 
 angular.module('sL.resultsController', [])
 
-.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap) {
+.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap, API) {
   $scope.heading = 'Sentiment Score';
   $scope.data = Data.newsLinks;
   $scope.predicate = '';
@@ -16,7 +16,7 @@ angular.module('sL.resultsController', [])
 
 
   var getSentimentTotals = function() {
-    News.sentimentTotals().then(function(resp) {
+    API.sentimentTotals().then(function(resp) {
         Data.totals = resp.data;
         Data.totals.forEach(function(val, ind) {
           if (!$scope.totals[val.query]) {

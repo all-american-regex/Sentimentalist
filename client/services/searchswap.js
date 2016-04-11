@@ -1,5 +1,5 @@
 angular.module('sL.statechange', [])
-  .factory('SearchSwap', function($http, Data, News) {
+  .factory('SearchSwap', function($http, Data, News, API) {
 
     var getItems = function(result) {
       return new Promise(function(resolve, reject) {
@@ -64,7 +64,7 @@ angular.module('sL.statechange', [])
 
   var getScores = function(query) {
     Data.newsLinks.data.forEach(function(datum) {
-      News.updateScore(datum, query).then(function(scores) {
+      API.updateScore(datum, query).then(function(scores) {
         if(!scores) {
           console.log('no scores data!');
         }
@@ -109,7 +109,7 @@ angular.module('sL.statechange', [])
       console.log('articles ', articles)
       for (var ind = 0; ind < articles.length; ++ind) {
         if(articles[ind]) {
-          News.getImages(articles[ind].url, ind);
+          API.getImages(articles[ind].url, ind);
         }
       }
 
