@@ -85,17 +85,17 @@ angular.module('sL.statechange', [])
           datum.tt.personality = per.tt;
           datum.tt.political = pol.tt;
 
-          datum.sortBy.con = pol.sortBy.con;
-          datum.sortBy.lib = pol.sortBy.lib;
-          datum.sortBy.green = pol.sortBy.green;
-          datum.sortBy.libertarian = pol.sortBy.libertarian;
+          datum.sortBy.con = pol.sortBy.Conservative;
+          datum.sortBy.lib = pol.sortBy.Liberal;
+          datum.sortBy.green = pol.sortBy.Green;
+          datum.sortBy.libertarian = pol.sortBy.Libertarian;
           datum.sortBy.fear = e.sortBy.fear;
           datum.sortBy.joy = e.sortBy.joy;
           datum.sortBy.anger = e.sortBy.anger;
           datum.sortBy.sadness = e.sortBy.sadness;
           datum.sortBy.surprise = e.sortBy.surprise;
-          datum.sortBy.conscient = per.sortBy.conscient;
-          datum.sortBy.ext = per.sortBy.ext;
+          datum.sortBy.conscient = per.sortBy.conscientiousness;
+          datum.sortBy.ext = per.sortBy.extraversion;
           datum.sortBy.openness = per.sortBy.openness;
           datum.sortBy.agreeableness = per.sortBy.agreeableness;
         }

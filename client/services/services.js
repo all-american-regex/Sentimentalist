@@ -110,11 +110,11 @@ angular.module('sL.services', [])
     }
 
     obj.scores = strongest;
-    obj.sortBy = {};
 
-    //make the below generalized
-    obj.sortBy.con = temp.Conservative;
-    obj.sortBy.lib = temp.Liberal;
+    obj.sortBy = Object.keys(temp).reduce(function(newObj, category){
+      newObj[category] = temp[category];
+      return newObj;
+    }, {});
 
     obj.tt = Object.keys(temp).map(function(category){
       return category + ': ' + temp[category] + '% \n'
