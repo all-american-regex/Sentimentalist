@@ -42,7 +42,7 @@ exports.scrapeTopTen = function(query) {
     // (timeNow.diff(timestamp, 'days') > 3
         
     scraper.search(options).then(function(res) {
-      var LIMITER = res.slice(0, 2);  //Gives back 10! Limiting it to 2 until slow & tell.
+      var LIMITER = res.slice(0, 4);  //Gives back 10! Limiting it to 2 until slow & tell.
 
       resolve(LIMITER);
     })

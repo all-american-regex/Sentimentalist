@@ -124,6 +124,8 @@ angular.module('sL.services', [])
       obj.sortBy = {};
       obj.sortBy.con = temp.Conservative;
       obj.sortBy.lib = temp.Liberal;
+      obj.sortBy.green = temp.Green;
+      obj.sortBy.libertarian = temp.Libertarian;
 
       obj.tt = 'Conservative: ' + temp.Conservative + '%  Green: ' + temp.Green + '%  Liberal: ' + temp.Liberal + '%  Libertarian: ' + temp.Libertarian + '%';
       return obj;
@@ -165,6 +167,9 @@ angular.module('sL.services', [])
       obj.sortBy = {};
       obj.sortBy.fear = temp.fear;
       obj.sortBy.joy = temp.joy;
+      obj.sortBy.anger = temp.anger;
+      obj.sortBy.sadness = temp.sadness;
+      obj.sortBy.surprise = temp.surprise;
       obj.tt = 'Anger: ' + temp.anger + '%  Joy: ' + temp.joy + '%  Fear: ' + temp.fear + '%  Sadness: ' + temp.sadness + '%  Suprise ' + temp.surprise + '%';
       return obj;
     };
@@ -204,6 +209,8 @@ angular.module('sL.services', [])
       obj.sortBy = {};
       obj.sortBy.ext = temp.extraversion;
       obj.sortBy.conscient = temp.conscientiousness;
+      obj.sortBy.agreeableness = temp.agreeableness;
+      obj.sortBy.openness = temp.openness;
       obj.tt = '...Extraversion: ' + temp.extraversion + '%... ...Openness: ' + temp.openness + '%... ...Agreeableness: ' + temp.agreeableness + '%... ...Conscientiousness: ' + temp.conscientiousness + '%...';
       return obj;
     };
