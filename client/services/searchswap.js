@@ -70,9 +70,9 @@ angular.module('sL.statechange', [])
         }
         else {
           var s = News.averageScore(scores);
-          var pol = News.politicalSide(scores);
-          var e = News.emotionalScore(scores);
-          var per = News.personalityScore(scores);
+          var pol = News.parseScore(scores.data.political);
+          var e = News.parseScore(scores.data.emotion);
+          var per = News.parseScore(scores.data.personality);
 
           datum.score = s; //comes back as an integer
           setColor(datum);
@@ -85,17 +85,17 @@ angular.module('sL.statechange', [])
           datum.tt.personality = per.tt;
           datum.tt.political = pol.tt;
 
-          datum.sortBy.con = pol.sortBy.con;
-          datum.sortBy.lib = pol.sortBy.lib;
-          datum.sortBy.green = pol.sortBy.green;
-          datum.sortBy.libertarian = pol.sortBy.libertarian;
+          datum.sortBy.con = pol.sortBy.Conservative;
+          datum.sortBy.lib = pol.sortBy.Liberal;
+          datum.sortBy.green = pol.sortBy.Green;
+          datum.sortBy.libertarian = pol.sortBy.Libertarian;
           datum.sortBy.fear = e.sortBy.fear;
           datum.sortBy.joy = e.sortBy.joy;
           datum.sortBy.anger = e.sortBy.anger;
           datum.sortBy.sadness = e.sortBy.sadness;
           datum.sortBy.surprise = e.sortBy.surprise;
-          datum.sortBy.conscient = per.sortBy.conscient;
-          datum.sortBy.ext = per.sortBy.ext;
+          datum.sortBy.conscient = per.sortBy.conscientiousness;
+          datum.sortBy.ext = per.sortBy.extraversion;
           datum.sortBy.openness = per.sortBy.openness;
           datum.sortBy.agreeableness = per.sortBy.agreeableness;
         }
