@@ -17,7 +17,6 @@ angular.module('sL.resultsController', [])
 
   var getSentimentTotals = function() {
     News.sentimentTotals().then(function(resp) {
-      console.log('sentiment total data = ', resp.data)
       Data.totals = resp.data;
       Data.totals.forEach(function(val, ind) {
         if(!$scope.totals[val.query]) {
@@ -29,11 +28,17 @@ angular.module('sL.resultsController', [])
         }
       })
 
+      Data.totals = [];
+
       for(var key in $scope.totals) {
         $scope.totals[key].score = $scope.totals[key].score / $scope.totals[key].total;
+        $scope.totals[key].score = $scope.totals[key].score * 100;
+        $scope.totals[key].score = $scope.totals[key].score.toFixed(0);
+        Data.totals.push($scope.totals[key]);
+        Data.totals[Data.totals.length - 1].name = key;
       }
-
-      console.log('scope totals! = ', $scope.totals);
+      
+      console.log('scope totals! = ', Data.totals);
     })
     .catch(function(err) {
       console.log(err);
