@@ -67,7 +67,7 @@ angular.module('sL.services', [])
         result = Math.floor(result * 100);
         result = Math.min(result, 100);
         result = {
-          title: 'Sentiment',
+          title: 'Positive',
           score: result,
           tt: 'Total Sentiment Score: ' + result
         };
