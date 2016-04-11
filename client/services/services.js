@@ -96,14 +96,15 @@ angular.module('sL.services', [])
         Libertarian: 0
       };
 
-      //refactor of commented for-loop below.
-      politicalScores.data.political.forEach(function(spectrum) {
-        for (var key in temp) {
-          if(key) {
-            temp[key] += spectrum[key];
+      if(politicalScores.data.political) {
+        politicalScores.data.political.forEach(function(spectrum) {
+          for (var key in temp) {
+            if(key) {
+              temp[key] += spectrum[key];
+            }
           }
-        }
-      });
+        });
+      }
 
       var strongestPolitical = {
         party: '',
