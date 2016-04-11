@@ -3,6 +3,7 @@
     <!-- Sentiment Scores Panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
+        <!-- Sort buttons -->
         <div class="item">
           <!-- General Sentiment Button -->
           <button id="gen-sentiment" type="button" class="btn btn-sm btn-info" ng-click="order('score.score')">GENERAL SENTIMENT
@@ -53,9 +54,9 @@
                 <a href="">Green</a>
                 <span class="sortorder" ng-show="predicate === 'sortBy.green'" ng-class="{reverse:reverse}"></span>
               </li>
-              <li role="menuitem" ng-click="order('sortBy.liberatarian')">
-                <a href="">Liberatarian</a>
-                <span class="sortorder" ng-show="predicate === 'sortBy.liberatarian'" ng-class="{reverse:reverse}"></span>
+              <li role="menuitem" ng-click="order('sortBy.libertarian')">
+                <a href="">Libertarian</a>
+                <span class="sortorder" ng-show="predicate === 'sortBy.libertarian'" ng-class="{reverse:reverse}"></span>
               </li>
             </ul>
           </div>
@@ -83,7 +84,7 @@
               </li>
             </ul>
           </div>
-          <!-- /item -->
+          <!-- /Sort buttons -->
         </div>
         <!-- /panel-heading -->
       </div>
@@ -95,7 +96,7 @@
                 <!-- news image -->
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object media-photo" src="{{item.thumbnail.url}}" alt="S" />
+                    <img class="media-object media-photo" src="{{item.thumbnail.url}}" alt="S"/>
                   </a>
                 </div>
                 <div class="media-body">
@@ -105,7 +106,8 @@
                     <!-- story -->
                     <p class="text">{{item.summary}}</p>
                     <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
-                      <img src="{{item.img}}" alt="X" width="16" height="16" /> View source &raquo;
+                      <img src="{{item.img}}" alt="X" width="16" height="16"/>
+                      View source &raquo;
                     </a>
                   </div>
                 </div>
@@ -116,7 +118,8 @@
                       <span class="sentiment">GENERAL SENTIMENT</span>
                       <div class="progress">
                         <div class="progress-bar-dynamic" animate="true" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%; background-color: {{item.color}}">
-                          {{item.score.score}}% {{item.score.title}}
+                          {{item.score.score}}%
+                          {{item.score.title}}
                         </div>
                       </div>
                     </li>
@@ -125,7 +128,7 @@
                       <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{item.emotion.score}}%">
                           <span uib-tooltip="{{item.tt.emotion}}" tooltip-class="addclasshere">{{item.emotion.score}}%
-                        {{item.emotion.emotion}}</span>
+                            {{item.emotion.emotion}}</span>
                         </div>
                       </div>
                     </li>
@@ -134,7 +137,7 @@
                       <div class="progress">
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{item.political.score}}%">
                           <span uib-tooltip="{{item.tt.political}}" tooltip-class="addclasshere">{{item.political.score}}%
-                        {{item.political.party}}</span>
+                            {{item.political.party}}</span>
                         </div>
                       </div>
                     </li>
@@ -143,7 +146,7 @@
                       <div class="progress">
                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{item.personality.score}}%">
                           <span uib-tooltip="{{item.tt.personality}}" tooltip-class="addclasshere">{{item.personality.score}}%
-                        {{item.personality.personality}}</span>
+                            {{item.personality.personality}}</span>
                         </div>
                       </div>
                     </li>

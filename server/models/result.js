@@ -1,7 +1,6 @@
 var db = require('../modules/db/db.js');
 
-//How is the foreign key inserted?
-//This is assuming that an object with all of these properties will be passed to results.
+//Should probably be inserting a search_id foreing key from the searches table
 
 exports.insert = function(sentiment, query) {
 	return db('results')

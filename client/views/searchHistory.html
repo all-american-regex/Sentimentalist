@@ -13,12 +13,12 @@
                   <table class="table trend-tbl">
                     <thead>
                       <tr class="table-header">
-                        <!-- <th class="active">RANKING</th> -->
                         <th class="searched">SEARCH TOPIC</th>
                         <th class="searched">OVERALL SENTIMENT</th>
                       </tr>
                     </thead>
-                    <tbody class="trending" ng-repeat="item in trending">
+                    <tbody class="trending" ng-repeat="item in totals">
+                      {{item}}
                       <tr class="trend-rows">
                         <td class="searched">{{item.name | uppercase}}</td>
                         <td class="searched">{{item.score}}%</td>

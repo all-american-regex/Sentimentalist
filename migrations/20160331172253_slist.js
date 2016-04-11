@@ -28,6 +28,9 @@ exports.up = function(knex, Promise) {
             table.string('sentiment');
         })
 
+
+        //More elaborate results table:
+
         // knex.schema.createTable('results', function(table){
         //     table.increments('id').primary();
         //     table.string('title');
@@ -40,6 +43,8 @@ exports.up = function(knex, Promise) {
         //          .references('id')
         //          .inTable('searches');
         // })
+        
+        //Join table that could be implemented to find results corresponding to searches
 
         // knex.schema.createTable('search_results_join', function(table){
         //     table.integer('results_id')
@@ -47,8 +52,7 @@ exports.up = function(knex, Promise) {
         //          .inTable('results');
         //     table.integer('search_id')
         //          .references('id')
-        //          .inTable('searches');
-            
+        //          .inTable('searches');       
         // }),
     ])
 };
