@@ -24,16 +24,22 @@ exports.up = function(knex, Promise) {
 
         knex.schema.createTable('results', function(table){
             table.increments('id').primary();
-            table.string('title');
-            table.string('url');
-            table.string('sentiment_score');
-            table.string('political_score');
-            table.string('emotional_score');
-            table.string('personality_score');
-            table.integer('search_id')
-                 .references('id')
-                 .inTable('searches');
+            table.string('query');
+            table.string('sentiment');
         })
+
+        // knex.schema.createTable('results', function(table){
+        //     table.increments('id').primary();
+        //     table.string('title');
+        //     table.string('url');
+        //     table.string('sentiment_score');
+        //     table.string('political_score');
+        //     table.string('emotional_score');
+        //     table.string('personality_score');
+        //     table.integer('search_id')
+        //          .references('id')
+        //          .inTable('searches');
+        // })
 
         // knex.schema.createTable('search_results_join', function(table){
         //     table.integer('results_id')
