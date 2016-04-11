@@ -70,9 +70,9 @@ angular.module('sL.statechange', [])
         }
         else {
           var s = News.averageScore(scores);
-          var pol = News.politicalSide(scores);
-          var e = News.emotionalScore(scores);
-          var per = News.personalityScore(scores);
+          var pol = News.parseScore(scores.data.political);
+          var e = News.parseScore(scores.data.political);
+          var per = News.parseScore(scores.data.political);
 
           datum.score = s; //comes back as an integer
           setColor(datum);
