@@ -53,20 +53,27 @@ angular.module('sL.services', [])
     };
 
     var averageScore = function(scoresObject) {
-      var temp = 0;
-      for (var i = 0; i < scoresObject.data.sentiment.length; i++) {
-        temp = temp + scoresObject.data.sentiment[i];
+      if(!scoresObject.data.sentiment) {
+        console.log('no data!')
+        return; 
       }
-      var result = temp / scoresObject.data.sentiment.length;
-      result = result * 4 / 3;
-      result = Math.floor(result * 100);
-      result = Math.min(result, 100);
-      result = {
-        title: 'Sentiment',
-        score: result,
-        tt: 'Total Sentiment Score: ' + result
-      };
-      return result;
+      else {
+        var temp = 0;
+        for (var i = 0; i < scoresObject.data.sentiment.length; i++) {
+          temp = temp + scoresObject.data.sentiment[i];
+        }
+        var result = temp / scoresObject.data.sentiment.length;
+        result = result * 4 / 3;
+        result = Math.floor(result * 100);
+        result = Math.min(result, 100);
+        result = {
+          title: 'Sentiment',
+          score: result,
+          tt: 'Total Sentiment Score: ' + result
+        };
+        return result;
+      }
+      
     };
 
     //next 3 functions are pretty wet and do same thing for each subject

@@ -40,20 +40,42 @@ angular.module('sL.statechange', [])
       });
     };
 
+  var setColor = function(datum) {
+    console.log('input colourrr ', datum)
+    if(datum.score.score < 20) {
+      datum.color = '#ff0000';
+    }
+    else if (datum.score.score < 40) {
+      datum.color = '#ff9933';
+    }
+    else if (datum.score.score < 60) {
+      datum.color = '#ffff00';
+    }
+    else if (datum.score.score < 80) {
+      datum.color = '#009933';   
+    }
+    else if (datum.score.score < 90) {
+      datum.color = '#00b300'; 
+    }
+    else {
+      datum.color = '#00cc00';
+    }
+  }
 
-    var getScores = function() {
-      Data.newsLinks.data.forEach(function(datum) {
-        News.updateScore(datum).then(function(scores) {
-          //the reason we need the net four functions is because to get more accurate data we send a batch of sentences
-          //so we get back an array of unknown length that we have to average
+  var getScores = function() {
+    Data.newsLinks.data.forEach(function(datum) {
+      News.updateScore(datum).then(function(scores) {
+        if(!scores) {
+          console.log('no scores data!');
+        }
+        else {
           var s = News.averageScore(scores);
           var pol = News.politicalSide(scores);
           var e = News.emotionalScore(scores);
           var per = News.personalityScore(scores);
 
-          debugger
-
           datum.score = s; //comes back as an integer
+          setColor(datum);
           //the next 3 only return the average score of the strongest aspect in each catagory
           datum.political = pol.scores; //{party:"string", score:number}
           datum.emotion = e.scores; //{emotion:"string", score:number}
@@ -69,12 +91,12 @@ angular.module('sL.statechange', [])
           datum.sortBy.joy = e.sortBy.joy;
           datum.sortBy.conscient = per.sortBy.conscient;
           datum.sortBy.ext = per.sortBy.ext;
-
-          // console.log('DATUM = ', datum);
-
-        });
+        }
+        //the reason we need the net four functions is because to get more accurate data we send a batch of sentences
+        //so we get back an array of unknown length that we have to average
       });
-    };
+    });
+  };
 
     var getImages = function(articles) {
       console.log('articles ', articles)

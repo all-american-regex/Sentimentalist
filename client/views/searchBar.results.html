@@ -66,8 +66,7 @@
                   <ul class="list-group list-scores">
                     <li class="list-group-item lgi"><span class="sentiment">GENERAL SENTIMENT</span>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%">
-                          <!-- <span uib-tooltip="{{item.score.tt}}" tooltip-class="addclasshere"></span> -->
+                        <div class="progress-bar-dynamic" animate="true" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{item.score.score}}%; background-color: {{item.color}}">
                           {{item.score.score}}% {{item.score.title}}
                         </div>
                       </div>
