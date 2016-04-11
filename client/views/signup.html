@@ -4,10 +4,10 @@
       <div class="col-md-12">
         <div class="well middle">
           <h1>Sign Up</h1>
-          <form class="inputdata" name="signupForm" ng-submit="signup()">
-            <input type="text" placeholder="username" ng-model="user.username">
-            <input type="password" placeholder="password" ng-model="user.password">
-            <button class="btn btn-submit">sign up</button>
+          <form class="inputdata" name="signupForm" ng-submit="signup()" novalidate>
+            <input uib-tooltip="Username must be at least 6 characters long." name="username" type="text" placeholder="username" ng-model="user.username" ng-minlength="6" required>
+            <input uib-tooltip="Password must be at least 6 characters long. Please use a secure password. ex: 'password123'" name="password" type="password" placeholder="password" ng-model="user.password"ng-minlength="6" required>
+            <button class="btn btn-submit" ng-disabled="signupForm.$invalid">sign up</button>
           </form>
           <h6>
             <a href="#/signin">Already have an account?<br>
