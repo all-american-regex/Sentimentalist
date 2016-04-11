@@ -3,9 +3,32 @@
     <div class="row">
       <div class="col-md-12">
         <div class="well-lg middle-about">
-          <h2>Search History</h2>
+          <h2>Sentiment Scores</h2>
           <hr/>
-          <p class="lead text-info text-center">{{paragraph}}</p>
+          <p class="lead text-info text-center score-chart">
+            <!-- trending table -->
+            <div class="col-md-12">
+              <div class="well well-sm trends">
+                <div class="table-responsive">
+                  <table class="table trend-tbl">
+                    <thead>
+                      <tr class="table-header">
+                        <!-- <th class="active">RANKING</th> -->
+                        <th class="searched">SEARCH TOPIC</th>
+                        <th class="searched">OVERALL SENTIMENT</th>
+                      </tr>
+                    </thead>
+                    <tbody class="trending" ng-repeat="item in trending">
+                      <tr class="trend-rows">
+                        <td class="searched">{{item.name | uppercase}}</td>
+                        <td class="searched">{{item.score}}%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </p>
         </div>
       </div>
     </div>
