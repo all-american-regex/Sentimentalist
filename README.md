@@ -3,17 +3,13 @@
 
 SentimentaList is the union of a search engine and a powerful sentiment analysis API by [Indico](https://indico.io/).
 
-####
-#####Everything is biased! I don't know what to think!
-*-A not-yet-satisfied not-yet-user*
-
 ####Rapid Sentiment Assessment
 Sentimentalist provides a rapid sentiment assessment of search results so users can choose their results from a variety of perspectives.
 
 #####This app is cool, yo. Yeah, yeah, yeah.
 *-Harry Hough*
 
-#####Yo bro, this app is dope. Do people say 'dope' now? Bawss? Bawss would be with an 'A-W-S-S'.
+#####Yo bro, this app is dope. Do people say 'dope' now? Bawss? Bawss would be with an 'A-W-S-S'.>
 *-P.J. Matteucci*
 
 ###Getting Started
