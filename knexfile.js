@@ -15,7 +15,8 @@ module.exports = {
   }
 
 }
-
+  // Something like this will be needed if you depoloy the database to Heroku:
+  // 
   // development: {
   //   client: 'postgresql',
   //   connection: process.env.DATABASE_URL
