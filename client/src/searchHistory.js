@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('sL.historyController', [])
-  .controller('HistoryController', function($scope, $state) {
+  .controller('HistoryController', function($scope, $state, Data) {
 
-    $scope.paragraph = 'Under construction.';
+    $scope.totals = Data.totals;
 
   });
