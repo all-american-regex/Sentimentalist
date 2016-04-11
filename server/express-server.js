@@ -12,7 +12,7 @@ var Search = require('./models/search.js');
 var User = require('./models/user.js');
 var Session = require('./models/session.js');
 
-var db = require('./modules/db/db.js');
+
 
 app.use(bodyParser.json());
 app.use(cookieParser());

@@ -4,6 +4,7 @@ angular.module('sL', [
   'sL.resultsController',
   'sL.aboutController',
   'sL.historyController',
+  'sL.dropDownController',
   'sL.searchBar',
   'sL.services',
   'sL.auth',
