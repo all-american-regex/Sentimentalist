@@ -1,32 +1,26 @@
-### Running the Tests
+# SentimentaList
+###*Bias at a Glance*
 
-There is a basic test framework in your `test/` folder. To run the tests, simply run `npm test`.
+SentimentaList is the union of a search engine and a powerful sentiment analysis API by [Indico](https://indico.io/).
 
+####
+#####Everything is biased! I don't know what to think!
+*-A not-yet-satisfied not-yet-user*
 
-## PostGres notes:
+####Rapid Sentiment Assessment
+Sentimentalist provides a rapid sentiment assessment of search results so users can choose their results from a variety of perspectives.
 
-    In the terminal:
+#####This app is cool, yo. Yeah, yeah, yeah.
+*-Harry Hough*
 
-    1. brew install postgres
-    2. postgres -D /usr/local/var/postgres
-    
+#####Yo bro, this app is dope. Do people say 'dope' now? Bawss? Bawss would be with an 'A-W-S-S'.
+*-P.J. Matteucci*
 
-    In a new terminal tab:
+###Getting Started
+1. Enter your topic of interest into the search bar.
+2. The colored bars give a summary of the sentiment in the search result.
+3. Do it again!
+4. Share it with your friends!
 
-    3. createdb sList_dev
-    4. Make sure that knex is installed globally so you can use it from the command line.
-    5. knex migrate:latest --env development
-
-    In express-server.js:
-    
-    6. Comment back in the db require statement
-
-    After that, you can use the command psql in a different tab to work directly with the data.
-
-    In a separate tab in the terminal:
-
-    7. psql
-    8. \connect sList_dev
-    9. If that fails because you don't have a db called your username, do createdb with your username and try again
-    10. \dt                (this will show the tables)
-    11. Otherwise, just use normal SQL syntax
+#####The colored bars make it all make sense.
+*-A satisfied former non-user*
