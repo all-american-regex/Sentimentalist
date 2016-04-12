@@ -97,7 +97,7 @@ angular.module('sL.services', [])
     data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
