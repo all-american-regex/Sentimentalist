@@ -2,7 +2,7 @@
 
 angular.module('sL.auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth) {
+.controller('AuthController', function ($scope, $window, $state, Auth) {
   $scope.user = {};
   $scope.message = '';
 
@@ -10,7 +10,7 @@ angular.module('sL.auth', [])
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.sL', token);
-        $location.path('/searchBar');
+        $state.go('searchBar');
       })
       .catch(function (error) {
         console.log('auth.js signin >>', error);
@@ -22,7 +22,7 @@ angular.module('sL.auth', [])
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.sL', token);
-        $location.path('/searchBar');
+        $state.go('searchBar');
       })
       .catch(function (error) {
         $scope.message = error;
