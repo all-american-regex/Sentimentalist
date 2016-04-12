@@ -15,7 +15,10 @@ angular.module('sL', [
   'sL.apiFactory'
 
 ])
-
+//set user login status
+.run(function($rootScope) {
+  $rootScope.loggedIn = false;
+})
 // spinner for page loading status
 .run(function($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
