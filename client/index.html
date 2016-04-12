@@ -28,12 +28,12 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a ui-sref="signin" ng-hide="$rootScope.loggedIn">
+              <a ui-sref="signin" ng-hide="loggedIn">
                 <span class="fa fa-fw fa-sign-in" aria-hidden="true"></span>
                 Sign In</a>
             </li>
             <li>
-              <a href="/logout" ng-show="$rootScope.loggedIn">
+              <a href="/logout" ng-show="loggedIn">
                 <span class="fa fa-fw fa-sign-out" aria-hidden="true"></span>
                 Logout
               </a>
