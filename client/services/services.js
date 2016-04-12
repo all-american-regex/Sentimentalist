@@ -54,6 +54,10 @@ angular.module('sL.services', [])
     }
 
     obj.scores = strongest;
+    obj.scores.renameThis = obj.scores.renameThis.split('').map(function(char, i){
+      if(i===0) return char.toUpperCase();
+      else return char;
+    }).join('');
 
     obj.sortBy = Object.keys(temp).reduce(function(newObj, category){
       newObj[category] = temp[category];
