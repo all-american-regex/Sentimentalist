@@ -2,7 +2,7 @@
 
 angular.module('sL.auth', [])
 
-.controller('AuthController', function ($scope, $window, $state, Auth) {
+.controller('AuthController', function ($rootScope, $scope, $window, $state, Auth) {
   $scope.user = {};
   $scope.message = '';
 
@@ -10,6 +10,7 @@ angular.module('sL.auth', [])
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.sL', token);
+        $rootScope.loggedIn = true;
         $state.go('searchBar');
       })
       .catch(function (error) {
