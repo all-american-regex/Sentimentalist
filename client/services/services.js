@@ -101,9 +101,17 @@ angular.module('sL.services', [])
     });
   };
 
+  var logout = function() {
+    return $http({
+      method: 'GET',
+      url: '/logout'
+    })
+  };
+
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    logout: logout
   };
 })
 

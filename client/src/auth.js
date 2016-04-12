@@ -30,4 +30,18 @@ angular.module('sL.auth', [])
         console.log('auth.js signup >>', error);
       });
   };
+
+  $scope.logout = function() {
+
+    Auth.logout()
+      .then(function() {
+        $window.localStorage.removeItem('com.sL');
+        $rootScope.loggedIn = false;
+        $state.go('searchBar')
+      })
+      .catch(function(error) {
+        $scope.message = error;
+        console.log('auth.js logout >>', error)
+      })
+  }
 });
