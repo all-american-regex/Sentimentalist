@@ -109,7 +109,7 @@ app.post('/api/users/signup', function(req, res) {
     .then(function(user) {
       if (user) {
         console.log('Account already exists');
-        res.redirect('/signup');
+        res.redirect('/');
       } else {
         User.create({
             username: username,
