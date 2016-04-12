@@ -33,7 +33,7 @@
                 Sign In</a>
             </li>
             <li>
-              <a href="/logout" ng-show="loggedIn">
+              <a href='' ng-controller="AuthController" ng-click="logout()" ng-show="loggedIn">
                 <span class="fa fa-fw fa-sign-out" aria-hidden="true"></span>
                 Logout
               </a>
