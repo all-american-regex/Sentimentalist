@@ -1,6 +1,6 @@
 var db = require('../modules/db/db.js');
 
-//Should probably be inserting a search_id foreing key from the searches table
+//Should probably be inserting a search_id foreign key from the searches table
 
 exports.insert = function(sentiment, query) {
 	return db('results')
