@@ -52,11 +52,11 @@ angular.module('sL', [
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController',
       resolve: {
-        SearchSwap: 'SearchSwap',
-        News: 'News',
-        Data: 'Data',
-
-        Auth: 'Auth',
+        // SearchSwap: 'SearchSwap',
+        // News: 'News',
+        // Data: 'Data',
+        //
+        // Auth: 'Auth',
         swap: function(SearchSwap, News, Data, Auth, API) {
           console.log('called resolve state');
           return API.getTopTen(Data.input);
