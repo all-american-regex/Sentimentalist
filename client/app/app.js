@@ -16,8 +16,8 @@ angular.module('sL', [
 
 ])
 //set user login status
-.run(function($rootScope) {
-  $rootScope.loggedIn = false;
+.run(function($rootScope, $window) {
+  $rootScope.loggedIn = !! $window.localStorage.getItem('com.sL');
 })
 // spinner for page loading status
 .run(function($rootScope, $state, $stateParams) {
