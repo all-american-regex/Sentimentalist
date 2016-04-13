@@ -109,7 +109,7 @@ app.post('/api/users/signup', function(req, res) {
     .then(function(user) {
       if (user) {
         console.log('Account already exists');
-        res.redirect('/signup');
+        res.redirect('/');
       } else {
         User.create({
             username: username,
@@ -147,7 +147,7 @@ app.post('/api/users/signin', function(req, res) {
               Session.create(user.uid)
                 .then(function(newSession) {
                   res.cookie('sessionId', newSession.id);
-                  return res.redirect('/');
+                  return res.status(200).send(newSession.id);
                 });
             }
           });
