@@ -187,3 +187,7 @@ ul {
   -o-transition: width .6s ease;
   transition: width .6s ease;
 }
+
+.star span:active{
+  background-color:yellow;
+}
