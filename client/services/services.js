@@ -97,14 +97,44 @@ angular.module('sL.services', [])
     data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
+  };
+
+  var logout = function() {
+    return $http({
+      method: 'GET',
+      url: '/logout'
+    })
   };
 
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    logout: logout
   };
+})
+
+.factory('Favs',function($http){
+
+  var createFav = function(obj){
+    return $http({
+      method: 'POST',
+      url: '/api/favorites',
+      data: obj
+    })
+  }
+
+  var getFav = function(){
+  console.log('executed getFav')
+    return $http({
+      method: 'GET',
+      url: '/api/favorites',
+    })
+  }
+
+  return {createFav: createFav,
+          getFav   : getFav}
 })
 
 .service('Data', function() {

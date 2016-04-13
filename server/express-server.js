@@ -12,6 +12,7 @@ var Search = require('./models/search.js');
 var User = require('./models/user.js');
 var Session = require('./models/session.js');
 var Result = require('./models/result.js');
+var Favs  = require('./models/favorites.js')
 
 var assetFolder = Path.resolve(__dirname, '../client/');
 
@@ -99,6 +100,43 @@ app.get('/api/topicsentiment', function(req, res) {
   })
 });
 
+//Favorite endpoints
+
+app.post('/api/favorites', function(req,res){
+  console.log('req.cookie:', req.cookies);
+  var favObj = req.body;
+  console.log
+  return Favs.getUserId(req.cookies.sessionId)
+    .then(function(obj){
+      console.log('obj:', obj);
+      favObj.user_id = obj.user_id;
+      console.log('favObj:', favObj);
+      return Favs.create(favObj)
+        .then(function(){
+          res.status(200).send('You added to your favorites')
+        })
+    })
+    .catch(function(err){
+      res.status(400).send({err:err});
+    })
+
+})
+
+app.get('/api/favorites',function(req,res){
+  console.log('getting favorites')
+  console.log(req.cookies.sessionId)
+  return Favs.getUserId(req.cookies.sessionId)
+    .then(function(obj){
+      return Favs.getFavs(obj)
+        .then(function(favs){
+          res.status(200).send(favs);
+       })
+    })
+    .catch(function(err){
+      res.status(400).send({err:err});
+    })
+})
+
 //Authentication endpoints below:
 
 app.post('/api/users/signup', function(req, res) {
@@ -109,7 +147,7 @@ app.post('/api/users/signup', function(req, res) {
     .then(function(user) {
       if (user) {
         console.log('Account already exists');
-        res.redirect('/signup');
+        res.redirect('/');
       } else {
         User.create({
             username: username,
@@ -147,7 +185,7 @@ app.post('/api/users/signin', function(req, res) {
               Session.create(user.uid)
                 .then(function(newSession) {
                   res.cookie('sessionId', newSession.id);
-                  return res.redirect('/');
+                  return res.status(200).send(newSession.id);
                 });
             }
           });

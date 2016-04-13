@@ -2,17 +2,23 @@
 
 angular.module('sL.resultsController', [])
 
-.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap, API) {
+.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap, API,Favs) {
   $scope.heading = 'Sentiment Score';
   $scope.data = Data.newsLinks;
   $scope.predicate = '';
   $scope.reverse = true;
   $scope.totals = {};
 
+  $scope.createFav = function(obj){
+    console.log('in create fav')
+    return Favs.createFav(obj)
+  }
+  
   $scope.order = function(predicate) {
     $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
     $scope.predicate = predicate;
   };
+
 
 
   var getSentimentTotals = function() {

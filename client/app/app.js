@@ -12,10 +12,13 @@ angular.module('sL', [
   'ngAnimate',
   'sL.statechange',
   'ngResource',
-  'sL.apiFactory'
-
+  'sL.apiFactory',
+  'sL.favsController'
 ])
-
+//set user login status
+.run(function($rootScope, $window) {
+  $rootScope.loggedIn = !! $window.localStorage.getItem('com.sL');
+})
 // spinner for page loading status
 .run(function($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
@@ -49,11 +52,11 @@ angular.module('sL', [
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController',
       resolve: {
-        SearchSwap: 'SearchSwap',
-        News: 'News',
-        Data: 'Data',
-
-        Auth: 'Auth',
+        // SearchSwap: 'SearchSwap',
+        // News: 'News',
+        // Data: 'Data',
+        //
+        // Auth: 'Auth',
         swap: function(SearchSwap, News, Data, Auth, API) {
           console.log('called resolve state');
           return API.getTopTen(Data.input);
@@ -78,7 +81,12 @@ angular.module('sL', [
     .state('history', {
       url: '/history',
       templateUrl: 'views/searchHistory.html',
-      controller: 'HistoryController'
+      controller: 'favoriteController',
+      resolve:{
+        favorites: function(Favs){
+          return Favs.getFav();
+        }
+      }
     });
 
 });
