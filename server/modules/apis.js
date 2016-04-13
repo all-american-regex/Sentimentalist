@@ -10,7 +10,7 @@ exports.getArticleBody = function(url) {
     var options = {
       url: 'https://verticodelabs.p.mashape.com/article/?article_url=' + url,
       headers: {
-        "X-Mashape-Key": "5FJ5MuF0iqmshseOP2qbonN2ng0sp1HxczajsnaAqOMoesIoHw", 
+        "X-Mashape-Key": "5FJ5MuF0iqmshseOP2qbonN2ng0sp1HxczajsnaAqOMoesIoHw",
         "Accept": "application/json"
       }
     };
@@ -36,13 +36,13 @@ exports.scrapeTopTen = function(query) {
       limit: 1,
       params: {news: 'tbm=nws'}
     };
-    
+
     // ------- TIMESTAMP STUFF HERE -------
     // db.checkifqueryexits().then(function(query, timestamp) { // Add our db logic here! & .then to scraper.
     // (timeNow.diff(timestamp, 'days') > 3
-        
+
     scraper.search(options).then(function(res) {
-      var LIMITER = res.slice(0, 4);  //Gives back 10! Limiting it to 2 until slow & tell.
+      var LIMITER = res.slice(0, 2);  //Gives back 10! Limiting it to 2 until slow & tell.
 
       resolve(LIMITER);
     })
