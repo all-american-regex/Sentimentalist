@@ -15,7 +15,10 @@ angular.module('sL', [
   'sL.apiFactory'
 
 ])
-
+//set user login status
+.run(function($rootScope, $window) {
+  $rootScope.loggedIn = !! $window.localStorage.getItem('com.sL');
+})
 // spinner for page loading status
 .run(function($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
@@ -49,11 +52,11 @@ angular.module('sL', [
       templateUrl: 'views/searchBar.results.html',
       controller: 'ResultsController',
       resolve: {
-        SearchSwap: 'SearchSwap',
-        News: 'News',
-        Data: 'Data',
-
-        Auth: 'Auth',
+        // SearchSwap: 'SearchSwap',
+        // News: 'News',
+        // Data: 'Data',
+        //
+        // Auth: 'Auth',
         swap: function(SearchSwap, News, Data, Auth, API) {
           console.log('called resolve state');
           return API.getTopTen(Data.input);

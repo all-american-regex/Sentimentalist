@@ -97,13 +97,21 @@ angular.module('sL.services', [])
     data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
+  };
+
+  var logout = function() {
+    return $http({
+      method: 'GET',
+      url: '/logout'
+    })
   };
 
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    logout: logout
   };
 })
 
