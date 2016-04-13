@@ -14,7 +14,7 @@ User.findByUsername = function (username) {
 }
 
 User.findById = function (id) {
-  return db('users').where({ id: id }).limit(1)
+  return db('users').where({ uid: id }).limit(1)
     .then(function (rows) {
       return rows[0]
     })
