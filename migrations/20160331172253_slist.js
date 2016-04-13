@@ -26,13 +26,8 @@ exports.up = function(knex, Promise) {
             table.increments('id').primary();
             table.string('query');
             table.string('sentiment');
-        }),
-
-        knex.schema.createTable('favorites', function(table){
-          table.increments('id').primary();
-          table.string('url');
-          table.integer('user_id').references('uid').inTable('users');
         })
+
 
         //More elaborate results table:
 
@@ -48,7 +43,7 @@ exports.up = function(knex, Promise) {
         //          .references('id')
         //          .inTable('searches');
         // })
-
+        
         //Join table that could be implemented to find results corresponding to searches
 
         // knex.schema.createTable('search_results_join', function(table){
@@ -57,7 +52,7 @@ exports.up = function(knex, Promise) {
         //          .inTable('results');
         //     table.integer('search_id')
         //          .references('id')
-        //          .inTable('searches');
+        //          .inTable('searches');       
         // }),
     ])
 };
@@ -66,7 +61,6 @@ exports.down = function(knex, Promise) {
   return Promise.all([
         knex.schema.dropTable('users'),
         knex.schema.dropTable('searches'),
-        knex.schema.dropTable('results'),
-        knex.schema.dropTable('favorites')
+        knex.schema.dropTable('results')
     ])
 };
