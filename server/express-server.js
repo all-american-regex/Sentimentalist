@@ -17,7 +17,8 @@ var secret = require('./credentials.js')
 var store = new KnexSessionStore({knex:db,tablename:'sessions'});
 
 var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+  , LocalStrategy = require('passport-local').Strategy
+  , FacebookStrategy = require('passport-facebook').Strategy;;
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -50,6 +51,30 @@ passport.use(new LocalStrategy(
   }
 ));
 
+passport.use(new FacebookStrategy({
+    clientID: secret.facebook.app_id,
+    clientSecret: secret.facebook.app_secret,
+    callbackURL: "/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log("Facebook authentication for: ", profile)
+    User.findByFbId(profile.id)
+    .then(function(user){
+      if(!user) {
+        return User.create({facebook_id:profile.id, username:profile.displayName})
+      }
+      else return user;
+    })
+    .then(function(user) {
+      done(null, user);
+    })
+    .catch(function(err) {
+      return done(err);
+    });
+  }
+));
+
+
 passport.serializeUser(function(user, done) {
   console.log("serializing user: ", user)
   done(null, user.uid);
@@ -67,15 +92,18 @@ passport.deserializeUser(function(id, done) {
 
 var assetFolder = Path.resolve(__dirname, '../client/');
 
+app.use(express.static(assetFolder));
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(session({ secret: 'notyourbiz', store: store }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(express.static(assetFolder));
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { successRedirect: '/',
+failureRedirect: '/' }));
 
 app.get('/api/top10scrape', function(req, res) {
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
