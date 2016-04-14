@@ -9,7 +9,7 @@ angular.module('sL.auth', ['ngStorage'])
   $scope.signin = function() {
     Auth.signin($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.sL', token);
+        $window.localStorage.setItem('com.sL', true);
         $rootScope.loggedIn = true;
         $state.go('searchBar');
       })
@@ -22,7 +22,7 @@ angular.module('sL.auth', ['ngStorage'])
   $scope.signup = function() {
     Auth.signup($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.sL', token);
+        $window.localStorage.setItem('com.sL', true);
         $state.go('searchBar');
       })
       .catch(function (error) {
