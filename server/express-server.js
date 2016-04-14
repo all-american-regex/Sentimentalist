@@ -216,6 +216,20 @@ app.post('/api/users/signup', function(req, res) {
 
 app.post('/api/users/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
+app.get('/api/users/me', function(req, res){
+  if(req.user) {
+    User.findById(req.user.uid)
+    .then(function(user){
+        res.status(200).send({username: user.username})
+    })
+    .catch(function(err){
+      console.log('An error has occurred with /me.')
+    })
+  } else {
+    res.status(401).send("Not logged in.")
+  }
+})
+
 app.get('/logout', function(req, res) {
   req.logout();
   res.status(200).send();
