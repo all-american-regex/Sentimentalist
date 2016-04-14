@@ -13,7 +13,7 @@ var User = require('./models/user.js');
 var Result = require('./models/result.js');
 var Favs  = require('./models/favorites.js')
 var KnexSessionStore = require('connect-session-knex')(session)
-
+var secret = require('./credentials.js')
 var store = new KnexSessionStore({knex:db,tablename:'sessions'});
 
 var passport = require('passport')
