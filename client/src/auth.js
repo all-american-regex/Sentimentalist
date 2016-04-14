@@ -46,4 +46,14 @@ angular.module('sL.auth', ['ngStorage'])
         console.log('auth.js logout >>', error)
       })
   }
+
+  Auth.checkMe()
+    .then(
+      function(resp) {
+        if(resp.status == 200)
+          $rootScope.loggedIn = true;
+          $scope.user = Auth.whoMe();
+          $window.localStorage.setItem('com.sL', JSON.stringify(Auth.whoMe()));
+      }
+    )
 });
