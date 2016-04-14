@@ -74,10 +74,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(assetFolder));
 
-var port = process.env.PORT || 3000;
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-console.log('Server Started on localhost:', port);
-app.listen(port);
 
 app.get('/api/top10scrape', function(req, res) {
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
@@ -222,3 +220,8 @@ app.get('/logout', function(req, res) {
   req.logout();
   res.status(200).send();
 });
+
+var port = process.env.PORT || 3000;
+
+console.log('Server Started on port:', port);
+app.listen(port);
