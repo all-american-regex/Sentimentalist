@@ -63,7 +63,7 @@ angular.module('sL.apiFactory', [])
     updateScore: updateScore,
     getTrending: getTrending,
     getTopTen: getTopTen,
-    getImages: getImages
+    getImages: getImages,
   }
 
 });

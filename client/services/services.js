@@ -115,6 +115,28 @@ angular.module('sL.services', [])
   };
 })
 
+.factory('Favs',function($http){
+
+  var createFav = function(obj){
+    return $http({
+      method: 'POST',
+      url: '/api/favorites',
+      data: obj
+    })
+  }
+
+  var getFav = function(){
+  console.log('executed getFav')
+    return $http({
+      method: 'GET',
+      url: '/api/favorites',
+    })
+  }
+
+  return {createFav: createFav,
+          getFav   : getFav}
+})
+
 .service('Data', function() {
   this.newsLinks = {};
   this.input = '';

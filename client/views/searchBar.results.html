@@ -109,6 +109,9 @@
                       <img src="{{item.img}}" alt="X" width="16" height="16"/>
                       View source &raquo;
                     </a>
+                  <button class='star' ng-click= "createFav({url:item.url, headline: item.headline, summary: item.summary, headline:item.headline,img:item.img, thumbnail: item.thumbnail.url})">
+                  <span>&#x2606</span>
+                  </button>
                   </div>
                 </div>
                 <!-- sentiment score visual -->
