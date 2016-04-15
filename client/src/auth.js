@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('sL.auth', [])
+angular.module('sL.auth', ['ngStorage'])
 
-.controller('AuthController', function ($rootScope, $scope, $window, $state, Auth) {
+.controller('AuthController', function ($rootScope, $scope,$window,$localStorage, $state, Auth) {
   $scope.user = {};
   $scope.message = '';
 
@@ -36,6 +36,8 @@ angular.module('sL.auth', [])
     Auth.logout()
       .then(function() {
         $window.localStorage.removeItem('com.sL');
+        delete $localStorage.favs;
+        console.log('local storage after logout:', $localStorage);
         $rootScope.loggedIn = false;
         $state.go('searchBar')
       })

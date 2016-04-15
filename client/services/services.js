@@ -125,6 +125,16 @@ angular.module('sL.services', [])
     })
   }
 
+  var deleteFav = function(obj){
+   console.log('in deleteFav in favs factory')
+   console.log('obj in deleteFav factory:', obj)
+    return $http({
+      method: 'DELETE',
+      url: '/api/favorites',
+      params: obj
+    })
+  }
+
   var getFav = function(){
   console.log('executed getFav')
     return $http({
@@ -134,7 +144,8 @@ angular.module('sL.services', [])
   }
 
   return {createFav: createFav,
-          getFav   : getFav}
+          getFav   : getFav,
+          deleteFav: deleteFav}
 })
 
 .service('Data', function() {

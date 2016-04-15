@@ -23,7 +23,7 @@
               <a href="/#/about">About Us</a>
             </li>
             <li>
-              <a href="/#/history">My Favorites</a>
+              <a href="/#/history" ng-show='loggedIn'>My Favorites</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -56,6 +56,7 @@
         <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
         <script src="/styles/ui-bootstrap-tpls-1.2.5.js"></script>
         <script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
         <script src="/app/app.js"></script>
         <script src='/src/favsController.js'></script>
         <script src="/src/resultsController.js"></script>

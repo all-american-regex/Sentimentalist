@@ -103,18 +103,12 @@ app.get('/api/topicsentiment', function(req, res) {
 //Favorite endpoints
 
 app.post('/api/favorites', function(req,res){
-  console.log('req.cookie:', req.cookies);
   var favObj = req.body;
-  console.log
-  return Favs.getUserId(req.cookies.sessionId)
-    .then(function(obj){
-      console.log('obj:', obj);
-      favObj.user_id = obj.user_id;
-      console.log('favObj:', favObj);
-      return Favs.create(favObj)
-        .then(function(){
-          res.status(200).send('You added to your favorites')
-        })
+  favObj.user_id = req.user.id;
+  console.log('favObj:', favObj);
+  return Favs.create(favObj)
+    .then(function(){
+      res.status(200).send('You added to your favorites')
     })
     .catch(function(err){
       res.status(400).send({err:err});
@@ -123,17 +117,21 @@ app.post('/api/favorites', function(req,res){
 })
 
 app.get('/api/favorites',function(req,res){
-  console.log('getting favorites')
-  console.log(req.cookies.sessionId)
-  return Favs.getUserId(req.cookies.sessionId)
-    .then(function(obj){
-      return Favs.getFavs(obj)
+  console.log('req.user:', req.user);
+      return Favs.getFavs(req.user)
         .then(function(favs){
           res.status(200).send(favs);
        })
-    })
-    .catch(function(err){
-      res.status(400).send({err:err});
+       .catch(function(err){
+        res.status(400).send({err:err});
+       })
+})
+
+app.delete('/api/favorites', function(req,res){
+  console.log('req.query:', req.query);
+  return Favs.delete(req.query)
+    .then(function(){
+      res.status(200).send('Deleted favorite');
     })
 })
 
