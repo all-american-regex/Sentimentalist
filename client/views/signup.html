@@ -4,6 +4,9 @@
       <div class="col-md-12">
         <div class="well middle">
           <h1>Sign Up</h1>
+          <a href="/auth/facebook" class="btn oauth"><img src="/assets/fb.png" alt="Log in with facebook" class="img-responsive"></a>
+          <a href="/auth/twitter" class="btn oauth"><img src="/assets/twitter-signin.png" alt="Log in with twitter" class="img-responsive"></a>
+          <h2> - or - <h2>
           <form class="inputdata" name="signupForm" ng-submit="signup()" novalidate>
             <input uib-tooltip="Username must be at least 6 characters long." name="username" type="text" placeholder="username" ng-model="user.username" ng-minlength="6" required>
             <input uib-tooltip="Password must be at least 6 characters long. Please use a secure password. ex: 'password123'" name="password" type="password" placeholder="password" ng-model="user.password" ng-minlength="6" required>
