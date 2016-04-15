@@ -10,12 +10,67 @@ var cookieParser = require('cookie-parser');
 var Path = require('path');
 var Search = require('./models/search.js');
 var User = require('./models/user.js');
-var Session = require('./models/session.js');
 var Result = require('./models/result.js');
 var Favs  = require('./models/favorites.js')
+var Session = require('./models/session.js');
+var KnexSessionStore = require('connect-session-knex')(session)
+
+var store = new KnexSessionStore({knex:db,tablename:'ssessions'});
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+
+    User.findByUsername(username)
+      .then(
+        function(user) {
+
+          if (! user) {
+            return done(null, false, {message: "Invalid username or password."});
+          }
+
+          User.comparePassword(user.hashed_password, password)
+            .then(
+              function(result) {
+                if(result)
+                  return done(null, user)
+                else
+                  return done(null, false, {message: "Invalid username or password."})
+              }
+            )
+            .catch(function(err){
+              console.log("Authentication error: ", err)
+            })
+        }
+      )
+      .catch(
+        function(err) {return done(err)}
+      )
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  console.log("serializing user: ", user)
+  done(null, user.uid);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id).then(
+    function(user) {
+      done(null, user);
+    })
+    .catch(function(error) {
+      done(error);
+    });
+});
 
 var assetFolder = Path.resolve(__dirname, '../client/');
 
+app.use(session({ secret: 'notyourbiz', store: store }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(assetFolder));
@@ -162,39 +217,9 @@ app.post('/api/users/signup', function(req, res) {
     });
 });
 
-app.post('/api/users/signin', function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-
-  var user = null;
-
-  User.findByUsername(username)
-    .then(function(userObj) {
-      user = userObj;
-
-      if (!user) {
-        res.redirect('/#/signin');
-      } else {
-        return User.comparePassword(user.hashed_password, password)
-          .then(function(isMatch) {
-            if (!isMatch) {
-              res.redirect('/#/signin');
-            } else {
-              Session.create(user.uid)
-                .then(function(newSession) {
-                  res.cookie('sessionId', newSession.id);
-                  return res.status(200).send(newSession.id);
-                });
-            }
-          });
-      }
-    });
-});
+app.post('/api/users/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
 app.get('/logout', function(req, res) {
-  Session.destroy(req.cookies.sessionId)
-    .then(function() {
-      res.clearCookie('sessionId');
-      res.redirect('/#/signin');
-    });
+  req.logout();
+  res.status(200).send();
 });
