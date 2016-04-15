@@ -10,20 +10,56 @@ var cookieParser = require('cookie-parser');
 var Path = require('path');
 var Search = require('./models/search.js');
 var User = require('./models/user.js');
-var Session = require('./models/session.js');
 var Result = require('./models/result.js');
 var Favs  = require('./models/favorites.js')
+var KnexSessionStore = require('connect-session-knex')(session)
+var store = new KnexSessionStore({knex:db,tablename:'sessions'});
+var utils = require('./modules/utils.js')
+var passport = require('passport');
+
+passport.use(utils.strategies.local);
+passport.use(utils.strategies.facebook);
+passport.use(utils.strategies.twitter);
+
+passport.serializeUser(function(user, done) {
+  console.log("serializing user: ", user)
+  done(null, user.uid);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id).then(
+    function(user) {
+      done(null, user);
+    })
+    .catch(function(error) {
+      done(error);
+    });
+});
 
 var assetFolder = Path.resolve(__dirname, '../client/');
 
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(express.static(assetFolder));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({ secret: 'notyourbiz', store: store, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-var port = process.env.PORT || 3000;
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-console.log('Server Started on localhost:', port);
-app.listen(port);
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { successRedirect: '/',
+failureRedirect: '/' }));
+
+app.get('/auth/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 app.get('/api/top10scrape', function(req, res) {
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
@@ -137,7 +173,7 @@ app.delete('/api/favorites', function(req,res){
 
 //Authentication endpoints below:
 
-app.post('/api/users/signup', function(req, res) {
+app.post('/api/users/signup', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
 
@@ -152,49 +188,39 @@ app.post('/api/users/signup', function(req, res) {
             password: password
           })
           .then(function(newUser) {
-            return Session.create(newUser.id);
+            console.log("Loggin in new user:", newUser)
+            req.login(newUser, function(err) {
+              if (err) { return next(err); }
+              console.log("Logged in new user", newUser.uid)
+              return res.status(200).send();
+            });
           })
-          .then(function(newSession) {
-            res.cookie('sessionId', newSession.id);
-            return res.redirect('/');
-          });
       }
     });
 });
 
-app.post('/api/users/signin', function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+app.post('/api/users/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: false }));
 
-  var user = null;
-
-  User.findByUsername(username)
-    .then(function(userObj) {
-      user = userObj;
-
-      if (!user) {
-        res.redirect('/#/signin');
-      } else {
-        return User.comparePassword(user.hashed_password, password)
-          .then(function(isMatch) {
-            if (!isMatch) {
-              res.redirect('/#/signin');
-            } else {
-              Session.create(user.uid)
-                .then(function(newSession) {
-                  res.cookie('sessionId', newSession.id);
-                  return res.status(200).send(newSession.id);
-                });
-            }
-          });
-      }
-    });
-});
+app.get('/api/users/me', function(req, res){
+  if(req.user) {
+    User.findById(req.user.uid)
+    .then(function(user){
+        res.status(200).send({username: user.username, displayname: user.displayname})
+    })
+    .catch(function(err){
+      console.log('An error has occurred with /me.')
+    })
+  } else {
+    res.status(401).send("Not logged in.")
+  }
+})
 
 app.get('/logout', function(req, res) {
-  Session.destroy(req.cookies.sessionId)
-    .then(function() {
-      res.clearCookie('sessionId');
-      res.redirect('/#/signin');
-    });
+  req.logout();
+  res.status(200).send();
 });
+
+var port = process.env.PORT || 3000;
+
+console.log('Server Started on port:', port);
+app.listen(port);

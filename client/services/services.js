@@ -7,7 +7,7 @@ angular.module('sL.services', [])
   var averageScore = function(scoresObject) {
     if(!scoresObject.data.sentiment) {
       console.log('no data!')
-      return; 
+      return;
     }
     else {
       var temp = 0;
@@ -35,7 +35,7 @@ angular.module('sL.services', [])
 
     var temp = scores.reduce(function(newObj, spectrum){
       for (var key in spectrum){
-        newObj[key] += spectrum[key]; 
+        newObj[key] += spectrum[key];
       }
       return newObj;
     });
@@ -79,6 +79,26 @@ angular.module('sL.services', [])
 
 .factory('Auth', function($http, Data) {
 
+  var me = '';
+
+  var checkMe = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/users/me'
+    }).then(function(resp){
+      if(resp.status == 200) {
+        console.log('me: ', resp.data.username, 'disp ', resp.data.displayname)
+        me = resp.data.username || resp.data.displayname;
+      } else {
+        me = '';
+      }
+      return(resp)
+    })
+  }
+
+  var whoMe = function () {
+    return me;
+  }
   var signup = function (user) {
     return $http({
       method: 'POST',
@@ -111,7 +131,9 @@ angular.module('sL.services', [])
   return {
     signup: signup,
     signin: signin,
-    logout: logout
+    logout: logout,
+    checkMe: checkMe,
+    whoMe: whoMe
   };
 })
 
