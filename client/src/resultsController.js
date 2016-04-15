@@ -1,23 +1,36 @@
 'use strict';
 
-angular.module('sL.resultsController', [])
+angular.module('sL.resultsController', ['ngStorage'])
 
-.controller('ResultsController', function($scope, $state, Data, News, SearchSwap, swap, API,Favs) {
+.controller('ResultsController', function($scope, $state,$localStorage, Data, News, SearchSwap, swap, API,Favs) {
   $scope.heading = 'Sentiment Score';
   $scope.data = Data.newsLinks;
   $scope.predicate = '';
   $scope.reverse = true;
   $scope.totals = {};
+  $scope.$storage = $localStorage.$default({favs:{}})
+  $scope.headlines;
 
   $scope.createFav = function(obj){
-    console.log('in create fav')
+    $scope.$storage.favs[obj.headline] = true;
+    console.log('sessionFavorites:', $scope.$storage.favs);
     return Favs.createFav(obj)
-  }
+ }
   
   $scope.order = function(predicate) {
     $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
     $scope.predicate = predicate;
   };
+
+  var getHeadlines = function(){
+    Favs.getFav()
+      .then(function(obj){
+        $scope.headlines = obj.data.reduce(function(trap,obj){
+        trap[obj.headline] = true;
+        return trap;
+      },{})
+    })
+  }
 
 
 
@@ -69,6 +82,43 @@ angular.module('sL.resultsController', [])
   };
 
   $scope.getLinks = function() {};
-
+  getHeadlines();
   getImages();
-});
+})
+
+// .directive('toggleClass',function(){
+//   return{
+//     restrict: 'A',
+//     link: function(scope,element,attrs){
+//       element.bind('click',function(){
+//         if(element.attr('class') === 'fa fa-star yellow'){
+//           element.removeClass('yellow');
+//         }else{
+//           element.addClass('yellow');
+//         }
+//       })
+//     }
+//   }  
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

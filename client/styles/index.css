@@ -3,6 +3,7 @@ body {
   background-color: #f5f8fa;
 }
 
+
 .jumbotron {
   text-align: center;
   background-color: #dcdcdc;
@@ -188,6 +189,16 @@ ul {
   transition: width .6s ease;
 }
 
-.star span:active{
-  background-color:yellow;
+.fa-star{
+  cursor:pointer;
+  font-size: 20px;
 }
+.yellow{
+  color: #DAE609;
+}
+.remove{
+  background-color:#E05959;
+  color: white;
+}
+
+

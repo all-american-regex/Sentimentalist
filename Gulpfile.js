@@ -1,9 +1,24 @@
 'use strict';
 
 var gulp      = require('gulp');
+var dbTask    = require('gulp-db');
+var shell     = require('gulp-shell')
 var nodemon   = require('gulp-nodemon');
 var bs        = require('browser-sync').create();
 var reload    = bs.reload;
+
+// var dbManager = dbTask({
+//     host:'localhost',
+//     database: "sList_dev",
+//     dialect: 'postgresql'
+// })
+//  gulp.task('start', shell.task[
+//   'psql CREATE DATABASE sList_dev'
+// ]);
+// gulp.task('drop', dbManager.drop('sList_dev'));
+// gulp.task('create', dbManager.create("sList_dev"));
+// gulp.task('reset', ['drop','create']);
+
 
 gulp.task('serve', [], function() {
   //bs.watch('./client/*').on('change', bs.reload);

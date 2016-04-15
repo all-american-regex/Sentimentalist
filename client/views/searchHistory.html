@@ -1,9 +1,10 @@
 <div id="history" ng-init='logFavs()'>
     <h2>Favorites</h2>
+    <div ng-show = 'favorites.length == 0'>
+     Too cool for favorites? Click the star, bozo!!
+     </div>
       <div class="panel-body">
-        <div class="list-group" ng-repeat="item in favorites">
-          <ul class="list-group">
-            <li class="list-group-item">
+        <div class="list-group slide ng-leave" ng-repeat="item in favorites">
               <div class="media media-news">
                 <!-- news image -->
                 <div class="media-left">
@@ -24,8 +25,8 @@
                       <img src="{{item.img}}" alt="X" width="16" height="16"/>
                       View source &raquo;
                     </a>
-                  <button>
-                    <span>&#10007   Remove from Favorites</span>
+                  <button class ='btn bdg-score remove' ng-click = 'delete({headline:item.headline})'>
+                    <span>&#10007   Remove </span>
                   </button>
                   </div>
                 </div>
