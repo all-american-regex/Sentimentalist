@@ -32,3 +32,6 @@ client/lib/
 server/.DS_Store
 server/modules/.DS_Store
 *.DS_Store
+sentiData
+
+server/credentials.js

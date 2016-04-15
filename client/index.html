@@ -23,22 +23,23 @@
               <a href="/#/about">About Us</a>
             </li>
             <li>
-              <a href="/#/history">Sentiment Scores</a>
+              <a href="/#/history" ng-show='loggedIn'>My Favorites</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="/#/signin">
+              <a ui-sref="signin" ng-hide="loggedIn">
                 <span class="fa fa-fw fa-sign-in" aria-hidden="true"></span>
                 Sign In</a>
             </li>
             <li>
-              <a href="/logout">
+              <a href='' ng-controller="AuthController" ng-click="logout()" ng-show="loggedIn">
                 <span class="fa fa-fw fa-sign-out" aria-hidden="true"></span>
                 Logout
               </a>
             </li>
           </ul>
+          <p ng-controller="AuthController" class="navbar-text navbar-right" ng-show="loggedIn">Welcome, {{loggedInUser}}</p>
         </div>
       </nav>
       <!-- /navigation bar -->
@@ -56,7 +57,9 @@
         <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
         <script src="/styles/ui-bootstrap-tpls-1.2.5.js"></script>
         <script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
         <script src="/app/app.js"></script>
+        <script src='/src/favsController.js'></script>
         <script src="/src/resultsController.js"></script>
         <script src="/src/aboutController.js"></script>
         <script src="/src/searchHistory.js"></script>

@@ -3,14 +3,14 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'sList_dev'
+      database: "sList_dev"
     }
   },
 
   test: {
     client: 'postgresql',
     connection: {
-      database: 'sList_test'
+      database: "sList_test"
     }
   }
 

@@ -1,37 +1,36 @@
-<div id="history">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="well-lg middle-about">
-          <h2>Sentiment Scores</h2>
-          <hr/>
-          <p class="lead text-info text-center score-chart">
-            <!-- trending table -->
-            <div class="col-md-12">
-              <div class="well well-sm trends">
-                <div class="table-responsive">
-                  <table class="table trend-tbl">
-                    <thead>
-                      <tr class="table-header">
-                        <th class="searched">SEARCH TOPIC</th>
-                        <th class="searched">OVERALL SENTIMENT</th>
-                      </tr>
-                    </thead>
-                    <tbody class="trending" ng-repeat="item in totals">
-                      {{item}}
-                      <tr class="trend-rows">
-                        <td class="searched">{{item.name | uppercase}}</td>
-                        <td class="searched">{{item.score}}%</td>
-                      </tr>
-                    </tbody>
-                  </table>
+<div id="history" ng-init='logFavs()'>
+    <h2>Favorites</h2>
+    <div ng-show = 'favorites.length == 0'>
+     Too cool for favorites? Click the star, bozo!!
+     </div>
+      <div class="panel-body">
+        <div class="list-group slide ng-leave" ng-repeat="item in favorites">
+              <div class="media media-news">
+                <!-- news image -->
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object media-photo" src="{{item.thumbnail}}"/>
+                  </a>
+                  <!-- <button>
+                    <span>&#10007   Remove from Favorites</span>
+                  </button> -->
                 </div>
-              </div>
-            </div>
-          </p>
-        </div>
-      </div>
+                <div class="media-body">
+                  <div class="well">
+                    <!-- headline -->
+                    <h4 class="media-heading">{{item.headline}}</h4>
+                    <!-- story -->
+                    <p class="text">{{item.summary}}</p>
+                    <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
+                      <img src="{{item.img}}" alt="X" width="16" height="16"/>
+                      View source &raquo;
+                    </a>
+                  <button class ='btn bdg-score remove' ng-click = 'delete({headline:item.headline})'>
+                    <span>&#10007   Remove </span>
+                  </button>
+                  </div>
+                </div>
     </div>
-  </div>
-</div>
 <div ui-view></div>
+
+

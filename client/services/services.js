@@ -7,7 +7,7 @@ angular.module('sL.services', [])
   var averageScore = function(scoresObject) {
     if(!scoresObject.data.sentiment) {
       console.log('no data!')
-      return; 
+      return;
     }
     else {
       var temp = 0;
@@ -35,7 +35,7 @@ angular.module('sL.services', [])
 
     var temp = scores.reduce(function(newObj, spectrum){
       for (var key in spectrum){
-        newObj[key] += spectrum[key]; 
+        newObj[key] += spectrum[key];
       }
       return newObj;
     });
@@ -79,6 +79,26 @@ angular.module('sL.services', [])
 
 .factory('Auth', function($http, Data) {
 
+  var me = '';
+
+  var checkMe = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/users/me'
+    }).then(function(resp){
+      if(resp.status == 200) {
+        console.log('me: ', resp.data.username, 'disp ', resp.data.displayname)
+        me = resp.data.username || resp.data.displayname;
+      } else {
+        me = '';
+      }
+      return(resp)
+    })
+  }
+
+  var whoMe = function () {
+    return me;
+  }
   var signup = function (user) {
     return $http({
       method: 'POST',
@@ -97,14 +117,57 @@ angular.module('sL.services', [])
     data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
+  };
+
+  var logout = function() {
+    return $http({
+      method: 'GET',
+      url: '/logout'
+    })
   };
 
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    logout: logout,
+    checkMe: checkMe,
+    whoMe: whoMe
   };
+})
+
+.factory('Favs',function($http){
+
+  var createFav = function(obj){
+    return $http({
+      method: 'POST',
+      url: '/api/favorites',
+      data: obj
+    })
+  }
+
+  var deleteFav = function(obj){
+   console.log('in deleteFav in favs factory')
+   console.log('obj in deleteFav factory:', obj)
+    return $http({
+      method: 'DELETE',
+      url: '/api/favorites',
+      params: obj
+    })
+  }
+
+  var getFav = function(){
+  console.log('executed getFav')
+    return $http({
+      method: 'GET',
+      url: '/api/favorites',
+    })
+  }
+
+  return {createFav: createFav,
+          getFav   : getFav,
+          deleteFav: deleteFav}
 })
 
 .service('Data', function() {

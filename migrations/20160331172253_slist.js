@@ -7,9 +7,17 @@ exports.up = function(knex, Promise) {
             table.string('hashed_password');
         }),
 
-        knex.schema.createTable('sessions', function(table) {
-            table.string('id').primary();
-            table.integer('user_id');
+        knex.schema.createTable('favorites',function(table){
+            table.increments('id').primary;
+            table.string('url');
+            table.string('summary');
+            table.string('img');
+            table.string('headline');
+            table.string('thumbnail');
+            table.integer('user_id')
+                 .references('uid')
+                 .inTable('users');
+
         }),
 
         knex.schema.createTable('searches', function(table){
@@ -43,7 +51,7 @@ exports.up = function(knex, Promise) {
         //          .references('id')
         //          .inTable('searches');
         // })
-        
+
         //Join table that could be implemented to find results corresponding to searches
 
         // knex.schema.createTable('search_results_join', function(table){
@@ -52,7 +60,7 @@ exports.up = function(knex, Promise) {
         //          .inTable('results');
         //     table.integer('search_id')
         //          .references('id')
-        //          .inTable('searches');       
+        //          .inTable('searches');
         // }),
     ])
 };

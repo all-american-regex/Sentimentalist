@@ -14,7 +14,17 @@ User.findByUsername = function (username) {
 }
 
 User.findById = function (id) {
-  return db('users').where({ id: id }).limit(1)
+  return db('users').where({ uid: id }).limit(1)
+    .then(function (rows) {
+      return rows[0]
+    })
+}
+
+User.findByPassportId = function(id, strategy) {
+  params = {};
+  if(strategy === 'facebook') params.facebook_id = id;
+  if(strategy === 'twitter') params.twitter_id = id;
+  return db('users').where(params).limit(1)
     .then(function (rows) {
       return rows[0]
     })
@@ -29,11 +39,12 @@ User.create = function (attrs) {
       attrs.password_hash = passwordHash
       delete attrs.password
 
-      return db('users').insert({username: attrs.username, hashed_password: attrs.password_hash})
+      return db().insert({username: attrs.username, hashed_password: attrs.password_hash, facebook_id:attrs.facebook_id, twitter_id:attrs.twitter_id}).returning('uid').into('users');
     })
     .then(function (result) {
-      var newUser = Object.assign({}, attrs);
-      newUser.id = result[0];
+      var newUser = attrs; //probably should copy this rather than mutate.
+      newUser.uid = result[0];
+      console.log("new user output: ", newUser)
       delete newUser.password; // Strip password before sending back
       return newUser;
     });
