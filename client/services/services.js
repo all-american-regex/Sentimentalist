@@ -87,7 +87,8 @@ angular.module('sL.services', [])
       url: '/api/users/me'
     }).then(function(resp){
       if(resp.status == 200) {
-        me = resp.data.username;
+        console.log('me: ', resp.data.username, 'disp ', resp.data.displayname)
+        me = resp.data.username || resp.data.displayname;
       } else {
         me = '';
       }

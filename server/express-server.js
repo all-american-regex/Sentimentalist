@@ -19,6 +19,7 @@ var passport = require('passport');
 
 passport.use(utils.strategies.local);
 passport.use(utils.strategies.facebook);
+passport.use(utils.strategies.twitter);
 
 passport.serializeUser(function(user, done) {
   console.log("serializing user: ", user)
@@ -40,7 +41,7 @@ var assetFolder = Path.resolve(__dirname, '../client/');
 app.use(express.static(assetFolder));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({ secret: 'notyourbiz', store: store }));
+app.use(session({ secret: 'notyourbiz', store: store, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -49,6 +50,16 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook', { successRedirect: '/',
 failureRedirect: '/' }));
+
+app.get('/auth/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 app.get('/api/top10scrape', function(req, res) {
   API.scrapeTopTen(req.query.search).then(function(queryArray) {
@@ -194,7 +205,7 @@ app.get('/api/users/me', function(req, res){
   if(req.user) {
     User.findById(req.user.uid)
     .then(function(user){
-        res.status(200).send({username: user.username})
+        res.status(200).send({username: user.username, displayname: user.displayname})
     })
     .catch(function(err){
       console.log('An error has occurred with /me.')

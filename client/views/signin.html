@@ -5,7 +5,8 @@
       <div class="col-md-12">
         <div class="well middle">
           <h1>Sign In</h1>
-          <a href="/auth/facebook"><img src="/assets/fb.png" alt="Log in with facebook" class="img-responsive middled"></a>
+          <a href="/auth/facebook" class="btn oauth"><img src="/assets/fb.png" alt="Log in with facebook" class="img-responsive"></a>
+          <a href="/auth/twitter" class="btn oauth"><img src="/assets/twitter-signin.png" alt="Log in with twitter" class="img-responsive"></a>
           <h2> - or - <h2>
           <form class="inputdata" name="signinForm" ng-submit="signin()">
             <input type="text" placeholder="username" ng-model="user.username" ng-minlength="6" ng-required="true" class="form-control">

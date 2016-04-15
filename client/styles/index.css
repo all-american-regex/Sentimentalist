@@ -70,8 +70,12 @@ table {
   margin-left: 27%;
   text-align: center;
 }
-
-
+.btn.oauth {
+  width:50%;
+}
+.btn.oauth img {
+  width:100%;
+}
 /*end: signin & signup pages*/
 
 .middle-about {
