@@ -105,7 +105,7 @@
                     <h4 class="media-heading">{{item.headline}}</h4>
                     <!-- story -->
                     <p class="text">{{item.summary}}</p>
-                      <i class="fa fa-star" ng-class ="{yellow:$storage.favs[item.headline] || headlines[item.headline]}" ng-click="createFav({url:item.url, headline: item.headline, summary: item.summary, headline:item.headline,img:item.img, thumbnail: item.thumbnail.url})"></i>
+                      <i class="fa fa-star" ng-show = "loggedIn" ng-class ="{yellow:$storage.favs[item.headline] || headlines[item.headline]}" ng-click="createFav({url:item.url, headline: item.headline, summary: item.summary, headline:item.headline,img:item.img, thumbnail: item.thumbnail.url})"></i>
                     <a class="btn btn-info bdg-score" href="{{item.url}}" target="_blank" role="button">
                       <img src="{{item.img}}" alt="X" width="16" height="16"/>
                       View source &raquo;

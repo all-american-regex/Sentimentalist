@@ -20,9 +20,10 @@ console.log('obj in delete util:', obj)
 }
 
 Favs.getFavs = function(obj){
+console.log('obj from getFavs:', obj);
 	return db.select()
 	         .from('favorites')
-	         .where('user_id', '=', obj.id)
+	         .where('user_id', '=', obj.uid)
 	         .then(function(row){
 	         console.log('row from getFavs util:', row);
 	         	return row;
@@ -34,6 +35,7 @@ Favs.getSpecificFav = function(obj){
 	return db.select()
 	         .from('favorites')
 	         .where('url', '=', obj.url)
+	         .andWhere('user_id', '=', obj.user_id)
 	         .then(function(row){
 	           return row;
 	         })

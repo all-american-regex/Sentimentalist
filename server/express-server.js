@@ -140,7 +140,8 @@ app.get('/api/topicsentiment', function(req, res) {
 
 app.post('/api/favorites', function(req,res){
   var favObj = req.body;
-  favObj.user_id = req.user.id;
+  console.log('req.user:',req.user);
+  favObj.user_id = req.user.uid;
   console.log('favObj:', favObj);
   return Favs.create(favObj)
     .then(function(){
