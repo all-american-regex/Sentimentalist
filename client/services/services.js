@@ -79,7 +79,7 @@ angular.module('sL.services', [])
 
 .factory('Auth', function($http, Data) {
 
-  var me = {};
+  var me = '';
 
   var checkMe = function() {
     return $http({
@@ -87,7 +87,9 @@ angular.module('sL.services', [])
       url: '/api/users/me'
     }).then(function(resp){
       if(resp.status == 200) {
-        me = resp.data;
+        me = resp.data.username;
+      } else {
+        me = '';
       }
       return(resp)
     })

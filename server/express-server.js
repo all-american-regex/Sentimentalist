@@ -217,7 +217,7 @@ app.delete('/api/favorites', function(req,res){
 
 //Authentication endpoints below:
 
-app.post('/api/users/signup', function(req, res) {
+app.post('/api/users/signup', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
 
@@ -232,9 +232,10 @@ app.post('/api/users/signup', function(req, res) {
             password: password
           })
           .then(function(newUser) {
-            req.login(newUser.id, function(err) {
+            console.log("Loggin in new user:", newUser)
+            req.login(newUser, function(err) {
               if (err) { return next(err); }
-              console.log("Logged in new user", newUser.id)
+              console.log("Logged in new user", newUser.uid)
               return res.status(200).send();
             });
           })
@@ -242,7 +243,7 @@ app.post('/api/users/signup', function(req, res) {
     });
 });
 
-app.post('/api/users/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
+app.post('/api/users/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: false }));
 
 app.get('/api/users/me', function(req, res){
   if(req.user) {
