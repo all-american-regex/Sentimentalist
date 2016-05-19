@@ -1,6 +1,6 @@
 # SentimentaList
 ###*Bias at a Glance*
-![ScreenShot](https://raw.github.com/lancespears/SentimentaList/master/client/SentimentaList2.png)
+![ScreenShot](/client/SentimentaList2.png?raw=true)
 
 SentimentaList is the union of a search engine and a powerful sentiment analysis API by [Indico](https://indico.io/).
 
